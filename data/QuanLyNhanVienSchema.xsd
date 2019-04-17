@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+    
+    
+    <xs:element name="QuanLyNhanVien">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="NhanVien" maxOccurs="unbounded" />
+                <xs:element ref="PhongBan" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element ref="ChucVu" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element ref="HDLD"  minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+        
+        <!-- Khoa -->
+        <xs:key name="PKNhanVien">
+            <xs:selector xpath="NhanVien/MaNV"></xs:selector>
+            <xs:field xpath="."></xs:field>
+        </xs:key>
+        <xs:key name="PKPhongBan">
+            <xs:selector xpath="PhongBan/MaPB"></xs:selector>
+            <xs:field xpath="."></xs:field>
+        </xs:key>
+        <xs:key name="PKChucVu">
+            <xs:selector xpath="ChucVu/MaCV"></xs:selector>
+            <xs:field xpath="."></xs:field>
+        </xs:key>
+        <xs:key name="PKHDLD">
+            <xs:selector xpath="HDLD/MaHDLD"></xs:selector>
+            <xs:field xpath="."></xs:field>
+        </xs:key>
+        
+        <!-- Khoa phu-->
+        <xs:keyref refer="PKPhongBan" name="PKNhanVientoPhongBan">
+            <xs:selector xpath="NhanVien/MaPB"></xs:selector>
+            <xs:field xpath="."></xs:field>
+        </xs:keyref>
+        <xs:keyref refer="PKChucVu" name="PKNhanVientoChucVu">
+            <xs:selector xpath="NhanVien/MaCV"></xs:selector>
+            <xs:field xpath="."></xs:field>
+        </xs:keyref>
+        <xs:keyref refer="PKHDLD" name="PKNhanVientoHDLD">
+            <xs:selector xpath="NhanVien/MaHDLD"></xs:selector>
+            <xs:field xpath="."></xs:field>
+        </xs:keyref>
+    </xs:element>
+    
+    
+    <xs:element name="NhanVien">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="MaNV" type="xs:string" />
+                <xs:element name="TenNV" type="xs:string" />
+                <xs:element name="DiaChi" type="xs:string" />
+                <xs:element name="NgaySinh" type="xs:date" />
+                <xs:element name="GioiTinh" type="xs:string" />
+                <xs:element name="DanToc" type="xs:string" />
+                <xs:element name="TonGiao" type="xs:string" />
+                <xs:element name="CMND" type="xs:string" />
+                <xs:element name="MaPB" type="xs:string" />
+                <xs:element name="MaCV" type="xs:string" />
+                <xs:element name="MaHDLD" type="xs:string" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="PhongBan">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="MaPB" type="xs:string"/>
+                <xs:element name="TenPB" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="ChucVu">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="MaCV" type="xs:string"/>
+                <xs:element name="TenCV" type="xs:string"/>
+                <xs:element name="PhuCap" type="xs:double"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="HDLD">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="MaHDLD" type="xs:string"/>
+                <xs:element name="TenHDLD" type="xs:string"/>
+                <xs:element name="NgayBatDau" type="xs:date"/>
+                <xs:element name="NgayKetThuc" type="xs:date"/>
+                <xs:element name="HeSoLuong" type="xs:double"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    
+    
+    
+    
+
+</xs:schema>
