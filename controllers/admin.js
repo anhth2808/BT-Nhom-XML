@@ -5,13 +5,23 @@ const parseString = xml2js.parseString;
 const path = require("path");
 
 const NhanVien = require("../models/NhanVien");
+const PhongBan = require("../models/PhongBan");
 
-exports.getEmployees = (req, res) => {
-    NhanVien.fetchAll(nhanViens => {
-        
-        res.render("./admin/employees", {
+exports.getIndex = (req, res) => {
+    NhanVien.fetchAll(nhanViens => {        
+        res.render("./admin/index", {
             pageTitle: 'Index',
-            path: '/admin/add-product',
+            path: '/',
+            nhanViens: nhanViens
+        });
+    });
+}
+
+exports.getNhanViens = (req, res) => {
+    NhanVien.fetchAll(nhanViens => {
+        res.render("./admin/nhanvien-list", {
+            pageTitle: 'Danh sách nhân viên',
+            path: '/nhanviens',
             nhanViens: nhanViens
         });
     });
@@ -19,13 +29,23 @@ exports.getEmployees = (req, res) => {
 };
 
 
-exports.getEmployee = (req, res) => {
-    NhanVien.findById("MaNV0", nhanVien => {
-        console.log("sss:", nhanVien);
-        res.render("./admin/employee-detail", {
-            pageTitle: 'Chi tiết nhân viên',
-            path: '/admin/add-product',
-            nhanVien: nhanVien
-        })
+exports.getNhanVien = (req, res) => {
+    const MaNV = req.params.MaNV;
+
+    NhanVien.findById(MaNV, nhanVien => {
+        // console.log("nhanVien:", nhanVien);
+
+        PhongBan.findById(nhanVien.MaPB[0], phongBan => {
+            // console.log(phongBan);
+            
+            res.render("./admin/nhanvien-detail", {
+                pageTitle: nhanVien.TenNV[0],
+                path: '/nhanviens',
+                nhanVien: nhanVien,
+                phongBan: phongBan
+            });
+        });
+
     });
+    
 };

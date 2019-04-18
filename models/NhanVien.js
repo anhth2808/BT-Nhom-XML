@@ -16,8 +16,8 @@ const getDataFromFile = (cb) => {
                 if (err) {
                     console.log(err);
                 } else {
-                    // console.log(result);
-                    console.log("NhanVien:", result.QuanLyNhanVien.NhanVien);
+                    console.log(result.QuanLyNhanVien);
+                    // console.log("NhanVien:", result.QuanLyNhanVien.NhanVien);
                     // console.log("PhongBan:", result.QuanLyNhanVien.PhongBan);
                     // console.log("ChucVu:", result.QuanLyNhanVien.ChucVu);
                     // console.log("HDLD:", result.QuanLyNhanVien.HDLD);
@@ -79,6 +79,6 @@ module.exports = class NhanVien {
             const nhanVien = nhanViens.find(n => n.MaNV[0] === MaNV);
             console.log(nhanViens[0].MaNV[0]);
             cb(nhanVien);
-        })
+        });
     }
 }

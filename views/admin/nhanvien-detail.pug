@@ -1,10 +1,7 @@
 extends  ../layouts/main-layout.pug
 
 block content
-    h1 Parse XML using NodeJS
-    p NhanVien detail !!!!
-
-    div #{nhanVien}
+    h1 Thông tin về nhân viên #{nhanVien.TenNV[0]}
 
     table
         tr
@@ -25,3 +22,11 @@ block content
             td #{nhanVien.DanToc[0]}
             td #{nhanVien.TonGiao[0]}
             td #{nhanVien.CMND[0]}
+    br
+    table
+        tr 
+            th MaPB
+            th TenPB
+        tr
+            td #{phongBan.MaPB[0]}
+            td #{phongBan.TenPB[0]}

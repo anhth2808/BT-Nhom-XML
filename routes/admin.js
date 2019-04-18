@@ -6,15 +6,15 @@ const adminCtrl = require("../controllers/admin");
 
 
 // /employees => GET
-router.get("/", adminCtrl.getEmployees);
+router.get("/", adminCtrl.getIndex);
+router.get("/nhanviens", adminCtrl.getNhanViens);
 
-router.get("/employees", adminCtrl.getEmployees);
-
-router.get("/employee", adminCtrl.getEmployee);
+// /employee => GET
+router.get("/nhanviens/:MaNV", adminCtrl.getNhanVien);
 
 
 // /add-employee => GET
-router.get("/add-employee");
+router.get("/add-employees");
 
 // /add-employee => POST
 router.post("/add-employee");

@@ -1,0 +1,29 @@
+extends  ../layouts/main-layout.pug
+
+block content
+    h1 Danh sách nhân viên:
+    hr
+    
+    table
+        tr
+            th MaNV
+            th TenNV
+            th DiaChi
+            th NgaySinh
+            th GioiTinh
+            th DanToc
+            th TonGiao
+            th CMND
+            th
+        each nhanVien in nhanViens
+            tr
+                td #{nhanVien.MaNV[0]}
+                td #{nhanVien.TenNV[0]}
+                td #{nhanVien.DiaChi[0]}
+                td #{nhanVien.NgaySinh[0]}
+                td #{nhanVien.GioiTinh[0]}
+                td #{nhanVien.DanToc[0]}
+                td #{nhanVien.TonGiao[0]}
+                td #{nhanVien.CMND[0]}
+                td
+                    a.btn(href="/nhanviens/" + nhanVien.MaNV[0]) Chi tiết

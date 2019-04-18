@@ -5,9 +5,29 @@ html(lang="en")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         meta(http-equiv="X-UA-Compatible", content="ie=edge")
         title #{pageTitle}
+        link(rel="stylesheet", href="/bootstrap/css/bootstrap.min.css")
         link(rel="stylesheet", href="/css/main.css")
         
+        script(src="/bootstrap/js/bootstrap.min")
         block styles
     
     body
+        
+        nav.navbar.navbar-expand-sm.bg-light.navbar-light
+            ul.navbar-nav
+                li.nav-item
+                    a.nav-link.active(href="/") Trang chủ
+                li.nav-item
+                    a.nav-link(href="/nhanviens") Nhân viên
+                li.nav-item
+                    a.nav-link.disabled(href="#") Disabled
+
+
         block content
+
+        footer.page-footer.font-small.teal.pt-4
+            .container-fluid.text-center.text-md-left
+                .row
+                    .footer-copyright.text-center.py-3
+                        | © 201X Copyright:
+                        a(href='https://github.com/lockedheart98')  Traeh
