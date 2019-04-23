@@ -6,6 +6,8 @@ const path = require("path");
 
 const NhanVien = require("../models/NhanVien");
 const PhongBan = require("../models/PhongBan");
+const HDLD = require("../models/HDLD");
+const ChucVu = require("../models/ChucVu");
 
 exports.getIndex = (req, res) => {
     NhanVien.fetchAll(nhanViens => {        
@@ -35,15 +37,27 @@ exports.getNhanVien = (req, res) => {
     NhanVien.findById(MaNV, nhanVien => {
         // console.log("nhanVien:", nhanVien);
 
-        PhongBan.findById(nhanVien.MaPB[0], phongBan => {
+        PhongBan.findById(nhanVien.MaPB, phongBan => {
             // console.log(phongBan);
+
+            ChucVu.findById(nhanVien.MaCV, chucVu => {
+                // console.log(chucVu);
+                
+                HDLD.findById(nhanVien.MaHDLD, hdld => {
+                    // console.log(hdld);
+
+                    res.render("./admin/nhanvien-detail", {
+                        pageTitle: nhanVien.TenNV,
+                        path: '/nhanviens',
+                        nhanVien: nhanVien,
+                        phongBan: phongBan,
+                        chucVu: chucVu,
+                        hdld: hdld
+                    });
+                });
             
-            res.render("./admin/nhanvien-detail", {
-                pageTitle: nhanVien.TenNV[0],
-                path: '/nhanviens',
-                nhanVien: nhanVien,
-                phongBan: phongBan
             });
+
         });
 
     });

@@ -1,7 +1,7 @@
 extends  ../layouts/main-layout.pug
 
 block content
-    h1 Thông tin về nhân viên #{nhanVien.TenNV[0]}
+    h1 Thông tin về nhân viên #{nhanVien.TenNV}
 
     table
         tr
@@ -14,19 +14,41 @@ block content
             th TonGiao
             th CMND
         tr
-            td #{nhanVien.MaNV[0]}
-            td #{nhanVien.TenNV[0]}
-            td #{nhanVien.DiaChi[0]}
-            td #{nhanVien.NgaySinh[0]}
-            td #{nhanVien.GioiTinh[0]}
-            td #{nhanVien.DanToc[0]}
-            td #{nhanVien.TonGiao[0]}
-            td #{nhanVien.CMND[0]}
+            td #{nhanVien.MaNV}
+            td #{nhanVien.TenNV}
+            td #{nhanVien.DiaChi}
+            td #{nhanVien.NgaySinh}
+            td #{nhanVien.GioiTinh}
+            td #{nhanVien.DanToc}
+            td #{nhanVien.TonGiao}
+            td #{nhanVien.CMND}
+    br
+    table
+        tr 
+            th MaCV
+            th TenCV
+            th PhuCap
+        tr
+            td #{chucVu.MaCV}
+            td #{chucVu.TenCV}
+            td #{chucVu.PhuCap}
     br
     table
         tr 
             th MaPB
             th TenPB
         tr
-            td #{phongBan.MaPB[0]}
-            td #{phongBan.TenPB[0]}
+            td #{phongBan.MaPB}
+            td #{phongBan.TenPB}
+    br
+    table
+        tr 
+            th MaHDLD
+            th NgayBatDau
+            th NgayKetThuc
+            th HeSoLuong
+        tr
+            td #{hdld.MaHDLD}
+            td #{hdld.NgayBatDau}
+            td #{hdld.NgayKetThuc}
+            td #{hdld.HeSoLuong}

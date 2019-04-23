@@ -4,6 +4,9 @@ const xml2js = require("xml2js");
 const Builder = xml2js.Builder();
 const parseString = xml2js.parseString;
 
+const DOMParser = require("xmldom").DOMParser;
+
+
 const p = path.join(path.dirname(process.mainModule.filename), "data", "QuanLyNhanVien-Instance.xml");
 
 const getDataFromFile = (cb) => {
@@ -11,20 +14,24 @@ const getDataFromFile = (cb) => {
         if (err) {
             cb([]);
         } else {
+            const doc = new DOMParser().parseFromString(fileContent);
+            const data = [];
 
-            parseString(fileContent, (err, result) => {
-                if (err) {
-                    console.log(err);
-                } else {
-                    cb(result.QuanLyNhanVien.PhongBan);
-                }                               
-            });
-            
+            const phongBans = doc.getElementsByTagName("PhongBan");
+            for (let i = 0; i < phongBans.length; i++) {
+                data.push(new PhongBan(
+                    phongBans[i].getElementsByTagName("MaPB")[0].childNodes[0].nodeValue,
+                    phongBans[i].getElementsByTagName("TenPB")[0].childNodes[0].nodeValue
+                ));
+            }
+            console.log(data);
+
+            cb(data);
         }
     });
 }
 
-module.exports = class PhongBan {
+class PhongBan {
     constructor(MaPB, TenPB) {
         this.MaPB = MaPB;
         this.TenPB = TenPB;
@@ -43,7 +50,7 @@ module.exports = class PhongBan {
             } else {
                 this.MaPB = Math.random().toString();
                 PhongBans.push(this);
-                
+
                 // wirteFile
             }
         })
@@ -55,9 +62,11 @@ module.exports = class PhongBan {
 
     static findById(MaPB, cb) {
         getDataFromFile(phongBans => {
-            const PhongBan = phongBans.find(n => n.MaPB[0] === MaPB);
-            // console.log(phongBans[0].MaPB[0]);
-            cb(PhongBan);
+            const phongBan = phongBans.find(n => n.MaPB === MaPB);
+            
+            cb(phongBan);
         })
     }
 }
+
+module.exports = PhongBan;
