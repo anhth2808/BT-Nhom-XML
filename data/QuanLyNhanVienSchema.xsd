@@ -87,7 +87,6 @@
         <xs:complexType>
             <xs:sequence>
                 <xs:element name="MaHDLD" type="xs:string"/>
-                <xs:element name="TenHDLD" type="xs:string"/>
                 <xs:element name="NgayBatDau" type="xs:date"/>
                 <xs:element name="NgayKetThuc" type="xs:date"/>
                 <xs:element name="HeSoLuong" type="xs:double"/>

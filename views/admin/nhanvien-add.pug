@@ -1,0 +1,52 @@
+extends  ../layouts/main-layout.pug
+
+block content
+    .row
+        .col-md-8
+            form(action="#", method="POST")
+                h3 Thông tin nhân viên:
+                .form-row
+                    .col-md-4.mb-3
+                        label(for="TenNV") Tên nhân viên
+                        input.form-control#TenNV(placeholder="Tên nhân viên")
+                    .col-md-4.mb-3
+                        label(for="DiaChi") Địa chỉ
+                        input.form-control#DiaChi(placeholder="Địa chỉ")
+                    .col-md-4.mb-3
+                        label(for="NgaySinh") Ngày sinh
+                        input.form-control#NgaySinh(type="date")
+                .form-row
+                    .col-md-4.mb-3
+                        label(for="GioiTinh") Giới tính
+                        input.form-control#GioiTinh(placeholder="Tên nhân viên")
+                    .col-md-4.mb-3
+                        label(for="DanToc") Dân tộc
+                        input.form-control#DanToc(placeholder="Dân tộc")
+                    .col-md-4.mb-3
+                        label(for="TonGiao") Tôn giáo
+                        input.form-control#TonGiao(placeholder="Tôn giáo")
+                .form-row
+                    .col-md-4.mb-3
+                        label(for="CMND") CMND
+                        input.form-control#CMND(placeholder="CMND")
+                hr
+                .form-row
+                    .col-md-4.mb-3
+                        label(for="TenPB") Phòng ban
+                        input.form-control#TenPB(placeholder="Phòng ban")
+                .form-row
+                    .col-md-4.mb-3
+                        label(for="TenCV") Chức vụ
+                        input.form-control#TenCV(placeholder="Chức vụ")
+                hr
+                h3 HDLD:
+                .form-row#HDLDform
+                    .col-md-4.mb-3
+                        label(for="NgayBatDau") Ngày bắt đầu
+                        input.form-control#TenNV(type="date")
+                    .col-md-4.mb-3
+                        label(for="NgayKetThuc") Ngày kết thúc
+                        input.form-control#DiaChi(type="date")
+                    .col-md-4.mb-3
+                        label(for="NgaySinh") Hệ số lương
+                        input.form-control#NgaySinh(placeholder="Hệ số lương")

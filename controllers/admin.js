@@ -49,3 +49,7 @@ exports.getNhanVien = (req, res) => {
     });
     
 };
+
+exports.getAddNhanVien = (req, res) => {
+    res.render("./admin/nhanvien-add");
+}

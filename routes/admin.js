@@ -14,7 +14,7 @@ router.get("/nhanviens/:MaNV", adminCtrl.getNhanVien);
 
 
 // /add-employee => GET
-router.get("/add-employees");
+router.get("/add-nhanvien", adminCtrl.getAddNhanVien);
 
 // /add-employee => POST
 router.post("/add-employee");

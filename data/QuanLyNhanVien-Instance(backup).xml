@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <QuanLyNhanVien xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
- xsi:noNamespaceSchemaLocation="./QuanLyNhanVienSchema.xsd">
+ xsi:noNamespaceSchemaLocation="file:/D:/Projects/BaiTapXML/Do-An-XML/data/QuanLyNhanVienSchema.xsd">
     <NhanVien>
         <MaNV>MaNV0</MaNV>
         <TenNV>Trần Hoàng Anh</TenNV>
@@ -47,14 +47,16 @@
     </ChucVu>
     <HDLD>
         <MaHDLD>MaHDLD0</MaHDLD>
+        <TenHDLD>Day la HDLD0</TenHDLD>
         <NgayBatDau>20010-05-04</NgayBatDau>
-        <NgayKetThuc>2011-05-04</NgayKetThuc>
+        <NgayKetThuc>20011-05-04</NgayKetThuc>
         <HeSoLuong>2.5</HeSoLuong>
     </HDLD>
     <HDLD>
         <MaHDLD>MaHDLD1</MaHDLD>
+        <TenHDLD>Day la HDLD1</TenHDLD>
         <NgayBatDau>2006-05-04</NgayBatDau>
-        <NgayKetThuc>2012-05-04</NgayKetThuc>
+        <NgayKetThuc>20012-05-04</NgayKetThuc>
         <HeSoLuong>2.34</HeSoLuong>
     </HDLD>
 </QuanLyNhanVien>

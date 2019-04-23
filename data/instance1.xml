@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QuanLyNhanVien xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:noNamespaceSchemaLocation="file:/D:/Projects/BaiTapXML/Do-An-XML/data/QuanLyNhanVienSchema.xsd">
+    <NhanVien>
+        <MaNV>MaNV0</MaNV>
+        <TenNV>TenNV0</TenNV>
+        <DiaChi>DiaChi0</DiaChi>
+        <NgaySinh>2006-05-04</NgaySinh>
+        <GioiTinh>GioiTinh0</GioiTinh>
+        <DanToc>DanToc0</DanToc>
+        <TonGiao>TonGiao0</TonGiao>
+        <CMND>CMND0</CMND>
+        <MaPB>MaPB0</MaPB>
+        <MaCV>MaCV0</MaCV>
+        <MaHDLD>MaHDLD0</MaHDLD>
+    </NhanVien>
+    <NhanVien>
+        <MaNV>MaNV1</MaNV>
+        <TenNV>TenNV1</TenNV>
+        <DiaChi>DiaChi1</DiaChi>
+        <NgaySinh>2006-05-04</NgaySinh>
+        <GioiTinh>GioiTinh1</GioiTinh>
+        <DanToc>DanToc1</DanToc>
+        <TonGiao>TonGiao1</TonGiao>
+        <CMND>CMND1</CMND>
+        <MaPB>MaPB1</MaPB>
+        <MaCV>MaCV1</MaCV>
+        <MaHDLD>MaHDLD1</MaHDLD>
+    </NhanVien>
+</QuanLyNhanVien>
