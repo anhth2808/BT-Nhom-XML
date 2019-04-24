@@ -7,7 +7,7 @@ const parseString = xml2js.parseString;
 const DOMParser = require("xmldom").DOMParser;
 
 
-const p = path.join(path.dirname(process.mainModule.filename), "data", "QuanLyNhanVien-Instance.xml");
+const p = require("../util/path");
 
 const getDataFromFile = (cb) => {
     fs.readFile(p, "utf-8", (err, fileContent) => {
@@ -25,7 +25,7 @@ const getDataFromFile = (cb) => {
                     chucVus[i].getElementsByTagName("PhuCap")[0].childNodes[0].nodeValue
                 ));
             }
-            console.log(data);
+            // console.log(data);
 
             cb(data);
         }

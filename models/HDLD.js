@@ -5,9 +5,27 @@ const Builder = xml2js.Builder();
 const parseString = xml2js.parseString;
 
 const DOMParser = require("xmldom").DOMParser;
+const XMLSerializer = require("xmldom").XMLSerializer;
+const serializer = new XMLSerializer();
+
+const p = require("../util/path");
 
 
-const p = path.join(path.dirname(process.mainModule.filename), "data", "QuanLyNhanVien-Instance.xml");
+const getDocument = (cb) => {
+    fs.readFile(p, "utf-8", (err, fileContent) => {
+        if (err) {
+            cb([]);
+        } else {
+
+            const doc = new DOMParser()
+                .parseFromString(fileContent);
+
+            cb(doc);
+        }
+    });
+}
+
+
 
 const getDataFromFile = (cb) => {
     fs.readFile(p, "utf-8", (err, fileContent) => {
@@ -44,7 +62,66 @@ class HDLD {
     }
 
     save() {
+        return new Promise((resolve, reject) => {
+            getDataFromFile(nhanViens => {
+                if (this.MaNV) { // edit nhanvien
+                    
+                    const existingNhanVienIndex = nhanViens.findIndex(nhanVien => nhanVien.MaNV[0] === this.MaNV);
+                    const updatedNhanViens = [...nhanViens];
+                    
+                    updatedNhanViens[existingNhanVienIndex] = this;
+                    
 
+
+                    fs.writeFile(p, JSON.stringify(), (err) => {
+
+                    });
+
+
+                    console.log(this);
+                    // writeFile
+                    
+                    
+
+                } else { // add new nhanvien
+                    getDocument((doc) => {
+                        // console.log(eQuanLyNhanVien[0]);
+                        
+                    
+                        const eQuanLyNhanVien = doc.getElementsByTagName("QuanLyNhanVien");
+
+                        const eHdld = doc.createElement("HDLD");
+                        
+                        const eMaHDLD = doc.createElement("MaHDLD");
+                        eMaHDLD.textContent = this.MaHDLD;
+
+                        const eNgayBatDau = doc.createElement("NgayBatDau");
+                        eNgayBatDau.textContent = this.NgayBatDau;
+
+                        const eNgayKetThuc = doc.createElement("NgayKetThuc");
+                        eNgayKetThuc.textContent = this.NgayKetThuc;
+                        
+                        const eHeSoLuong = doc.createElement("HeSoLuong");
+                        eHeSoLuong.textContent = this.HeSoLuong;
+
+                        eHdld.appendChild(eMaHDLD);
+                        eHdld.appendChild(eNgayBatDau);
+                        eHdld.appendChild(eNgayKetThuc);
+                        eHdld.appendChild(eHeSoLuong);
+
+                        eQuanLyNhanVien[0].appendChild(eHdld);
+                        
+
+                        const docToWrite = serializer.serializeToString(doc);
+                        
+                        fs.writeFile(p, docToWrite, "utf-8", () => {
+                            resolve(this);
+                        });
+                    
+                    })
+                }
+            });
+        })
     }
 
     static fetchAll(cb) {
@@ -54,7 +131,6 @@ class HDLD {
     static findById(MaHDLD, cb) {
         getDataFromFile(hdlds => {
             const hdld = hdlds.find(n => n.MaHDLD === MaHDLD);
-            
             cb(hdld);
         })
     }

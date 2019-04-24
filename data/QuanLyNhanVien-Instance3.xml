@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<QuanLyNhanVien xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
- xsi:noNamespaceSchemaLocation="file:/D:/Projects/BaiTapXML/Do-An-XML/data/QuanLyNhanVienSchema.xsd">
+<QuanLyNhanVien xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:/D:/Projects/BaiTapXML/Do-An-XML/data/QuanLyNhanVienSchema.xsd">
     <NhanVien>
         <MaNV>MaNV0</MaNV>
         <TenNV>Trần Hoàng Anh</TenNV>
@@ -57,4 +56,4 @@
         <NgayKetThuc>20012-05-04</NgayKetThuc>
         <HeSoLuong>2.34</HeSoLuong>
     </HDLD>
-</QuanLyNhanVien>
+<NhanVien><MaNV>0.43352428583244085</MaNV><TenNV>Trần Hoàng A</TenNV><DiaChi>61/8, ĐTN, VP, Nha Trang, Khánh Hòa, Việt Nam, Trái Đất, Vũ trụ 7</DiaChi><NgaySinh>1998-08-28</NgaySinh><GioiTinh>Nam</GioiTinh><DanToc>Kinh</DanToc><TonGiao>Không</TonGiao><CMND>0383096008</CMND><MaPB>MaPB1</MaPB><MaCV>MaCV0</MaCV><MaHDLD>0.7139481969317549</MaHDLD></NhanVien><HDLD><MaHDLD>0.7139481969317549</MaHDLD><NgayBatDau>1998-08-28</NgayBatDau><NgayKetThuc>1998-08-28</NgayKetThuc><HeSoLuong>12</HeSoLuong></HDLD></QuanLyNhanVien>

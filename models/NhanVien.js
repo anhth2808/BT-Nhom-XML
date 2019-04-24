@@ -5,14 +5,28 @@ const Builder = xml2js.Builder();
 const parseString = xml2js.parseString;
 
 const DOMParser = require("xmldom").DOMParser;
+const XMLSerializer = require("xmldom").XMLSerializer;
+const serializer = new XMLSerializer();
 
 
-const p = path.join(path.dirname(process.mainModule.filename), "data", "QuanLyNhanVien-Instance.xml");
+// database
+const p = require("../util/path");
 
 
 
+const getDocument = (cb) => {
+    fs.readFile(p, "utf-8", (err, fileContent) => {
+        if (err) {
+            cb([]);
+        } else {
 
+            const doc = new DOMParser()
+                .parseFromString(fileContent);
 
+            cb(doc);
+        }
+    });
+}
 
 const getDataFromFile = (cb) => {
     fs.readFile(p, "utf-8", (err, fileContent) => {
@@ -66,23 +80,100 @@ class NhanVien {
         this.MaCV = MaCV;
         this.MaHDLD = MaHDLD;
     }
-
+    
     save() {
-        getDataFromFile(nhanViens => {
-            if (this.MaNV) {
-                
-                const existingNhanVienIndex = nhanViens.findIndex(nhanVien => nhanVien.MaNV[0] === this.MaNV);
-                const updatedNhanViens = [...nhanViens];
-                
-                updatedNhanViens[existingNhanVienIndex] = this;
-                
-                // writeFile
-            } else {
-                this.MaNV = Math.random().toString();
-                nhanViens.push(this);
-                
-                // wirteFile
-            }
+        return new Promise((resolve, reject) => {
+            getDataFromFile(nhanViens => {
+                if (this.MaNV) { // edit nhanvien
+                    
+                    const existingNhanVienIndex = nhanViens.findIndex(nhanVien => nhanVien.MaNV[0] === this.MaNV);
+                    const updatedNhanViens = [...nhanViens];
+                    
+                    updatedNhanViens[existingNhanVienIndex] = this;
+                    
+
+
+                    fs.writeFile(p, JSON.stringify(), (err) => {
+
+                    });
+
+
+                    console.log(this);
+                    // writeFile
+                    
+                    
+
+                } else { // add new nhanvien
+                    getDocument((doc) => {
+
+                        this.MaNV = Math.random().toString();
+                        this.MaHDLD = Math.random().toString();
+                        // nhanViens.push(this);
+
+
+                        const eNhanVien = doc.createElement("NhanVien");
+                        
+                        const eMaNV = doc.createElement("MaNV");
+                        eMaNV.textContent = this.MaNV;
+
+                        const eTenNV = doc.createElement("TenNV");
+                        eTenNV.textContent = this.TenNV;
+
+                        const eDiaChi = doc.createElement("DiaChi");
+                        eDiaChi.textContent = this.DiaChi;
+
+                        const eNgaySinh = doc.createElement("NgaySinh");
+                        eNgaySinh.textContent = this.NgaySinh;
+
+                        const eGioiTinh = doc.createElement("GioiTinh");
+                        eGioiTinh.textContent = this.GioiTinh;
+
+                        const eDanToc = doc.createElement("DanToc");
+                        eDanToc.textContent = this.DanToc;
+
+                        const eTonGiao = doc.createElement("TonGiao");                     
+                        eTonGiao.textContent = this.TonGiao;
+
+                        const eCMND = doc.createElement("CMND");
+                        eCMND.textContent = this.CMND;
+                        
+
+                        const eMaPB = doc.createElement("MaPB");
+                        eMaPB.textContent = this.MaPB;
+
+                        const eMaCV = doc.createElement("MaCV");
+                        eMaCV.textContent = this.MaCV;
+
+                        const eMaHDLD = doc.createElement("MaHDLD");
+                        eMaHDLD.textContent = this.MaHDLD;
+
+
+                        eNhanVien.appendChild(eMaNV);
+                        eNhanVien.appendChild(eTenNV);
+                        eNhanVien.appendChild(eDiaChi);
+                        eNhanVien.appendChild(eNgaySinh);
+                        eNhanVien.appendChild(eGioiTinh);
+                        eNhanVien.appendChild(eDanToc);
+                        eNhanVien.appendChild(eTonGiao);
+                        eNhanVien.appendChild(eCMND);
+                        eNhanVien.appendChild(eMaPB);
+                        eNhanVien.appendChild(eMaCV);
+                        eNhanVien.appendChild(eMaHDLD);
+
+                        const eQuanLyNhanVien = doc.getElementsByTagName("QuanLyNhanVien");
+                        eQuanLyNhanVien[0].appendChild(eNhanVien);
+
+                        // console.log(eQuanLyNhanVien[0]);
+                        const docToWrite = serializer.serializeToString(doc);
+                        
+                        fs.writeFile(p, docToWrite, "utf-8", () => {
+                            resolve(this);
+                        });
+                        // wirteFile
+                    
+                    })
+                }
+            });
         })
     }
 
@@ -97,7 +188,6 @@ class NhanVien {
     static findById(MaNV, cb) {
         getDataFromFile(nhanViens => {
             const nhanVien = nhanViens.find(n => n.MaNV === MaNV);
-            // console.log(nhanViens[0].MaNV);
             cb(nhanVien);
         });
     }

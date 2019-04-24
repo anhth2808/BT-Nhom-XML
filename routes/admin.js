@@ -17,7 +17,8 @@ router.get("/nhanviens/:MaNV", adminCtrl.getNhanVien);
 router.get("/add-nhanvien", adminCtrl.getAddNhanVien);
 
 // /add-employee => POST
-router.post("/add-employee");
+router.post("/add-nhanvien", adminCtrl.postAddNhanVien);
+
 
 // /edit-employee => GET
 router.get("/edit-employee");
@@ -27,5 +28,10 @@ router.post("/edit-employee");
 
 // /employees => GET
 router.get("/delete-employee");
+
+
+// 
+router.get("/test", adminCtrl.postAddNhanVien);
+
 
 module.exports = router;

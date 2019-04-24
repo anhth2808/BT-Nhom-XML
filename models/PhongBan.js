@@ -7,7 +7,22 @@ const parseString = xml2js.parseString;
 const DOMParser = require("xmldom").DOMParser;
 
 
-const p = path.join(path.dirname(process.mainModule.filename), "data", "QuanLyNhanVien-Instance.xml");
+const p = require("../util/path");
+
+const getDocument = (cb) => {
+    fs.readFile(p, "utf-8", (err, fileContent) => {
+        if (err) {
+            cb([]);
+        } else {
+
+            const doc = new DOMParser()
+                .parseFromString(fileContent);
+
+            cb(doc);
+        }
+    });
+}
+
 
 const getDataFromFile = (cb) => {
     fs.readFile(p, "utf-8", (err, fileContent) => {
@@ -24,7 +39,6 @@ const getDataFromFile = (cb) => {
                     phongBans[i].getElementsByTagName("TenPB")[0].childNodes[0].nodeValue
                 ));
             }
-            console.log(data);
 
             cb(data);
         }
@@ -38,22 +52,26 @@ class PhongBan {
     }
 
     save() {
-        getDataFromFile(PhongBans => {
-            if (this.MaPB) {
+        return new Promise((resolve, reject) => {
+            getDataFromFile(PhongBans => {
+                if (this.MaPB) {
+                    
+                    const existingPhongBanIndex = PhongBans.findIndex(PhongBan => PhongBan.MaPB[0] === this.MaPB);
+                    const updatedPhongBan = [...PhongBans];
+                    
+                    updatedPhongBan[existingPhongBanIndex] = this;
+                    resolve();
+                    // writeFile
+                } else {
+                    this.MaPB = Math.random().toString();
+                    PhongBans.push(this);
                 
-                const existingPhongBanIndex = PhongBans.findIndex(PhongBan => PhongBan.MaPB[0] === this.MaPB);
-                const updatedPhongBan = [...PhongBans];
-                
-                updatedPhongBan[existingPhongBanIndex] = this;
-                
-                // writeFile
-            } else {
-                this.MaPB = Math.random().toString();
-                PhongBans.push(this);
-
-                // wirteFile
-            }
+                    resolve();
+                    // wirteFile
+                }
+            })
         })
+        
     }
 
     static fetchAll(cb) {
@@ -63,7 +81,6 @@ class PhongBan {
     static findById(MaPB, cb) {
         getDataFromFile(phongBans => {
             const phongBan = phongBans.find(n => n.MaPB === MaPB);
-            
             cb(phongBan);
         })
     }

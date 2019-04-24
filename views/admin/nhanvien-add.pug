@@ -1,52 +1,66 @@
 extends  ../layouts/main-layout.pug
 
+block styles
+    script(src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js")
+    link(rel="stylesheet", href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css")
+
 block content
     .row
         .col-md-8
-            form(action="#", method="POST")
+            form(action="/add-nhanvien", method="POST")
                 h3 Thông tin nhân viên:
                 .form-row
                     .col-md-4.mb-3
                         label(for="TenNV") Tên nhân viên
-                        input.form-control#TenNV(placeholder="Tên nhân viên")
+                        input.form-control#TenNV(placeholder="Tên nhân viên", name="TenNV")
                     .col-md-4.mb-3
                         label(for="DiaChi") Địa chỉ
-                        input.form-control#DiaChi(placeholder="Địa chỉ")
+                        input.form-control#DiaChi(placeholder="Địa chỉ", name="DiaChi")
                     .col-md-4.mb-3
                         label(for="NgaySinh") Ngày sinh
-                        input.form-control#NgaySinh(type="date")
+                        input.form-control#NgaySinh(name="NgaySinh")
                 .form-row
                     .col-md-4.mb-3
                         label(for="GioiTinh") Giới tính
-                        input.form-control#GioiTinh(placeholder="Tên nhân viên")
+                        br
+                        input(type="radio", value="Nam", name="GioiTinh" checked)
+                        span Nam &nbsp;
+                        input(type="radio", value="Nữ", name="GioiTinh")
+                        span Nữ
                     .col-md-4.mb-3
                         label(for="DanToc") Dân tộc
-                        input.form-control#DanToc(placeholder="Dân tộc")
+                        input.form-control#DanToc(placeholder="Dân tộc", name="DanToc")
                     .col-md-4.mb-3
                         label(for="TonGiao") Tôn giáo
-                        input.form-control#TonGiao(placeholder="Tôn giáo")
+                        input.form-control#TonGiao(placeholder="Tôn giáo", name="TonGiao")
                 .form-row
                     .col-md-4.mb-3
                         label(for="CMND") CMND
-                        input.form-control#CMND(placeholder="CMND")
+                        input.form-control#CMND(placeholder="CMND", name="CMND")
                 hr
                 .form-row
                     .col-md-4.mb-3
                         label(for="TenPB") Phòng ban
-                        input.form-control#TenPB(placeholder="Phòng ban")
+                        input.form-control#TenPB(placeholder="Phòng ban", name="TenPB")
                 .form-row
                     .col-md-4.mb-3
                         label(for="TenCV") Chức vụ
-                        input.form-control#TenCV(placeholder="Chức vụ")
+                        input.form-control#TenCV(placeholder="Chức vụ", name="TenCV")
                 hr
                 h3 HDLD:
                 .form-row#HDLDform
                     .col-md-4.mb-3
                         label(for="NgayBatDau") Ngày bắt đầu
-                        input.form-control#TenNV(type="date")
+                        input.form-control#NgayBatDau(name="NgayBatDau")
                     .col-md-4.mb-3
                         label(for="NgayKetThuc") Ngày kết thúc
-                        input.form-control#DiaChi(type="date")
+                        input.form-control#NgayKetThuc(name="NgayKetThuc")
                     .col-md-4.mb-3
-                        label(for="NgaySinh") Hệ số lương
-                        input.form-control#NgaySinh(placeholder="Hệ số lương")
+                        label(for="HeSoLuong") Hệ số lương
+                        input.form-control#HeSoLuong(placeholder="Hệ số lương", name="HeSoLuong")
+                input.btn(type="submit", value="Thêm Nhân Viên") 
+block scripts
+    script.
+        $('#NgaySinh').datepicker({ format: 'dd-mm-yyyy' });
+        $('#NgayBatDau').datepicker({ format: 'dd-mm-yyyy' });
+        $('#NgayKetThuc').datepicker({ format: 'dd-mm-yyyy' });
