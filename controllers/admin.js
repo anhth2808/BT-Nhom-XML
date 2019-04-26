@@ -9,6 +9,19 @@ const PhongBan = require("../models/PhongBan");
 const HDLD = require("../models/HDLD");
 const ChucVu = require("../models/ChucVu");
 
+
+
+
+
+const formatdmy2ymd = (date) => {
+    date = date.split("-");
+    return date[2] + "-" + date[1] + "-" + date[0];
+}
+
+
+
+
+
 exports.getIndex = (req, res, next) => {
     NhanVien.fetchAll(nhanViens => {        
         res.render("./admin/index", {
@@ -65,51 +78,103 @@ exports.getNhanVien = (req, res, next) => {
 };
 
 exports.getAddNhanVien = (req, res, next) => {
-    res.render("./admin/nhanvien-add");
+    PhongBan.fetchAll((phongBans) => {
+        ChucVu.fetchAll((chucVus) => {
+            res.render("./admin/nhanvien-add", {
+                phongBans: phongBans,
+                chucVus: chucVus,
+                editing: false
+            });
+        });
+    });
+    
 }
 
 exports.postAddNhanVien = (req, res, next ) => {
 
-    // const TenNV = req.body.TenNV,
-    //     DiaChi = req.body.TenNVDiaChi,
-    //     NgaySinh = req.body.TenNVNgaySinh,
-    //     GioiTinh = req.body.TenNVGioiTinh,
-    //     DanToc = req.body.TenNVDanToc,
-    //     TonGiao = req.body.TenNVTonGiao,
-    //     CMND = req.body.TenNVCMND;
+    const TenNV = req.body.TenNV,
+        DiaChi = req.body.DiaChi,
+        NgaySinh = formatdmy2ymd(req.body.NgaySinh),
+        GioiTinh = req.body.GioiTinh,
+        DanToc = req.body.DanToc,
+        TonGiao = req.body.TonGiao,
+        CMND = req.body.CMND;
 
-    // const MaHDLD = req.body.MaHDLD, 
-    //     NgayBatDau = req.body.NgayBatDau, 
-    //     NgayKetThuc = req.body.NgayKetThuc, 
-    //     HeSoLuong = req.body.HeSoLuong;
+    const MaPB = req.body.MaPB;
+    const MaCV = req.body.MaCV;
 
-    // nhanVien.save();
-    // const nhanVien = new NhanVien(null, TenNV, DiaChi, NgaySinh, GioiTinh, DanToc, TonGiao, CMND, MaPB, MaCV, null);
-    
-    const nhanVien = new NhanVien(null, 
-        "Trần Hoàng A", 
-        "61/8, ĐTN, VP, Nha Trang, Khánh Hòa, Việt Nam, Trái Đất, Vũ trụ 7", 
-        "1998-08-28", 
-        "Nam", 
-        "Kinh", 
-        "Không", 
-        "0383096008", 
-        "MaPB1", 
-        "MaCV0", 
-        null);
+    const NgayBatDau = formatdmy2ymd(req.body.NgayBatDau), 
+        NgayKetThuc = formatdmy2ymd(req.body.NgayKetThuc), 
+        HeSoLuong = req.body.HeSoLuong;
 
+    const nhanVien = new NhanVien(null, TenNV, DiaChi, NgaySinh, GioiTinh, DanToc, TonGiao, CMND, MaPB, MaCV, null);
     nhanVien.save().then((result) => {
-        const hdld= new HDLD(result.MaHDLD, "1998-08-28", "1998-08-28", 12);
+        const hdld = new HDLD(result.MaHDLD, NgayBatDau, NgayKetThuc, HeSoLuong);
         hdld.save();
         console.log(hdld);
+        res.redirect("nhanviens/" + nhanVien.MaNV);
     });
-     
-    // hdld.save();
-
-    // const MaPB = req.body.TenNVMaPB;
-    // const MaCV = req.body.TenNVMaCV;
-    // const MaHDLD = req.body.TenNVMaHDLD; 
-    // res.redirect("/");
-    res.send("..");
+    
 }
 
+exports.getEditNhanVien = (req, res, next) => {
+    const editMode = req.query.edit;
+    if (!editMode) {
+        return res.redirect("/");
+    }
+
+    const MaNV = req.params.MaNV;
+
+    NhanVien.findById(MaNV, nhanVien => {
+        PhongBan.findById(nhanVien.MaPB, phongBan => {
+            ChucVu.findById(nhanVien.MaCV, chucVu => {
+                HDLD.findById(nhanVien.MaHDLD, hdld => {
+                    PhongBan.fetchAll(phongBans => {
+                        ChucVu.fetchAll(chucVus => {
+                            res.render("./admin/nhanvien-add", {
+                                nhanVien: nhanVien,
+                                chucVuSelf: chucVu,
+                                phongBanSelf: phongBan,
+                                phongBans: phongBans,
+                                chucVus: chucVus,
+                                hdld: hdld,
+                                editing: editMode
+                            });
+                        });
+                    })
+                });
+            });
+        });
+    });
+    
+}
+
+
+exports.postEditNhanVien = (req, res, next) => {
+    const TenNV = req.body.TenNV,
+        DiaChi = req.body.DiaChi,
+        NgaySinh = formatdmy2ymd(req.body.NgaySinh),
+        GioiTinh = req.body.GioiTinh,
+        DanToc = req.body.DanToc,
+        TonGiao = req.body.TonGiao,
+        CMND = req.body.CMND,
+        MaNV = req.body.MaNV;
+
+    const MaPB = req.body.MaPB;
+    const MaCV = req.body.MaCV;
+
+    const NgayBatDau = formatdmy2ymd(req.body.NgayBatDau), 
+        NgayKetThuc = formatdmy2ymd(req.body.NgayKetThuc), 
+        HeSoLuong = req.body.HeSoLuong,
+        MaHDLD = req.body.MaHDLD;
+
+        console.log(TenNV, DiaChi, NgaySinh, GioiTinh, DanToc, TonGiao, CMND, MaNV, MaPB, MaCV, NgayBatDau, NgayKetThuc,HeSoLuong, MaHDLD);
+    
+    const nhanVien = new NhanVien(MaNV, TenNV, DiaChi, NgaySinh, GioiTinh, DanToc, TonGiao, CMND, MaPB, MaCV, MaHDLD);
+    
+    nhanVien.save().then((result) => {
+        const hdld = new HDLD(result.MaHDLD, NgayBatDau, NgayKetThuc, HeSoLuong);
+        hdld.save();
+        res.redirect("nhanviens/" + nhanVien.MaNV);
+    });
+}

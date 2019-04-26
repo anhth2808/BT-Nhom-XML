@@ -29,20 +29,20 @@
     </NhanVien>
     <PhongBan>
         <MaPB>MaPB0</MaPB>
-        <TenPB>DayLaPhongBan0</TenPB>
+        <TenPB>Phòng kế toán</TenPB>
     </PhongBan>
     <PhongBan>
         <MaPB>MaPB1</MaPB>
-        <TenPB>DayLaPhongBan1</TenPB>
+        <TenPB>Phòng hành chính</TenPB>
     </PhongBan>
     <ChucVu>
         <MaCV>MaCV0</MaCV>
-        <TenCV>DayLaChucvu-</TenCV>
+        <TenCV>Nhân viên</TenCV>
         <PhuCap>0</PhuCap>
     </ChucVu>
     <ChucVu>
         <MaCV>MaCV1</MaCV>
-        <TenCV>DayLaChucvu1</TenCV>
+        <TenCV>Quản lý</TenCV>
         <PhuCap>600000</PhuCap>
     </ChucVu>
     <HDLD>

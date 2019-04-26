@@ -46,7 +46,7 @@ const getDataFromFile = (cb) => {
                                     
                 ));
             }
-            console.log(data);
+            // console.log(data);
 
             cb(data);
         }
@@ -63,33 +63,32 @@ class HDLD {
 
     save() {
         return new Promise((resolve, reject) => {
-            getDataFromFile(nhanViens => {
-                if (this.MaNV) { // edit nhanvien
-                    
-                    const existingNhanVienIndex = nhanViens.findIndex(nhanVien => nhanVien.MaNV[0] === this.MaNV);
-                    const updatedNhanViens = [...nhanViens];
-                    
-                    updatedNhanViens[existingNhanVienIndex] = this;
-                    
+            getDataFromFile(hdlds => {
+                const exitingProductNhanVien = hdlds.findIndex(hdld => hdld.MaHDLD === this.MaHDLD);
 
+                if (exitingProductNhanVien >= 0) { // edit hdld
+                    getDocument(doc => {
+                        const eHldl = doc.getElementsByTagName("HDLD");                        
+                        for (let i = 0; i < eHldl.length; i++) {
+                            if (eHldl[i].getElementsByTagName("MaHDLD")[0].childNodes[0].nodeValue === this.MaHDLD) {
+                                eHldl[i].getElementsByTagName("NgayBatDau")[0].childNodes[0].textContent = this.NgayBatDau;
+                                eHldl[i].getElementsByTagName("NgayKetThuc")[0].childNodes[0].textContent = this.NgayKetThuc; 
+                                eHldl[i].getElementsByTagName("HeSoLuong")[0].childNodes[0].textContent = this.HeSoLuong;                               
+                            }
+                        }
 
-                    fs.writeFile(p, JSON.stringify(), (err) => {
-
-                    });
-
-
-                    console.log(this);
-                    // writeFile
-                    
-                    
-
-                } else { // add new nhanvien
-                    getDocument((doc) => {
-                        // console.log(eQuanLyNhanVien[0]);
+                        const xmlData = serializer.serializeToString(doc);
                         
-                    
-                        const eQuanLyNhanVien = doc.getElementsByTagName("QuanLyNhanVien");
+                        fs.writeFile(p, xmlData, "utf-8", () => {
+                            resolve(this);
+                        });
 
+                    }); 
+                    
+
+                } else { // add new hdld
+                    getDocument((doc) => {
+                        const eQuanLyNhanVien = doc.getElementsByTagName("QuanLyNhanVien");
                         const eHdld = doc.createElement("HDLD");
                         
                         const eMaHDLD = doc.createElement("MaHDLD");

@@ -28,20 +28,20 @@
     </NhanVien>
     <PhongBan>
         <MaPB>MaPB0</MaPB>
-        <TenPB>DayLaPhongBan0</TenPB>
+        <TenPB>Phòng kế toán</TenPB>
     </PhongBan>
     <PhongBan>
         <MaPB>MaPB1</MaPB>
-        <TenPB>DayLaPhongBan1</TenPB>
+        <TenPB>Phòng hành chính</TenPB>
     </PhongBan>
     <ChucVu>
         <MaCV>MaCV0</MaCV>
-        <TenCV>DayLaChucvu-</TenCV>
+        <TenCV>Nhân viên</TenCV>
         <PhuCap>0</PhuCap>
     </ChucVu>
     <ChucVu>
         <MaCV>MaCV1</MaCV>
-        <TenCV>DayLaChucvu1</TenCV>
+        <TenCV>Quản lý</TenCV>
         <PhuCap>600000</PhuCap>
     </ChucVu>
     <HDLD>
@@ -56,4 +56,4 @@
         <NgayKetThuc>20012-05-04</NgayKetThuc>
         <HeSoLuong>2.34</HeSoLuong>
     </HDLD>
-<NhanVien><MaNV>0.43352428583244085</MaNV><TenNV>Trần Hoàng A</TenNV><DiaChi>61/8, ĐTN, VP, Nha Trang, Khánh Hòa, Việt Nam, Trái Đất, Vũ trụ 7</DiaChi><NgaySinh>1998-08-28</NgaySinh><GioiTinh>Nam</GioiTinh><DanToc>Kinh</DanToc><TonGiao>Không</TonGiao><CMND>0383096008</CMND><MaPB>MaPB1</MaPB><MaCV>MaCV0</MaCV><MaHDLD>0.7139481969317549</MaHDLD></NhanVien><HDLD><MaHDLD>0.7139481969317549</MaHDLD><NgayBatDau>1998-08-28</NgayBatDau><NgayKetThuc>1998-08-28</NgayKetThuc><HeSoLuong>12</HeSoLuong></HDLD></QuanLyNhanVien>
+<NhanVien><MaNV>0.2628605312618173</MaNV><TenNV>Hoang Cha</TenNV><DiaChi>61/8 Đoàn Trần Nghiệp</DiaChi><NgaySinh>2019-04-25</NgaySinh><GioiTinh>Nam</GioiTinh><DanToc>Hoàng</DanToc><TonGiao>No</TonGiao><CMND>6666666</CMND><MaPB>MaPB1</MaPB><MaCV>MaCV1</MaCV><MaHDLD>0.2843703348267492</MaHDLD></NhanVien><HDLD><MaHDLD>0.2843703348267492</MaHDLD><NgayBatDau>2019-04-08</NgayBatDau><NgayKetThuc>2019-04-16</NgayKetThuc><HeSoLuong>100</HeSoLuong></HDLD><NhanVien><MaNV>0.24416361981282741</MaNV><TenNV>Tran Hoang chau</TenNV><DiaChi>61/8 Đoàn Trần Nghiệp</DiaChi><NgaySinh>1998-08-28</NgaySinh><GioiTinh>Nam</GioiTinh><DanToc>Hoàng</DanToc><TonGiao>1</TonGiao><CMND>00000</CMND><MaPB>MaPB0</MaPB><MaCV>MaCV0</MaCV><MaHDLD>0.5735452448839404</MaHDLD></NhanVien><HDLD><MaHDLD>0.5735452448839404</MaHDLD><NgayBatDau>2019-04-26</NgayBatDau><NgayKetThuc>2019-04-27</NgayKetThuc><HeSoLuong>3</HeSoLuong></HDLD></QuanLyNhanVien>

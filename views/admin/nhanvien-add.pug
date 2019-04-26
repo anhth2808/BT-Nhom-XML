@@ -1,64 +1,114 @@
 extends  ../layouts/main-layout.pug
 
+include ../_includes/sharedHTMLfunctions
+
 block styles
     script(src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js")
     link(rel="stylesheet", href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css")
 
 block content
-    .row
-        .col-md-8
-            form(action="/add-nhanvien", method="POST")
-                h3 Thông tin nhân viên:
-                .form-row
-                    .col-md-4.mb-3
-                        label(for="TenNV") Tên nhân viên
-                        input.form-control#TenNV(placeholder="Tên nhân viên", name="TenNV")
-                    .col-md-4.mb-3
-                        label(for="DiaChi") Địa chỉ
-                        input.form-control#DiaChi(placeholder="Địa chỉ", name="DiaChi")
-                    .col-md-4.mb-3
-                        label(for="NgaySinh") Ngày sinh
-                        input.form-control#NgaySinh(name="NgaySinh")
-                .form-row
-                    .col-md-4.mb-3
-                        label(for="GioiTinh") Giới tính
-                        br
-                        input(type="radio", value="Nam", name="GioiTinh" checked)
-                        span Nam &nbsp;
-                        input(type="radio", value="Nữ", name="GioiTinh")
-                        span Nữ
-                    .col-md-4.mb-3
-                        label(for="DanToc") Dân tộc
-                        input.form-control#DanToc(placeholder="Dân tộc", name="DanToc")
-                    .col-md-4.mb-3
-                        label(for="TonGiao") Tôn giáo
-                        input.form-control#TonGiao(placeholder="Tôn giáo", name="TonGiao")
-                .form-row
-                    .col-md-4.mb-3
-                        label(for="CMND") CMND
-                        input.form-control#CMND(placeholder="CMND", name="CMND")
-                hr
-                .form-row
-                    .col-md-4.mb-3
-                        label(for="TenPB") Phòng ban
-                        input.form-control#TenPB(placeholder="Phòng ban", name="TenPB")
-                .form-row
-                    .col-md-4.mb-3
-                        label(for="TenCV") Chức vụ
-                        input.form-control#TenCV(placeholder="Chức vụ", name="TenCV")
-                hr
-                h3 HDLD:
-                .form-row#HDLDform
-                    .col-md-4.mb-3
-                        label(for="NgayBatDau") Ngày bắt đầu
-                        input.form-control#NgayBatDau(name="NgayBatDau")
-                    .col-md-4.mb-3
-                        label(for="NgayKetThuc") Ngày kết thúc
-                        input.form-control#NgayKetThuc(name="NgayKetThuc")
-                    .col-md-4.mb-3
-                        label(for="HeSoLuong") Hệ số lương
-                        input.form-control#HeSoLuong(placeholder="Hệ số lương", name="HeSoLuong")
-                input.btn(type="submit", value="Thêm Nhân Viên") 
+    
+    .d-flex.justify-content-center
+        .row
+            .col-md-12
+                form(action=(editing ? "/edit-nhanvien" : "/add-nhanvien"), method="POST")
+                    h3 Thông tin nhân viên:
+                    .form-row
+                        .col-md-4.mb-3
+                            label(for="TenNV") Tên nhân viên
+                            input.form-control#TenNV(placeholder="Tên nhân viên", value=(editing ? nhanVien.TenNV : ""), name="TenNV")
+                        .col-md-4.mb-3
+                            label(for="DiaChi") Địa chỉ
+                            input.form-control#DiaChi(placeholder="Địa chỉ", value=(editing ? nhanVien.DiaChi : ""), name="DiaChi")
+                        .col-md-4.mb-3
+                            label(for="NgaySinh") Ngày sinh
+                            input.form-control#NgaySinh(name="NgaySinh", value=(editing ? formatDate(nhanVien.NgaySinh) : ""))
+                    .form-row
+                        .col-md-4.mb-3
+                            label(for="GioiTinh") Giới tính
+                            br
+                            - if (editing) {
+                                - if (nhanVien.GioiTinh === "Nam") {
+                                    input(type="radio", value="Nam", name="GioiTinh" checked)
+                                    span Nam &nbsp;
+                                    input(type="radio", value="Nữ", name="GioiTinh")
+                                    span Nữ
+                                - } else {
+                                    input(type="radio", value="Nam", name="GioiTinh")
+                                    span Nam &nbsp;
+                                    input(type="radio", value="Nữ", name="GioiTinh" checked)
+                                    span Nữ
+                                - }
+                            - } else {
+                                input(type="radio", value="Nam", name="GioiTinh" checked)
+                                span Nam &nbsp;
+                                input(type="radio", value="Nữ", name="GioiTinh")
+                                span Nữ
+                            - }
+                            
+                            
+                        .col-md-4.mb-3
+                            label(for="DanToc") Dân tộc
+                            input.form-control#DanToc(placeholder="Dân tộc", value=(editing ? nhanVien.DanToc : ""), name="DanToc")
+                        .col-md-4.mb-3
+                            label(for="TonGiao") Tôn giáo
+                            input.form-control#TonGiao(placeholder="Tôn giáo", value=(editing ? nhanVien.TonGiao : ""), name="TonGiao")
+                    .form-row
+                        .col-md-4.mb-3
+                            label(for="CMND") CMND
+                            input.form-control#CMND(placeholder="CMND", value=(editing ? nhanVien.CMND : ""), name="CMND")
+                    hr
+                    .form-row
+                        .col-md-4.mb-3
+                            label(for="MaPB") Phòng ban:&nbsp;
+                            select.form-control#TenPB(name='MaPB')
+                                each phongBan in phongBans
+                                    - if (editing) {
+                                        - if (phongBan.MaPB === phongBanSelf.MaPB) {
+                                            option(value=phongBan.MaPB, selected) #{phongBan.TenPB}
+                                        - } else {
+                                            option(value=phongBan.MaPB) #{phongBan.TenPB}
+                                        - }
+                                    - } else {
+                                        option(value=phongBan.MaPB) #{phongBan.TenPB}
+                                    - }
+                                    
+
+                    .form-row
+                        .col-md-4.mb-3
+                            label(for="MaCV") Chức vụ:&nbsp;
+                            select.form-control#TenCV(name='MaCV')
+                                each chucVu in chucVus
+                                    - if (editing) {
+                                        - if (chucVu.MaCV === chucVuSelf.MaCV) {
+                                            option(value=chucVu.MaCV, selected) #{chucVu.TenCV}
+                                        - } else {
+                                            option(value=chucVu.MaCV) #{chucVu.TenCV}
+                                        - }
+                                    - } else {
+                                        option(value=chucVu.MaCV) #{chucVu.TenCV}
+                                    - }                    
+                    hr
+                    h3 HDLD:
+                    .form-row#HDLDform
+                        .col-md-4.mb-3
+                            label(for="NgayBatDau") Ngày bắt đầu
+                            input.form-control#NgayBatDau(name="NgayBatDau", value= (editing ? formatDate(hdld.NgayBatDau) : ""))
+                        .col-md-4.mb-3
+                            label(for="NgayKetThuc") Ngày kết thúc
+                            input.form-control#NgayKetThuc(name="NgayKetThuc", value=(editing ? formatDate(hdld.NgayKetThuc) : ""))
+                        .col-md-4.mb-3
+                            label(for="HeSoLuong") Hệ số lương
+                            input.form-control#HeSoLuong(placeholder="Hệ số lương", value=(editing ? hdld.HeSoLuong : "") name="HeSoLuong")
+                    // if is edit mode send id to find
+                    - if (editing) {
+                        input(type="hidden", name="MaNV", value=nhanVien.MaNV)
+                        input(type="hidden", name="MaHDLD", value=hdld.MaHDLD)
+                    - }
+                    .form-row.text-right
+                        .col-12
+                            input.btn.btn-primary(type="submit", value=(editing ? "Chỉnh sửa" : "Thêm"))
+
 block scripts
     script.
         $('#NgaySinh').datepicker({ format: 'dd-mm-yyyy' });

@@ -5,19 +5,20 @@ block content
 
     table
         tr
-            th MaNV
-            th TenNV
-            th DiaChi
-            th NgaySinh
-            th GioiTinh
-            th DanToc
-            th TonGiao
+            th Mã Nhân viên
+            th Tên nhân viên
+            th Địa chỉ
+            th Ngày sinh
+            th Giới tính
+            th Dân tộc
+            th Tôn giáo
             th CMND
         tr
             td #{nhanVien.MaNV}
             td #{nhanVien.TenNV}
             td #{nhanVien.DiaChi}
-            td #{nhanVien.NgaySinh}
+            td 
+                =formatDate(nhanVien.NgaySinh)
             td #{nhanVien.GioiTinh}
             td #{nhanVien.DanToc}
             td #{nhanVien.TonGiao}
@@ -25,9 +26,9 @@ block content
     br
     table
         tr 
-            th MaCV
-            th TenCV
-            th PhuCap
+            th Mã chức vụ
+            th Tên chức vụ
+            th Phụ cấp
         tr
             td #{chucVu.MaCV}
             td #{chucVu.TenCV}
@@ -35,20 +36,25 @@ block content
     br
     table
         tr 
-            th MaPB
-            th TenPB
+            th Mã phòng ban
+            th Tên phòng ban
         tr
             td #{phongBan.MaPB}
             td #{phongBan.TenPB}
     br
     table
         tr 
-            th MaHDLD
-            th NgayBatDau
-            th NgayKetThuc
-            th HeSoLuong
+            th Mã HDLD
+            th Ngày bắt đầu
+            th Ngày kết thúc
+            th Hệ số lương
         tr
             td #{hdld.MaHDLD}
-            td #{hdld.NgayBatDau}
-            td #{hdld.NgayKetThuc}
+            td 
+                =formatDate(hdld.NgayBatDau)
+            td 
+                =formatDate(hdld.NgayKetThuc)
             td #{hdld.HeSoLuong}
+    .d-flex.justify-content-end
+        a.btn.btn-warning(href="/edit-nhanvien/" + nhanVien.MaNV + "?edit=true") Chỉnh sửa thông tin
+        a.btn.btn-danger(href="/edit-nhanvien/" + nhanVien.MaNV) Xóa nhân viên

@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const xml2js = require("xml2js");
-const Builder = xml2js.Builder();
+
 const parseString = xml2js.parseString;
 
 const DOMParser = require("xmldom").DOMParser;
@@ -35,11 +35,21 @@ const getDataFromFile = (cb) => {
         } else {
             // console.log(fileContent);
 
+            // fotmat xmlfile
+            // parseString(fileContent, (err, result) => {
+            //     const json = result;
+            //     const builder = new xml2js.Builder();
+            //     const xml = builder.buildObject(json);
+            //     fs.writeFile(path.join(path.dirname(process.mainModule.filename), "data", "QuanLyNhanVien-Instance.xml"), xml, (err) => {
+                    
+            //     });
+            // });
 
-            const doc = new DOMParser()
-                .parseFromString(fileContent);
+
+
             
 
+            const doc = new DOMParser().parseFromString(fileContent);
             const data = [];
 
             // doc.getElementsByTagName("NhanVien")[0].getElementsByTagName("MaNV")[0].childNodes[0].nodeValue;
@@ -83,25 +93,34 @@ class NhanVien {
     
     save() {
         return new Promise((resolve, reject) => {
-            getDataFromFile(nhanViens => {
+            getDataFromFile(filec => {
                 if (this.MaNV) { // edit nhanvien
-                    
-                    const existingNhanVienIndex = nhanViens.findIndex(nhanVien => nhanVien.MaNV[0] === this.MaNV);
-                    const updatedNhanViens = [...nhanViens];
-                    
-                    updatedNhanViens[existingNhanVienIndex] = this;
-                    
+              
+                    getDocument(doc => {
+                        const eNhanVien = doc.getElementsByTagName("NhanVien");
 
+                        
+                        for (let i = 0; i < eNhanVien.length; i++) {
+                            if (eNhanVien[i].getElementsByTagName("MaNV")[0].childNodes[0].nodeValue === this.MaNV) {
+                                eNhanVien[i].getElementsByTagName("TenNV")[0].childNodes[0].textContent = this.TenNV;
+                                eNhanVien[i].getElementsByTagName("DiaChi")[0].childNodes[0].textContent = this.DiaChi; 
+                                eNhanVien[i].getElementsByTagName("NgaySinh")[0].childNodes[0].textContent = this.NgaySinh;
+                                eNhanVien[i].getElementsByTagName("GioiTinh")[0].childNodes[0].textContent = this.GioiTinh;
+                                eNhanVien[i].getElementsByTagName("DanToc")[0].childNodes[0].textContent = this.DanToc;
+                                eNhanVien[i].getElementsByTagName("TonGiao")[0].childNodes[0].textContent = this.TonGiao;
+                                eNhanVien[i].getElementsByTagName("CMND")[0].childNodes[0].textContent = this.CMND;
+                                eNhanVien[i].getElementsByTagName("MaPB")[0].childNodes[0].textContent = this.MaPB;
+                                eNhanVien[i].getElementsByTagName("MaCV")[0].childNodes[0].textContent = this.MaCV;
+                            }
+                        }
+                        const xmlData = serializer.serializeToString(doc);
+                        
+                        fs.writeFile(p, xmlData, "utf-8", () => {
+                            console.log(this);
+                            resolve(this);
+                        });
 
-                    fs.writeFile(p, JSON.stringify(), (err) => {
-
-                    });
-
-
-                    console.log(this);
-                    // writeFile
-                    
-                    
+                    });                  
 
                 } else { // add new nhanvien
                     getDocument((doc) => {
@@ -164,9 +183,9 @@ class NhanVien {
                         eQuanLyNhanVien[0].appendChild(eNhanVien);
 
                         // console.log(eQuanLyNhanVien[0]);
-                        const docToWrite = serializer.serializeToString(doc);
+                        const xmlData = serializer.serializeToString(doc);
                         
-                        fs.writeFile(p, docToWrite, "utf-8", () => {
+                        fs.writeFile(p, xmlData, "utf-8", () => {
                             resolve(this);
                         });
                         // wirteFile

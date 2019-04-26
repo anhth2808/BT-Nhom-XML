@@ -21,10 +21,10 @@ router.post("/add-nhanvien", adminCtrl.postAddNhanVien);
 
 
 // /edit-employee => GET
-router.get("/edit-employee");
+router.get("/edit-nhanvien/:MaNV", adminCtrl.getEditNhanVien);
 
 // /edit-employee => POST
-router.post("/edit-employee");
+router.post("/edit-nhanvien", adminCtrl.postEditNhanVien);
 
 // /employees => GET
 router.get("/delete-employee");
