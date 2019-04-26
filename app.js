@@ -7,7 +7,7 @@ const app = express();
 // setting view
 app.set("view engine", "pug");
 app.set("views", "views");
-
+app.set('port', process.env.PORT || 3000);
 // routes
 const adminRoutes = require('./routes/admin');
 
@@ -20,4 +20,4 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use("/", adminRoutes)
 
 
-app.listen(3000);
+app.listen(app.get('port'));
