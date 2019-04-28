@@ -27,11 +27,11 @@ router.get("/edit-nhanvien/:MaNV", adminCtrl.getEditNhanVien);
 router.post("/edit-nhanvien", adminCtrl.postEditNhanVien);
 
 // /employees => GET
-router.get("/delete-employee");
+router.post("/delete-nhanvien", adminCtrl.postDeleteNhanVien);
 
 
 // 
-router.get("/test", adminCtrl.postAddNhanVien);
+router.get("/test");
 
 
 module.exports = router;

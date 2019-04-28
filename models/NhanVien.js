@@ -8,6 +8,7 @@ const DOMParser = require("xmldom").DOMParser;
 const XMLSerializer = require("xmldom").XMLSerializer;
 const serializer = new XMLSerializer();
 
+const HDLD = require("./HDLD");
 
 // database
 const p = require("../util/path");
@@ -196,10 +197,6 @@ class NhanVien {
         })
     }
 
-    static deleteById(MaNV, cb) {
-
-    }
-
     static fetchAll(cb) {
         getDataFromFile(cb);
     }
@@ -208,6 +205,43 @@ class NhanVien {
         getDataFromFile(nhanViens => {
             const nhanVien = nhanViens.find(n => n.MaNV === MaNV);
             cb(nhanVien);
+        });
+    }
+
+    static deleteById(MaNV) {
+        getDocument(doc => {
+            const eNhanVien = doc.getElementsByTagName("NhanVien");
+
+
+
+            let MaHDLD; // ma hdld dung de delete;
+
+            for (let i = 0; i < eNhanVien.length; i++) {
+                if (eNhanVien[i].getElementsByTagName("MaNV")[0].childNodes[0].nodeValue === MaNV) {                    
+                    let deletedElement = eNhanVien[i];
+                    
+                    MaHDLD = deletedElement.getElementsByTagName("MaHDLD")[0].textContent;
+                    deletedElement.parentNode.removeChild(deletedElement);
+                }
+            }
+
+            // const temp = doc.getElementsByTagName("NhanVien");
+            // for (let i = 0; i < temp.length; i++) {                 
+            //     console.log(temp[i].getElementsByTagName("MaNV")[0].childNodes[0].nodeValue) 
+            //     // deletedElement.parentNode.removeChild(deletedElement);
+            // }
+
+            
+            HDLD.deleteById(MaHDLD);
+
+            const xmlData = serializer.serializeToString(doc);           
+            fs.writeFile(p, xmlData, "utf-8", (err) => {
+                if (!err) {
+                    // delete HDLD tuong ung
+                    HDLD.deleteById(MaHDLD);
+                }
+            });
+            
         });
     }
 }

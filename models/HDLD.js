@@ -133,6 +133,36 @@ class HDLD {
             cb(hdld);
         })
     }
+
+    static deleteById(MaHDLD) {
+        getDocument(doc => {
+            const eHDLD = doc.getElementsByTagName("HDLD");
+            
+            // console.log("MaHDLD:", MaHDLD)
+
+            for (let i = 0; i < eHDLD.length; i++) {
+                if (eHDLD[i].getElementsByTagName("MaHDLD")[0].childNodes[0].nodeValue === MaHDLD) {                    
+                    // console.log("found HDLD: ", eHDLD[i].getElementsByTagName("MaHDLD")[0].childNodes[0].nodeValue);
+                    
+                    let deletedElement = eHDLD[i];                  
+                    deletedElement.parentNode.removeChild(deletedElement);
+                    
+                }
+            }
+
+            // const temp = doc.getElementsByTagName("HDLD");
+            // for (let i = 0; i < temp.length; i++) {       
+            //     console.log(temp[i].getElementsByTagName("MaHDLD")[0].childNodes[0].nodeValue) 
+            // }
+
+
+            const xmlData = serializer.serializeToString(doc);
+            fs.writeFile(p, xmlData, "utf-8", (err) => {
+
+            });
+            
+        });
+    }
 }
 
 module.exports = HDLD;

@@ -57,4 +57,7 @@ block content
             td #{hdld.HeSoLuong}
     .d-flex.justify-content-end
         a.btn.btn-warning(href="/edit-nhanvien/" + nhanVien.MaNV + "?edit=true") Chỉnh sửa thông tin
-        a.btn.btn-danger(href="/edit-nhanvien/" + nhanVien.MaNV) Xóa nhân viên
+        
+        form(action="/delete-nhanvien", method="POST")
+            input(type="hidden", value=nhanVien.MaNV, name="MaNV")
+            input.btn.btn-danger(type="submit", value="Xóa nhân viên")

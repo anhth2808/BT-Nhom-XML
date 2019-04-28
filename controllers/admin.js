@@ -178,3 +178,12 @@ exports.postEditNhanVien = (req, res, next) => {
         res.redirect("nhanviens/" + nhanVien.MaNV);
     });
 }
+
+
+exports.postDeleteNhanVien = (req, res, next) => {
+    const MaNV = req.body.MaNV;
+
+    NhanVien.deleteById(MaNV);
+
+    res.redirect("/nhanviens");
+}
