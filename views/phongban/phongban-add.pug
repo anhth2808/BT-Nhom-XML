@@ -1,0 +1,33 @@
+extends  ../layouts/main-layout.pug
+
+include ../_includes/sharedHTMLfunctions
+
+block styles
+    script(src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js")
+    link(rel="stylesheet", href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css")
+
+block content
+    
+    .d-flex.justify-content-center
+        .row
+            .col-md-12
+                form(action=(editing ? "/edit-nhanvien" : "/add-nhanvien"), method="POST")
+                    h3 Thông tin phòng ban:
+                    .form-row
+                        .col-md-4.mb-3
+                            label(for="TenPB") Tên phòng ban
+                            input.form-control#TenNV(placeholder="Tên phòng ban", value=(editing ? phongBan.TenPB : ""), name="TenPB")
+                    hr                 
+                    // if is edit mode send id to find
+                    - if (editing) {
+                        input(type="hidden", name="MaNV", value=phongBan.MaCV)
+                    - }
+                    .form-row.text-right
+                        .col-12
+                            input.btn.btn-primary(type="submit", value=(editing ? "Chỉnh sửa" : "Thêm"))
+
+block scripts
+    script.
+        $('#NgaySinh').datepicker({ format: 'dd-mm-yyyy' });
+        $('#NgayBatDau').datepicker({ format: 'dd-mm-yyyy' });
+        $('#NgayKetThuc').datepicker({ format: 'dd-mm-yyyy' });

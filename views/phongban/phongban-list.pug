@@ -1,0 +1,17 @@
+extends  ../layouts/main-layout.pug
+
+block content
+    h1 Danh sách phòng ban:
+    hr
+    
+    table
+        tr
+            th Mã phòng ban
+            th Tên phòng ban
+            //- th
+        each phongBan in phongBans
+            tr
+                td #{phongBan.MaPB}
+                td #{phongBan.TenPB}
+                //- td
+                //-     a.btn(href="/nhanviens/" + nhanVien.MaNV) Chi tiết

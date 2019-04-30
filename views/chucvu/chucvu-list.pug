@@ -1,0 +1,22 @@
+extends  ../layouts/main-layout.pug
+
+block content
+    h1 Danh sách chức vụ:
+
+    hr
+    table
+        tr
+            th Mã chức vụ
+            th Tên chức vụ
+            th Phụ cấp
+            th
+            th
+        each chucVu in chucVus
+            tr
+                td #{chucVu.MaCV}
+                td #{chucVu.TenCV}
+                td #{chucVu.PhuCap}
+                td
+                    a.btn(href="/edit-chucvu/" + chucVu.MaCV + "?edit=true") Chỉnh sửa
+                td
+                    a.btn(href="#") Xóa

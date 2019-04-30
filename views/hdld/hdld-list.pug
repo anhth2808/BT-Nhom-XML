@@ -1,0 +1,24 @@
+extends  ../layouts/main-layout.pug
+
+block content
+    h1 Danh sách hợp đồng lao động:
+    hr
+    
+    table
+        tr
+            th Mã HDLD
+            th Tên HDLD
+            th Ngày bắt đầu
+            th Ngày kết thúc
+            //- th
+        each hdld in hdlds
+            tr
+                td #{hdld.MaHDLD}
+                td 
+                    =formatDate(hdld.NgayBatDau)
+                td 
+                    =formatDate(hdld.NgayKetThuc)
+                td #{hdld.HeSoLuong}
+
+                //- td
+                //-     a.btn(href="/nhanviens/" + nhanVien.MaNV) Chi tiết

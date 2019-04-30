@@ -25,13 +25,27 @@ html(lang="en")
                 li.nav-item
                     a.nav-link.active(href="/") Trang chủ
                 li.nav-item
-                    a.nav-link(href="/nhanviens") Nhân viên
+                    .dropdown.show
+                        a.btn.dropdown-toggle(href="#", role="button", data-toggle="dropdown", aria-haspopup="true" ,aria-expanded="false")#nhanvienMenu Nhân viên
+                        .dropdown-menu(aria-labelledby="nhanvienMenu")
+                            a.dropdown-item(href="/nhanviens") Danh sách nhân viên
+                            a.dropdown-item(href="/add-nhanvien") Thêm nhân viên
                 li.nav-item
-                    a.nav-link(href="/add-nhanvien") Thêm nhân viên
+                    .dropdown.show
+                        a.btn.dropdown-toggle(href="#", role="button", data-toggle="dropdown", aria-haspopup="true" ,aria-expanded="false")#chucvuMenu Chức vụ
+                        .dropdown-menu(aria-labelledby="chucvuMenu")
+                            a.dropdown-item(href="/chucvus") Danh sách chức vụ
+                            a.dropdown-item(href="/add-chucvu") Thêm chức vụ
+                li.nav-item
+                    .dropdown.show
+                        a.btn.dropdown-toggle(href="#", role="button", data-toggle="dropdown", aria-haspopup="true" ,aria-expanded="false")#chucvuMenu Phòng ban
+                        .dropdown-menu(aria-labelledby="chucvuMenu")
+                            a.dropdown-item(href="/phongbans") Danh sách phòng ban
+                            a.dropdown-item(href="/add-phongban") Thêm phòng ban
                 li.nav-item
                     a.nav-link.disabled(href="#") Disabled
 
-
+                    
         block content
 
         footer.page-footer.font-small.teal.pt-4

@@ -56,4 +56,4 @@
         <NgayKetThuc>20012-05-04</NgayKetThuc>
         <HeSoLuong>2.34</HeSoLuong>
     </HDLD>
-<NhanVien><MaNV>0.3614820247466728</MaNV><TenNV>Hoang Cha</TenNV><DiaChi>61/8 Đoàn Trần Nghiệp</DiaChi><NgaySinh>2019-04-25</NgaySinh><GioiTinh>Nam</GioiTinh><DanToc>Hoàng</DanToc><TonGiao>Phật</TonGiao><CMND>2223</CMND><MaPB>MaPB0</MaPB><MaCV>MaCV1</MaCV><MaHDLD>0.8360003236254396</MaHDLD></NhanVien><HDLD><MaHDLD>0.8360003236254396</MaHDLD><NgayBatDau>2018-08-06</NgayBatDau><NgayKetThuc>2019-09-16</NgayKetThuc><HeSoLuong>100</HeSoLuong></HDLD></QuanLyNhanVien>
+<ChucVu><MaCV>0.09363817144181086</MaCV><TenCV>Chủ tịch</TenCV><PhuCap>15000000</PhuCap></ChucVu></QuanLyNhanVien>

@@ -11,8 +11,6 @@ const ChucVu = require("../models/ChucVu");
 
 
 
-
-
 const formatdmy2ymd = (date) => {
     date = date.split("-");
     return date[2] + "-" + date[1] + "-" + date[0];
@@ -22,19 +20,20 @@ const formatdmy2ymd = (date) => {
 
 
 
+// NhanVien
 exports.getIndex = (req, res, next) => {
     NhanVien.fetchAll(nhanViens => {        
-        res.render("./admin/index", {
+        res.render("./nhanvien/index", {
             pageTitle: 'Index',
             path: '/',
             nhanViens: nhanViens
         });
     });
-}
+};
 
 exports.getNhanViens = (req, res, next) => {
     NhanVien.fetchAll(nhanViens => {
-        res.render("./admin/nhanvien-list", {
+        res.render("./nhanvien/nhanvien-list", {
             pageTitle: 'Danh sách nhân viên',
             path: '/nhanviens',
             nhanViens: nhanViens
@@ -59,7 +58,7 @@ exports.getNhanVien = (req, res, next) => {
                 HDLD.findById(nhanVien.MaHDLD, hdld => {
                     // console.log(hdld);
 
-                    res.render("./admin/nhanvien-detail", {
+                    res.render("./nhanvien/nhanvien-detail", {
                         pageTitle: nhanVien.TenNV,
                         path: '/nhanviens',
                         nhanVien: nhanVien,
@@ -80,7 +79,7 @@ exports.getNhanVien = (req, res, next) => {
 exports.getAddNhanVien = (req, res, next) => {
     PhongBan.fetchAll((phongBans) => {
         ChucVu.fetchAll((chucVus) => {
-            res.render("./admin/nhanvien-add", {
+            res.render("./nhanvien/nhanvien-add", {
                 phongBans: phongBans,
                 chucVus: chucVus,
                 editing: false
@@ -88,7 +87,7 @@ exports.getAddNhanVien = (req, res, next) => {
         });
     });
     
-}
+};
 
 exports.postAddNhanVien = (req, res, next ) => {
 
@@ -112,10 +111,10 @@ exports.postAddNhanVien = (req, res, next ) => {
         const hdld = new HDLD(result.MaHDLD, NgayBatDau, NgayKetThuc, HeSoLuong);
         hdld.save();
         console.log(hdld);
-        res.redirect("nhanviens/" + nhanVien.MaNV);
+        res.redirect("/nhanviens/" + nhanVien.MaNV);
     });
     
-}
+};
 
 exports.getEditNhanVien = (req, res, next) => {
     const editMode = req.query.edit;
@@ -131,7 +130,7 @@ exports.getEditNhanVien = (req, res, next) => {
                 HDLD.findById(nhanVien.MaHDLD, hdld => {
                     PhongBan.fetchAll(phongBans => {
                         ChucVu.fetchAll(chucVus => {
-                            res.render("./admin/nhanvien-add", {
+                            res.render("./nhanvien/nhanvien-add", {
                                 nhanVien: nhanVien,
                                 chucVuSelf: chucVu,
                                 phongBanSelf: phongBan,
@@ -147,8 +146,7 @@ exports.getEditNhanVien = (req, res, next) => {
         });
     });
     
-}
-
+};
 
 exports.postEditNhanVien = (req, res, next) => {
     const TenNV = req.body.TenNV,
@@ -175,10 +173,9 @@ exports.postEditNhanVien = (req, res, next) => {
     nhanVien.save().then((result) => {
         const hdld = new HDLD(result.MaHDLD, NgayBatDau, NgayKetThuc, HeSoLuong);
         hdld.save();
-        res.redirect("nhanviens/" + nhanVien.MaNV);
+        res.redirect("/nhanviens/" + nhanVien.MaNV);
     });
-}
-
+};
 
 exports.postDeleteNhanVien = (req, res, next) => {
     const MaNV = req.body.MaNV;
@@ -186,4 +183,8 @@ exports.postDeleteNhanVien = (req, res, next) => {
     NhanVien.deleteById(MaNV);
 
     res.redirect("/nhanviens");
-}
+};
+
+
+
+
