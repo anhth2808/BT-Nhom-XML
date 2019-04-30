@@ -120,7 +120,21 @@ class ChucVu {
     }
 
     static deleteById(MaCV) {
+        getDocument(doc => {
+            const eChucVu = doc.getElementsByTagName("ChucVu");
 
+            for (let i = 0; i < eChucVu.length; i++) {
+                if (eChucVu[i].getElementsByTagName("MaCV")[0].childNodes[0].nodeValue === MaCV) {
+                    let deletedElement = eChucVu[i];
+                    deletedElement.parentNode.removeChild(deletedElement);
+                }
+            }
+
+            const xmlData = serializer.serializeToString(doc);
+            fs.writeFile(p, xmlData, "utf-8", (err) => {
+
+            });
+        })
     } 
 
 }

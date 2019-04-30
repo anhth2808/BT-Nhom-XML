@@ -59,3 +59,12 @@ exports.postEditChucVu = (req, res, next) => {
         res.redirect("/chucvus");
     })
 }
+
+
+exports.postDeleteChucVu = (req, res, next) => {
+    const MaCV = req.body.MaCV;
+
+    ChucVu.deleteById(MaCV);
+
+    res.redirect("/chucvus");
+}

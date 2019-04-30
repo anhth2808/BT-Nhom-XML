@@ -17,6 +17,8 @@ block content
                 td #{chucVu.TenCV}
                 td #{chucVu.PhuCap}
                 td
-                    a.btn(href="/edit-chucvu/" + chucVu.MaCV + "?edit=true") Chỉnh sửa
+                    a.btn.btn-warning(href="/edit-chucvu/" + chucVu.MaCV + "?edit=true") Chỉnh sửa
                 td
-                    a.btn(href="#") Xóa
+                    form(action="/delete-chucvu", method="POST")
+                        input(type="hidden", value=chucVu.MaCV, name="MaCV")
+                        input.btn.btn-danger(type="submit", value="Xóa")

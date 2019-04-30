@@ -39,10 +39,13 @@ router.get("/add-chucvu", chucvuCtrl.getAddChucVu);
 // /add-chucvu => POST
 router.post("/add-chucvu", chucvuCtrl.postAddChucVu);
 
-// /edit-chuvu => GET
+// /edit-chucvu => GET
 router.get("/edit-chucvu/:MaCV", chucvuCtrl.getEditChucVu);
-// /edit-chuvu => POST
+// /edit-chucvu => POST
 router.post("/edit-chucvu", chucvuCtrl.postEditChucVu);
+
+// /delete-chucvu
+router.post("/delete-chucvu", chucvuCtrl.postDeleteChucVu);
 
 // ===================PHONGBAN=======================
 // /phongbans => GET
