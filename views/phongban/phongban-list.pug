@@ -8,10 +8,15 @@ block content
         tr
             th Mã phòng ban
             th Tên phòng ban
-            //- th
+            th
+            th
         each phongBan in phongBans
             tr
                 td #{phongBan.MaPB}
                 td #{phongBan.TenPB}
-                //- td
-                //-     a.btn(href="/nhanviens/" + nhanVien.MaNV) Chi tiết
+                td
+                    a.btn.btn-warning(href="/edit-phongban/" + phongBan.MaPB + "?edit=true") Chỉnh sửa
+                td
+                    form(action="/delete-phongban", method="POST")
+                        input(type="hidden", value=phongBan.MaPB, name="MaPB")
+                        input.btn.btn-danger(type="submit", value="Xóa")

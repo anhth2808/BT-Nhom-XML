@@ -7,55 +7,59 @@ const phongbanCtrl = require("../controllers/phongban");
 const hdldCtrl = require("../controllers/hdld");
 
 
-// /index => GET
+// /
 router.get("/", nhanvienCtrl.getIndex);
 // ===================NhanVien=======================
-// /nhanviens => GET
+// /nhanviens
 router.get("/nhanviens", nhanvienCtrl.getNhanViens);
 
-// /nhanviens/:MaNV => GET
+// /nhanviens/:MaNV
 router.get("/nhanviens/:MaNV", nhanvienCtrl.getNhanVien);
 
-// /add-nhanvien => GET
+// /add-nhanvien
 router.get("/add-nhanvien", nhanvienCtrl.getAddNhanVien);
-// /add-nhanvien => POST
 router.post("/add-nhanvien", nhanvienCtrl.postAddNhanVien);
 
-// /edit-nhanvien/:MaNV => GET
+// /edit-nhanvien
 router.get("/edit-nhanvien/:MaNV", nhanvienCtrl.getEditNhanVien);
-// /edit-nhanvien => POST
 router.post("/edit-nhanvien", nhanvienCtrl.postEditNhanVien);
 
-// /delete-nhanvien => POST
+// /delete-nhanvien
 router.post("/delete-nhanvien", nhanvienCtrl.postDeleteNhanVien);
 
 
 // ===================CHUCVU=======================
-// /chucvus => GET
+// /chucvus
 router.get("/chucvus", chucvuCtrl.getChucVus);
 
-// /add-chucvu => GET
+// /add-chucvu
 router.get("/add-chucvu", chucvuCtrl.getAddChucVu);
-// /add-chucvu => POST
 router.post("/add-chucvu", chucvuCtrl.postAddChucVu);
 
-// /edit-chucvu => GET
+// /edit-chucvu
 router.get("/edit-chucvu/:MaCV", chucvuCtrl.getEditChucVu);
-// /edit-chucvu => POST
 router.post("/edit-chucvu", chucvuCtrl.postEditChucVu);
 
 // /delete-chucvu
 router.post("/delete-chucvu", chucvuCtrl.postDeleteChucVu);
 
 // ===================PHONGBAN=======================
-// /phongbans => GET
+// /phongbans
 router.get("/phongbans", phongbanCtrl.getPhongBans)
+// /add-phongban
+router.get("/add-phongban", phongbanCtrl.getAddPhongBan);
+router.post("/add-phongban", phongbanCtrl.postAddPhongBan);
 
+// /edit-phongban
+router.get("/edit-phongban/:MaPB", phongbanCtrl.getEditPhongBan);
+router.post("/edit-phongban", phongbanCtrl.postEditPhongBan);
 
+// /delete-phongban
+router.post("/delete-phongban", phongbanCtrl.postDeletePhongBan);
 
 // ===================HDLD=======================
-// /hdlds => GET
-router.get("/hdlds", hdldCtrl.getHDLDs)
+// /hdlds
+router.get("/hdlds", hdldCtrl.getHDLDs);
 
 // 
 router.get("/test");
