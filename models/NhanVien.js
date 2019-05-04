@@ -13,7 +13,18 @@ const HDLD = require("./HDLD");
 // database
 const p = require("../util/path");
 
-
+const formatXMLFile = (doc, cb)  => {
+    // xml
+    // console.log(fileContent);
+    const fileContent = serializer.serializeToString(doc);
+    console.log("fileContent: ", fileContent);
+    parseString(fileContent, (err, result) => {
+        // const json = result;
+        const builder = new xml2js.Builder();
+        const xml = builder.buildObject(result);
+        cb(xml);
+    });
+}
 
 const getDocument = (cb) => {
     fs.readFile(p, "utf-8", (err, fileContent) => {
@@ -33,22 +44,7 @@ const getDataFromFile = (cb) => {
     fs.readFile(p, "utf-8", (err, fileContent) => {
         if (err) {
             cb([]);
-        } else {
-            // console.log(fileContent);
-
-            // fotmat xmlfile
-            // parseString(fileContent, (err, result) => {
-            //     const json = result;
-            //     const builder = new xml2js.Builder();
-            //     const xml = builder.buildObject(json);
-            //     fs.writeFile(path.join(path.dirname(process.mainModule.filename), "data", "QuanLyNhanVien-Instance.xml"), xml, (err) => {
-                    
-            //     });
-            // });
-
-
-
-            
+        } else {      
 
             const doc = new DOMParser().parseFromString(fileContent);
             const data = [];
@@ -111,7 +107,7 @@ class NhanVien {
                             eNhanVien[i].getElementsByTagName("MaCV")[0].childNodes[0].textContent = this.MaCV;
                         }
                     }
-                    const xmlData = serializer.serializeToString(doc);
+                    const xmlData = formatXMLFile(doc);
                     
                     fs.writeFile(p, xmlData, "utf-8", () => {
                         console.log(this);

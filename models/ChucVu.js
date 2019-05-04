@@ -10,6 +10,18 @@ const serializer = new XMLSerializer();
 
 const p = require("../util/path");
 
+const formatXMLFile = (doc, cb)  => {
+    // xml
+    // console.log(fileContent);
+    const fileContent = serializer.serializeToString(doc);
+    console.log("fileContent: ", fileContent);
+    parseString(fileContent, (err, result) => {
+        // const json = result;
+        const builder = new xml2js.Builder();
+        const xml = builder.buildObject(result);
+        cb(xml);
+    });
+}
 
 const getDocument = (cb) => {
     fs.readFile(p, "utf-8", (err, fileContent) => {
@@ -68,9 +80,10 @@ class ChucVu {
                         }
                     }
 
-                    const xmlData = serializer.serializeToString(doc);
-                    fs.writeFile(p, xmlData, "utf-8", () => {
-                        resolve(this);
+                    formatXMLFile(doc, xmlData => {
+                        fs.writeFile(p, xmlData, "utf-8", () => {
+                            resolve(this);
+                        });
                     });
                 });
             } else { // add new 
@@ -100,8 +113,10 @@ class ChucVu {
                     const xmlData = serializer.serializeToString(doc);
                     
                     // write file
-                    fs.writeFile(p, xmlData, "utf-8", () => {
-                        resolve(this);
+                    formatXMLFile(doc, xmlData => {
+                        fs.writeFile(p, xmlData, "utf-8", () => {
+                            resolve(this);
+                        });
                     });
                 })
             }
@@ -130,9 +145,10 @@ class ChucVu {
                 }
             }
 
-            const xmlData = serializer.serializeToString(doc);
-            fs.writeFile(p, xmlData, "utf-8", (err) => {
-
+            formatXMLFile(doc, xmlData => {
+                fs.writeFile(p, xmlData, "utf-8", () => {
+                    resolve(this);
+                });
             });
         })
     } 

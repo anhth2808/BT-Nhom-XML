@@ -11,6 +11,19 @@ const serializer = new XMLSerializer();
 const p = require("../util/path");
 
 
+const formatXMLFile = (doc, cb)  => {
+    // xml
+    // console.log(fileContent);
+    const fileContent = serializer.serializeToString(doc);
+    console.log("fileContent: ", fileContent);
+    parseString(fileContent, (err, result) => {
+        // const json = result;
+        const builder = new xml2js.Builder();
+        const xml = builder.buildObject(result);
+        cb(xml);
+    });
+}
+
 const getDocument = (cb) => {
     fs.readFile(p, "utf-8", (err, fileContent) => {
         if (err) {
@@ -77,10 +90,11 @@ class HDLD {
                             }
                         }
 
-                        const xmlData = serializer.serializeToString(doc);
                         
-                        fs.writeFile(p, xmlData, "utf-8", () => {
-                            resolve(this);
+                        formatXMLFile(doc, xmlData => {
+                            fs.writeFile(p, xmlData, "utf-8", () => {
+                                resolve(this);
+                            });
                         });
 
                     }); 
@@ -111,10 +125,10 @@ class HDLD {
                         eQuanLyNhanVien[0].appendChild(eHdld);
                         
 
-                        const docToWrite = serializer.serializeToString(doc);
-                        
-                        fs.writeFile(p, docToWrite, "utf-8", () => {
-                            resolve(this);
+                        formatXMLFile(doc, xmlData => {
+                            fs.writeFile(p, xmlData, "utf-8", () => {
+                                resolve(this);
+                            });
                         });
                     
                     })
@@ -156,9 +170,10 @@ class HDLD {
             // }
 
 
-            const xmlData = serializer.serializeToString(doc);
-            fs.writeFile(p, xmlData, "utf-8", (err) => {
-
+            formatXMLFile(doc, xmlData => {
+                fs.writeFile(p, xmlData, "utf-8", () => {
+                    resolve(this);
+                });
             });
             
         });
