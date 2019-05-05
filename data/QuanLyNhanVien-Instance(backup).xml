@@ -10,9 +10,9 @@
     <DanToc>Kinh</DanToc>
     <TonGiao>Không</TonGiao>
     <CMND>123456789</CMND>
-    <MaPB>PB0000</MaPB>
-    <MaCV>CV0000</MaCV>
-    <MaHDLD>HDLD0000</MaHDLD>
+    <MaPB>PB0001</MaPB>
+    <MaCV>CV0001</MaCV>
+    <MaHDLD>HDLD0001</MaHDLD>
   </NhanVien>
   <NhanVien>
     <MaNV>NV0002</MaNV>
@@ -23,41 +23,41 @@
     <DanToc>Kinh</DanToc>
     <TonGiao>Không</TonGiao>
     <CMND>987654321</CMND>
-    <MaPB>PB0001</MaPB>
-    <MaCV>CV0001</MaCV>
-    <MaHDLD>HDLD0001</MaHDLD>
+    <MaPB>PB0002</MaPB>
+    <MaCV>CV0002</MaCV>
+    <MaHDLD>HDLD0002</MaHDLD>
   </NhanVien>
   <PhongBan>
-    <MaPB>PB0000</MaPB>
+    <MaPB>PB0001</MaPB>
     <TenPB>Phòng kế toán 1</TenPB>
   </PhongBan>
   <PhongBan>
-    <MaPB>PB0001</MaPB>
+    <MaPB>PB0002</MaPB>
     <TenPB>Phòng hành chính</TenPB>
   </PhongBan>
   <ChucVu>
-    <MaCV>CV0000</MaCV>
+    <MaCV>CV0001</MaCV>
     <TenCV>Nhân viên 2</TenCV>
     <PhuCap>0</PhuCap>
   </ChucVu>
   <ChucVu>
-    <MaCV>CV0001</MaCV>
+    <MaCV>CV0002</MaCV>
     <TenCV>Quản lý</TenCV>
     <PhuCap>600000</PhuCap>
   </ChucVu>
   <ChucVu>
-    <MaCV>CV0002</MaCV>
+    <MaCV>CV0003</MaCV>
     <TenCV>Chủ tịch</TenCV>
     <PhuCap>1000000000</PhuCap>
   </ChucVu>
   <HDLD>
-    <MaHDLD>HDLD0000</MaHDLD>
+    <MaHDLD>HDLD0001</MaHDLD>
     <NgayBatDau>20010-05-04</NgayBatDau>
     <NgayKetThuc>20011-05-04</NgayKetThuc>
     <HeSoLuong>2.5</HeSoLuong>
   </HDLD>
   <HDLD>
-    <MaHDLD>HDLD0001</MaHDLD>
+    <MaHDLD>HDLD0002</MaHDLD>
     <NgayBatDau>2006-05-04</NgayBatDau>
     <NgayKetThuc>20012-05-04</NgayKetThuc>
     <HeSoLuong>2.34</HeSoLuong>

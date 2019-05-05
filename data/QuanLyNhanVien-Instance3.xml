@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<QuanLyNhanVien xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:noNamespaceSchemaLocation="file:/D:/Projects/BaiTapXML/BT-Nhom-XML/data/QuanLyNhanVienSchema.xsd">
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<QuanLyNhanVien xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:/D:/Projects/BaiTapXML/BT-Nhom-XML/data/QuanLyNhanVienSchema.xsd">
   <NhanVien>
     <MaNV>NV0001</MaNV>
     <TenNV>Trần Hoàng Anh</TenNV>
@@ -29,10 +28,10 @@
   </NhanVien>
   <PhongBan>
     <MaPB>PB0001</MaPB>
-    <TenPB>Phòng kế toán 1</TenPB>
+    <TenPB>Phòng kế toán</TenPB>
   </PhongBan>
   <PhongBan>
-    <MaPB>PB0001</MaPB>
+    <MaPB>PB0002</MaPB>
     <TenPB>Phòng hành chính</TenPB>
   </PhongBan>
   <ChucVu>
