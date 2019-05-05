@@ -9,14 +9,16 @@ const XMLSerializer = require("xmldom").XMLSerializer;
 const serializer = new XMLSerializer();
 
 const p = require("../util/path");
+const createId = require("../util/myModule").createId;
+
+
 
 const formatXMLFile = (doc, cb)  => {
     // xml
     // console.log(fileContent);
     const fileContent = serializer.serializeToString(doc);
-    console.log("fileContent: ", fileContent);
+    // console.log("fileContent: ", fileContent);
     parseString(fileContent, (err, result) => {
-        // const json = result;
         const builder = new xml2js.Builder();
         const xml = builder.buildObject(result);
         cb(xml);
@@ -88,7 +90,8 @@ class ChucVu {
                 });
             } else { // add new 
                 getDocument(doc => {
-                    this.MaCV = Math.random().toString();
+                    
+                    this.MaCV = createId(doc, "ChucVu");
                     const eChucVu = doc.createElement("ChucVu");
 
                     const eMaCV = doc.createElement("MaCV");
@@ -147,7 +150,7 @@ class ChucVu {
 
             formatXMLFile(doc, xmlData => {
                 fs.writeFile(p, xmlData, "utf-8", () => {
-                    resolve(this);
+                
                 });
             });
         })

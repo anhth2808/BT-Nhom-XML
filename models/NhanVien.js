@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const xml2js = require("xml2js");
-
+const Builder = xml2js.Builder();
 const parseString = xml2js.parseString;
 
 const DOMParser = require("xmldom").DOMParser;
@@ -10,8 +10,9 @@ const serializer = new XMLSerializer();
 
 const HDLD = require("./HDLD");
 
-// database
+
 const p = require("../util/path");
+const createId = require("../util/myModule").createId;
 
 const formatXMLFile = (doc, cb)  => {
     // xml
@@ -107,19 +108,20 @@ class NhanVien {
                             eNhanVien[i].getElementsByTagName("MaCV")[0].childNodes[0].textContent = this.MaCV;
                         }
                     }
-                    const xmlData = formatXMLFile(doc);
+                    // const xmlData = formatXMLFile(doc);
                     
-                    fs.writeFile(p, xmlData, "utf-8", () => {
-                        console.log(this);
-                        resolve(this);
+                    formatXMLFile(doc, xmlData => {
+                        fs.writeFile(p, xmlData, "utf-8", () => {
+                            resolve(this);
+                        });
                     });
 
                 });                  
 
             } else { // add new nhanvien
                 getDocument((doc) => {
-                    this.MaNV = Math.random().toString();
-                    this.MaHDLD = Math.random().toString();
+                    this.MaNV = createId(doc, "NhanVien");
+                    this.MaHDLD = createId(doc, "HDLD");
 
                     const eNhanVien = doc.createElement("NhanVien");
                     
@@ -172,9 +174,12 @@ class NhanVien {
                     const eQuanLyNhanVien = doc.getElementsByTagName("QuanLyNhanVien");
                     eQuanLyNhanVien[0].appendChild(eNhanVien);
 
-                    const xmlData = serializer.serializeToString(doc);
-                    fs.writeFile(p, xmlData, "utf-8", () => {
-                        resolve(this);
+                    // const xmlData = serializer.serializeToString(doc);
+
+                    formatXMLFile(doc, xmlData => {
+                        fs.writeFile(p, xmlData, "utf-8", () => {
+                            resolve(this);
+                        });
                     });
                 });
             }
@@ -209,15 +214,15 @@ class NhanVien {
             }
         
             //
-            HDLD.deleteById(MaHDLD);
-
-            const xmlData = serializer.serializeToString(doc);           
-            fs.writeFile(p, xmlData, "utf-8", (err) => {
-                if (!err) {
-                    // delete HDLD tuong ung
-                    HDLD.deleteById(MaHDLD);
-                }
-            });
+            formatXMLFile(doc, xmlData => {
+                fs.writeFile(p, xmlData, "utf-8", (err) => {
+                    if (!err) {
+                        // delete HDLD tuong ung
+                        HDLD.deleteById(MaHDLD);
+                    }
+                });
+            })
+            
             
         });
     }

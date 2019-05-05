@@ -49,7 +49,13 @@
     <xs:element name="NhanVien">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="MaNV" type="xs:string" />
+                <xs:element name="MaNV">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:pattern value="NV\d{4}"></xs:pattern>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
                 <xs:element name="TenNV" type="xs:string" />
                 <xs:element name="DiaChi" type="xs:string" />
                 <xs:element name="NgaySinh" type="xs:date" />
@@ -67,7 +73,13 @@
     <xs:element name="PhongBan">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="MaPB" type="xs:string"/>
+                <xs:element name="MaPB">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:pattern value="PB\d{4}"></xs:pattern>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
                 <xs:element name="TenPB" type="xs:string"/>
             </xs:sequence>
         </xs:complexType>
@@ -76,7 +88,13 @@
     <xs:element name="ChucVu">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="MaCV" type="xs:string"/>
+                <xs:element name="MaCV">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:pattern value="CV\d{4}"></xs:pattern>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
                 <xs:element name="TenCV" type="xs:string"/>
                 <xs:element name="PhuCap" type="xs:double"/>
             </xs:sequence>
@@ -86,7 +104,13 @@
     <xs:element name="HDLD">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="MaHDLD" type="xs:string"/>
+                <xs:element name="MaHDLD">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:pattern value="HDLD\d{4}"></xs:pattern>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
                 <xs:element name="NgayBatDau" type="xs:date"/>
                 <xs:element name="NgayKetThuc" type="xs:date"/>
                 <xs:element name="HeSoLuong" type="xs:double"/>

@@ -10,7 +10,6 @@ const serializer = new XMLSerializer();
 
 const p = require("../util/path");
 
-
 const formatXMLFile = (doc, cb)  => {
     // xml
     // console.log(fileContent);
@@ -168,11 +167,8 @@ class HDLD {
             // for (let i = 0; i < temp.length; i++) {       
             //     console.log(temp[i].getElementsByTagName("MaHDLD")[0].childNodes[0].nodeValue) 
             // }
-
-
             formatXMLFile(doc, xmlData => {
                 fs.writeFile(p, xmlData, "utf-8", () => {
-                    resolve(this);
                 });
             });
             

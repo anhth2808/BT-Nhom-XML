@@ -10,7 +10,7 @@ const serializer = new XMLSerializer();
 
 
 const p = require("../util/path");
-
+const createId = require("../util/myModule").createId;
 
 const formatXMLFile = (doc, cb)  => {
     // xml
@@ -87,7 +87,7 @@ class PhongBan {
                 });
             } else {
                 getDocument(doc => {
-                    this.MaPB = Math.random().toString();
+                    this.MaPB = createId(doc, "PhongBan");
                     const ePhongBan = doc.createElement("PhongBan");
 
                     const eMaPB = doc.createElement("MaPB");
@@ -109,9 +109,6 @@ class PhongBan {
                         });
                     });
 
-                    // const xmlData = formatXMLFile(doc);
-                    // write file
-                    
                 });
             }
         })
@@ -143,7 +140,6 @@ class PhongBan {
             
             formatXMLFile(doc, xmlData => {
                 fs.writeFile(p, xmlData, "utf-8", () => {
-                    resolve(this);
                 });
             });
             
