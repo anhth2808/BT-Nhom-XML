@@ -8,6 +8,8 @@ const DOMParser = require("xmldom").DOMParser;
 const XMLSerializer = require("xmldom").XMLSerializer;
 const serializer = new XMLSerializer();
 
+const NhanVien = require("./NhanVien");
+
 const p = require("../util/path");
 const createId = require("../util/myModule").createId;
 
@@ -134,22 +136,35 @@ class ChucVu {
     }
 
     static deleteById(MaCV) {
-        getDocument(doc => {
-            const eChucVu = doc.getElementsByTagName("ChucVu");
-
-            for (let i = 0; i < eChucVu.length; i++) {
-                if (eChucVu[i].getElementsByTagName("MaCV")[0].childNodes[0].nodeValue === MaCV) {
-                    let deletedElement = eChucVu[i];
-                    deletedElement.parentNode.removeChild(deletedElement);
+        return new Promise((resolve, reject) => {
+            // check any nhanviens is using MaCV selected
+            NhanVien.checkIsUsing("MaCV", MaCV, (nhanVien) => {
+                if (nhanVien) {
+                    resolve({
+                        result: "failed",
+                        err: "This CV is using"
+                    });
+                } else {
+                    getDocument(doc => {
+                        const eChucVu = doc.getElementsByTagName("ChucVu");
+            
+                        for (let i = 0; i < eChucVu.length; i++) {
+                            if (eChucVu[i].getElementsByTagName("MaCV")[0].childNodes[0].nodeValue === MaCV) {
+                                let deletedElement = eChucVu[i];
+                                deletedElement.parentNode.removeChild(deletedElement);
+                            }
+                        }
+            
+                        formatXMLFile(doc, xmlData => {
+                            fs.writeFile(p, xmlData, "utf-8", () => {
+                                resolve(null);
+                            });
+                        });
+                    })
                 }
-            }
-
-            formatXMLFile(doc, xmlData => {
-                fs.writeFile(p, xmlData, "utf-8", () => {
-                
-                });
-            });
+            })
         })
+        
     } 
 
 }

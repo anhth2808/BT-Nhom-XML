@@ -2,8 +2,9 @@ extends  ../layouts/main-layout.pug
 
 block content
     h1 Danh sách chức vụ:
-
     hr
+    - if(alert)
+        .alert(role="alert", class=(alert.isSuccess ? "alert-success" : "alert-danger")) #{alert.message}
     table
         tr
             th Mã chức vụ

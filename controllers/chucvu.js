@@ -26,7 +26,7 @@ exports.postAddChucVu = (req, res, next) => {
 
     const chucVu = new ChucVu(null, TenCV, PhuCap);
     chucVu.save().then( result => {
-        console.log(result);
+        // console.log(result);
         res.redirect("/chucvus");
     })
 }
@@ -55,7 +55,6 @@ exports.postEditChucVu = (req, res, next) => {
 
     const chucVu = new ChucVu(MaCV, TenCV, PhuCap);
     chucVu.save().then( result => {
-        // console.log(result);
         res.redirect("/chucvus");
     })
 }
@@ -64,7 +63,21 @@ exports.postEditChucVu = (req, res, next) => {
 exports.postDeleteChucVu = (req, res, next) => {
     const MaCV = req.body.MaCV;
 
-    ChucVu.deleteById(MaCV);
-
-    res.redirect("/chucvus");
+    ChucVu.deleteById(MaCV)
+        .then((err) => {
+            if (!err) {
+                req.flash('alert', {
+                    isSuccess: true,
+                    message: "Xóa thành công"
+                });
+                res.redirect("/chucvus");
+            } else {
+                req.flash('alert', {
+                    isSuccess: false,
+                    message: `Mã ${MaCV} đang sử dụng cho nhân viên nào đó.`
+                });
+                res.redirect("/chucvus");
+            }
+        })
+        .catch(e => console.log(e));
 }

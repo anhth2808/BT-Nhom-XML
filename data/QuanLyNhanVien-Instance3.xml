@@ -10,7 +10,7 @@
     <TonGiao>Không</TonGiao>
     <CMND>123456789</CMND>
     <MaPB>PB0001</MaPB>
-    <MaCV>CV0001</MaCV>
+    <MaCV>CV0003</MaCV>
     <MaHDLD>HDLD0001</MaHDLD>
   </NhanVien>
   <NhanVien>
@@ -34,11 +34,6 @@
     <MaPB>PB0002</MaPB>
     <TenPB>Phòng hành chính</TenPB>
   </PhongBan>
-  <ChucVu>
-    <MaCV>CV0001</MaCV>
-    <TenCV>Nhân viên 2</TenCV>
-    <PhuCap>0</PhuCap>
-  </ChucVu>
   <ChucVu>
     <MaCV>CV0002</MaCV>
     <TenCV>Quản lý</TenCV>
