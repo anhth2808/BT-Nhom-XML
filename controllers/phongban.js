@@ -60,6 +60,25 @@ exports.postEditPhongBan = (req, res, next) => {
 exports.postDeletePhongBan = (req, res, next) => {
     const MaPB = req.body.MaPB;
 
-    PhongBan.deleteById(MaPB);
-    res.redirect("/phongbans");
+    PhongBan.deleteById(MaPB)
+        .then((err) => {
+            if (!err) {
+                req.flash('alert', {
+                    isSuccess: true,
+                    message: "Xóa thành công"
+                });
+                // req.flash('alert', "Xóa thành công");
+                res.redirect("/phongbans");
+            }
+            else {
+                req.flash('alert', {
+                    isSuccess: false,
+                    message: `Mã phòng ${MaPB} đang sử dụng cho nhân viên nào đó.`
+                });
+                // req.flash('alert', `Mã phòng ${MaPB} đang sử dụng cho nhân viên nào đó.`);
+                res.redirect("/phongbans");
+            }
+        })
+        .catch(e => console.log);
+
 }

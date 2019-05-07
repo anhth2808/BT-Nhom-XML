@@ -1,4 +1,4 @@
-module.exports. createId = (doc, type) => {
+module.exports.createId = (doc, type) => {
     let typeId = "";
     let tagId = "";
     let reg = /[1-9]\d*/;

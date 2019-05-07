@@ -28,7 +28,7 @@
   </NhanVien>
   <PhongBan>
     <MaPB>PB0001</MaPB>
-    <TenPB>Phòng kế toán</TenPB>
+    <TenPB>Phòng kế toán 1</TenPB>
   </PhongBan>
   <PhongBan>
     <MaPB>PB0002</MaPB>
@@ -51,14 +51,14 @@
   </ChucVu>
   <HDLD>
     <MaHDLD>HDLD0001</MaHDLD>
-    <NgayBatDau>20010-05-04</NgayBatDau>
-    <NgayKetThuc>20011-05-04</NgayKetThuc>
+    <NgayBatDau>2010-05-04</NgayBatDau>
+    <NgayKetThuc>2011-05-04</NgayKetThuc>
     <HeSoLuong>2.5</HeSoLuong>
   </HDLD>
   <HDLD>
     <MaHDLD>HDLD0002</MaHDLD>
     <NgayBatDau>2006-05-04</NgayBatDau>
-    <NgayKetThuc>20012-05-04</NgayKetThuc>
+    <NgayKetThuc>2012-05-04</NgayKetThuc>
     <HeSoLuong>2.34</HeSoLuong>
   </HDLD>
 </QuanLyNhanVien>

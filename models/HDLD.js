@@ -12,11 +12,9 @@ const p = require("../util/path");
 
 const formatXMLFile = (doc, cb)  => {
     // xml
-    // console.log(fileContent);
     const fileContent = serializer.serializeToString(doc);
-    console.log("fileContent: ", fileContent);
+
     parseString(fileContent, (err, result) => {
-        // const json = result;
         const builder = new xml2js.Builder();
         const xml = builder.buildObject(result);
         cb(xml);

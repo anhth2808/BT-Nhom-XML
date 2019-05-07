@@ -19,7 +19,10 @@
   "homepage": "https://github.com/lockedheart98/Do-An-XML#readme",
   "dependencies": {
     "body-parser": "^1.18.3",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.4",
     "express": "^4.16.4",
+    "express-session": "^1.16.1",
     "pug": "^2.0.3",
     "xml2js": "^0.4.19",
     "xmldom": "^0.1.27"

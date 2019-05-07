@@ -8,17 +8,16 @@ const DOMParser = require("xmldom").DOMParser;
 const XMLSerializer = require("xmldom").XMLSerializer;
 const serializer = new XMLSerializer();
 
+const NhanVien = require("./NhanVien");
 
 const p = require("../util/path");
 const createId = require("../util/myModule").createId;
 
 const formatXMLFile = (doc, cb)  => {
     // xml
-    // console.log(fileContent);
     const fileContent = serializer.serializeToString(doc);
 
     parseString(fileContent, (err, result) => {
-        // const json = result;
         const builder = new xml2js.Builder();
         const xml = builder.buildObject(result);
         cb(xml);
@@ -127,23 +126,41 @@ class PhongBan {
     }
 
     static deleteById(MaPB) {
-        getDocument(doc => {
-            const ePhongBan = doc.getElementsByTagName("PhongBan");
+        return new Promise((resolve, reject) => {
 
-            for (let i = 0; i < ePhongBan.length; i++) {
-                if (ePhongBan[i].getElementsByTagName("MaPB")[0].childNodes[0].nodeValue === MaPB) {
-                    let deletedElement = ePhongBan[i];
-                    deletedElement.parentNode.removeChild(deletedElement);
-                }
-            }
+            // check any nhanviens is using MaPB selected
+            NhanVien.checkIsUsing("MaPB", MaPB, (nhanVien) => {
+                if (nhanVien) {
+                    resolve({
+                        result: "failed",
+                        err: "This PB is using"
+                    });                    
+                } else {
+                    getDocument(doc => {
+               
+                        const ePhongBan = doc.getElementsByTagName("PhongBan");
 
+                        for (let i = 0; i < ePhongBan.length; i++) {
+                            if (ePhongBan[i].getElementsByTagName("MaPB")[0].childNodes[0].nodeValue === MaPB) {
+                                let deletedElement = ePhongBan[i];
+                                deletedElement.parentNode.removeChild(deletedElement);
+                            }
+                        }
             
-            formatXMLFile(doc, xmlData => {
-                fs.writeFile(p, xmlData, "utf-8", () => {
-                });
-            });
+                        // write file            
+                        formatXMLFile(doc, xmlData => {
+                            fs.writeFile(p, xmlData, "utf-8", () => {
+                                resolve(null);
+                            });
+                        });
+            
+                    });
+                    
+                }
+            })
             
         });
+        
     }
 }
 

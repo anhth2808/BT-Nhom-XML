@@ -15,9 +15,8 @@ const createId = require("../util/myModule").createId;
 
 const formatXMLFile = (doc, cb)  => {
     // xml
-    // console.log(fileContent);
     const fileContent = serializer.serializeToString(doc);
-    // console.log("fileContent: ", fileContent);
+
     parseString(fileContent, (err, result) => {
         const builder = new xml2js.Builder();
         const xml = builder.buildObject(result);
@@ -55,7 +54,6 @@ const getDataFromFile = (cb) => {
                     chucVus[i].getElementsByTagName("PhuCap")[0].childNodes[0].nodeValue
                 ));
             }
-            // console.log(data);
 
             cb(data);
         }
@@ -112,8 +110,6 @@ class ChucVu {
                     const eQuanLyNhanVien = doc.getElementsByTagName("QuanLyNhanVien");
                     eQuanLyNhanVien[0].appendChild(eChucVu);
 
-
-                    const xmlData = serializer.serializeToString(doc);
                     
                     // write file
                     formatXMLFile(doc, xmlData => {

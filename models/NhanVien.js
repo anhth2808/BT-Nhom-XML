@@ -16,11 +16,9 @@ const createId = require("../util/myModule").createId;
 
 const formatXMLFile = (doc, cb)  => {
     // xml
-    // console.log(fileContent);
     const fileContent = serializer.serializeToString(doc);
-    console.log("fileContent: ", fileContent);
+
     parseString(fileContent, (err, result) => {
-        // const json = result;
         const builder = new xml2js.Builder();
         const xml = builder.buildObject(result);
         cb(xml);
@@ -108,7 +106,6 @@ class NhanVien {
                             eNhanVien[i].getElementsByTagName("MaCV")[0].childNodes[0].textContent = this.MaCV;
                         }
                     }
-                    // const xmlData = formatXMLFile(doc);
                     
                     formatXMLFile(doc, xmlData => {
                         fs.writeFile(p, xmlData, "utf-8", () => {
@@ -193,6 +190,13 @@ class NhanVien {
     static findById(MaNV, cb) {
         getDataFromFile(nhanViens => {
             const nhanVien = nhanViens.find(n => n.MaNV === MaNV);
+            cb(nhanVien);
+        });
+    }
+
+    static checkIsUsing(id, value, cb) {
+        getDataFromFile(nhanViens => {
+            const nhanVien = nhanViens.find(n => n[id] === value);
             cb(nhanVien);
         });
     }
