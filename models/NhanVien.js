@@ -9,9 +9,10 @@ const XMLSerializer = require("xmldom").XMLSerializer;
 const serializer = new XMLSerializer();
 
 const HDLD = require("./HDLD");
-
+const ChucVu = require("./ChucVu");
 
 const p = require("../util/path");
+const LUONG_CO_SO = require("../util/config").LUONG_CO_SO;
 const createId = require("../util/myModule").createId;
 
 const formatXMLFile = (doc, cb)  => {
@@ -180,6 +181,17 @@ class NhanVien {
                     });
                 });
             }
+        });
+    }
+
+    tinhLuong() {
+        return new Promise((resolve, reject) => {
+            HDLD.findById(this.MaHDLD, hdld => {
+                ChucVu.findById(this.MaCV, chucVu => {
+                    const luong = parseFloat(hdld.HeSoLuong) * parseFloat(LUONG_CO_SO) + parseFloat(chucVu.PhuCap);
+                    resolve(luong);
+                });
+            });
         });
     }
 

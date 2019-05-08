@@ -3,7 +3,7 @@
   <NhanVien>
     <MaNV>NV0001</MaNV>
     <TenNV>Trần Hoàng Anh</TenNV>
-    <DiaChi>61/8, ĐTN, VP, Nha Trang, Khánh Hòa, Việt Nam, Trái Đất, Vũ trụ 7</DiaChi>
+    <DiaChi>61/8, ĐTN, VP, Nha Trang, Khánh Hòa, Việt Nam</DiaChi>
     <NgaySinh>1998-08-28</NgaySinh>
     <GioiTinh>Nam</GioiTinh>
     <DanToc>Kinh</DanToc>
@@ -16,7 +16,7 @@
   <NhanVien>
     <MaNV>NV0002</MaNV>
     <TenNV>Trần Hoàng Em</TenNV>
-    <DiaChi>61/8, ĐTN, VP, Nha Trang, Khánh Hòa, Việt Nam, Trái Đất, Vũ trụ 1</DiaChi>
+    <DiaChi>19 Ấp Bắc, Điện Biên</DiaChi>
     <NgaySinh>1998-08-27</NgaySinh>
     <GioiTinh>Nam</GioiTinh>
     <DanToc>Kinh</DanToc>
@@ -26,13 +26,60 @@
     <MaCV>CV0002</MaCV>
     <MaHDLD>HDLD0002</MaHDLD>
   </NhanVien>
+  <NhanVien>
+    <MaNV>NV0003</MaNV>
+    <TenNV>Nguyễn Thị Thúy</TenNV>
+    <DiaChi>Tổ 7, Thôn Càng Cua, Vĩnh Hải, Khánh Hòa</DiaChi>
+    <NgaySinh>2019-05-14</NgaySinh>
+    <GioiTinh>Nữ</GioiTinh>
+    <DanToc>Kinh</DanToc>
+    <TonGiao>Phật</TonGiao>
+    <CMND>58131259</CMND>
+    <MaPB>PB0001</MaPB>
+    <MaCV>CV0002</MaCV>
+    <MaHDLD>HDLD0003</MaHDLD>
+  </NhanVien>
+  <NhanVien>
+    <MaNV>NV0004</MaNV>
+    <TenNV>Nguyễn Thị Thúy Diễm</TenNV>
+    <DiaChi>61/8 Đoàn Trần Nghiệp</DiaChi>
+    <NgaySinh>1998-04-25</NgaySinh>
+    <GioiTinh>Nữ</GioiTinh>
+    <DanToc>Kinh</DanToc>
+    <TonGiao>Không</TonGiao>
+    <CMND>254584</CMND>
+    <MaPB>PB0001</MaPB>
+    <MaCV>CV0002</MaCV>
+    <MaHDLD>HDLD0004</MaHDLD>
+  </NhanVien>
+  <NhanVien>
+    <MaNV>NV0005</MaNV>
+    <TenNV>Trần Văn A</TenNV>
+    <DiaChi>12/3 Đoàn Trần Nghiệp, Nha Trang</DiaChi>
+    <NgaySinh>1998-05-07</NgaySinh>
+    <GioiTinh>Nam</GioiTinh>
+    <DanToc>Kinh</DanToc>
+    <TonGiao>Không</TonGiao>
+    <CMND>13275467</CMND>
+    <MaPB>PB0002</MaPB>
+    <MaCV>CV0002</MaCV>
+    <MaHDLD>HDLD0005</MaHDLD>
+  </NhanVien>
   <PhongBan>
     <MaPB>PB0001</MaPB>
     <TenPB>Phòng kế toán 1</TenPB>
   </PhongBan>
   <PhongBan>
     <MaPB>PB0002</MaPB>
-    <TenPB>Phòng hành chính</TenPB>
+    <TenPB>Phòng kế toán 2</TenPB>
+  </PhongBan>
+  <PhongBan>
+    <MaPB>PB0003</MaPB>
+    <TenPB>Ban quản lý</TenPB>
+  </PhongBan>
+  <PhongBan>
+    <MaPB>PB0004</MaPB>
+    <TenPB>Phòng không</TenPB>
   </PhongBan>
   <ChucVu>
     <MaCV>CV0002</MaCV>
@@ -42,7 +89,17 @@
   <ChucVu>
     <MaCV>CV0003</MaCV>
     <TenCV>Chủ tịch</TenCV>
-    <PhuCap>1000000000</PhuCap>
+    <PhuCap>2000000</PhuCap>
+  </ChucVu>
+  <ChucVu>
+    <MaCV>CV0004</MaCV>
+    <TenCV>Nhân viên 1</TenCV>
+    <PhuCap>0</PhuCap>
+  </ChucVu>
+  <ChucVu>
+    <MaCV>CV0005</MaCV>
+    <TenCV>Nhân viên 2</TenCV>
+    <PhuCap>200000</PhuCap>
   </ChucVu>
   <HDLD>
     <MaHDLD>HDLD0001</MaHDLD>
@@ -55,5 +112,23 @@
     <NgayBatDau>2006-05-04</NgayBatDau>
     <NgayKetThuc>2012-05-04</NgayKetThuc>
     <HeSoLuong>2.34</HeSoLuong>
+  </HDLD>
+  <HDLD>
+    <MaHDLD>HDLD0003</MaHDLD>
+    <NgayBatDau>2019-05-10</NgayBatDau>
+    <NgayKetThuc>2019-04-27</NgayKetThuc>
+    <HeSoLuong>3.4</HeSoLuong>
+  </HDLD>
+  <HDLD>
+    <MaHDLD>HDLD0004</MaHDLD>
+    <NgayBatDau>2019-05-05</NgayBatDau>
+    <NgayKetThuc>2019-05-18</NgayKetThuc>
+    <HeSoLuong>11</HeSoLuong>
+  </HDLD>
+  <HDLD>
+    <MaHDLD>HDLD0005</MaHDLD>
+    <NgayBatDau>2018-01-06</NgayBatDau>
+    <NgayKetThuc>2019-04-16</NgayKetThuc>
+    <HeSoLuong>21</HeSoLuong>
   </HDLD>
 </QuanLyNhanVien>

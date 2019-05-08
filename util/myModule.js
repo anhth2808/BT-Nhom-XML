@@ -26,7 +26,6 @@ module.exports.createId = (doc, type) => {
     const e = doc.getElementsByTagName(type);
     if (e.length > 0) {
         // get the last Item
-        console.log(e.length);
         lastItem = e[e.length - 1].getElementsByTagName(tagId)[0].childNodes[0].nodeValue;
         // using regex to get number
         lastItem = lastItem.match(reg)[0];

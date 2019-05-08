@@ -57,15 +57,19 @@ exports.getNhanVien = (req, res, next) => {
                 
                 HDLD.findById(nhanVien.MaHDLD, hdld => {
                     // console.log(hdld);
-
-                    res.render("./nhanvien/nhanvien-detail", {
-                        pageTitle: nhanVien.TenNV,
-                        path: '/nhanviens',
-                        nhanVien: nhanVien,
-                        phongBan: phongBan,
-                        chucVu: chucVu,
-                        hdld: hdld
-                    });
+                    nhanVien.tinhLuong()
+                        .then(luong => {
+                            res.render("./nhanvien/nhanvien-detail", {
+                                pageTitle: nhanVien.TenNV,
+                                path: '/nhanviens',
+                                nhanVien: nhanVien,
+                                phongBan: phongBan,
+                                chucVu: chucVu,
+                                hdld: hdld,
+                                luong: luong
+                            });
+                        });
+                    
                 });
             
             });
