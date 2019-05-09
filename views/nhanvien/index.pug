@@ -1,6 +1,56 @@
 extends  ../layouts/main-layout.pug
 
 block content
+    .container
+        h1 Tìm kiếm:
+        form.justify-content-md-center(action="/", method="post")                    
+            .row
+                .form-group.col-sm-6.row
+                    select.col-sm-4.form-control#query1(name='query1')
+                        option(value="1", selected) Tên nhân viên
+                        option(value="2", ) Địa chỉ
+                        option(value="3", ) Ngày sinh                
+                        option(value="4", ) Giới tính
+                        option(value="5", ) Dân tộc
+                        option(value="6", ) Tôn giáo
+                        option(value="7", ) CMND
+                        option(value="8", ) Mã nhân viên
+                    input.col-sm-8.form-control#queryOt1(placeholder=" ", value=(editing ? nhanVien.TenNV : ""), name="queryOt1")
+            .row
+                .form-group.col-sm-6.row
+                    select.col-sm-4.form-control#query2(name='query2')
+                        option(value="1", selected) Tên nhân viên
+                        option(value="2", ) Địa chỉ
+                        option(value="3", ) Ngày sinh                
+                        option(value="4", ) Giới tính
+                        option(value="5", ) Dân tộc
+                        option(value="6", ) Tôn giáo
+                        option(value="7", ) CMND
+                        option(value="8", ) Mã nhân viên
+                    input.col-sm-8.form-control#queryOt2(placeholder=" ", value=(editing ? nhanVien.TenNV : ""), name="queryOt2")
+            .row
+                .form-group.col-sm-6.row
+                    select.col-sm-4.form-control#query3(name='query3')
+                        option(value="phongBan", selected) Phòng ban
+                        option(value="chucVu", ) Chức vụ
+                    select.col-sm-8.form-control#queryOt3(name='queryOt3')
+                        option.ot3-default(value="", selected)
+                        each phongBan in phongBans
+                            option.ot3.phongBan(value=phongBan.MaPB) #{phongBan.TenPB}
+                        each chucVu in chucVus
+                            option.ot3.chucVu(value=chucVu.MaCV) #{chucVu.TenCV}
+            input(type="submit", value="Tìm kiếm") 
+            
+            
+                
+        //-             option(value="2") 2
+        //- .form-row
+        //-     .col-md-4.mb-3
+        //-         label(for="TenNV") Tên nhân viên
+        //- .form-row
+        //-     .col-md-4.mb-3
+        //-         label(for="TenNV") Tên nhân viên
+
 
 
     h1 Danh sách nhân viên:
@@ -27,3 +77,5 @@ block content
                 td #{nhanVien.DanToc}
                 td #{nhanVien.TonGiao}
                 td #{nhanVien.CMND}
+block scripts
+    script(src="/js/searchIndex.js")
