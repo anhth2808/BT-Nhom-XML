@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
+const indexCtrl = require("../controllers/index");
 const nhanvienCtrl = require("../controllers/nhanvien");
 const chucvuCtrl = require("../controllers/chucvu");
 const phongbanCtrl = require("../controllers/phongban");
@@ -8,7 +9,9 @@ const hdldCtrl = require("../controllers/hdld");
 
 
 // /
-router.get("/", nhanvienCtrl.getIndex);
+router.get("/", indexCtrl.getIndex);
+router.post("/", indexCtrl.postIndex);
+
 // ===================NhanVien=======================
 // /nhanviens
 router.get("/nhanviens", nhanvienCtrl.getNhanViens);
