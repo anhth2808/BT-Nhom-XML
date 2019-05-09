@@ -16,10 +16,10 @@ block content
                     .form-row
                         .col-md-6.mb-6
                             label(for="TenCV") Tên chức vụ
-                            input.form-control#TenCV(placeholder="Tên chức vụ", value=(editing ? chucVu.TenCV : ""), name="TenCV")
+                            input.form-control#TenCV(placeholder="Tên chức vụ", value=(editing ? chucVu.TenCV : ""), name="TenCV" required)
                         .col-md-6.mb-6
                             label(for="PhuCap") Phụ cấp
-                            input.form-control#PhuCap(placeholder="Phụ cấp", value=(editing ? chucVu.PhuCap : ""), name="PhuCap")
+                            input.form-control#PhuCap(placeholder="Phụ cấp", value=(editing ? chucVu.PhuCap : ""), name="PhuCap" required)
                     hr                 
                     // if is edit mode send id to find
                     - if (editing) {

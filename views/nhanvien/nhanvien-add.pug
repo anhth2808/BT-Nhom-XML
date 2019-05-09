@@ -16,13 +16,13 @@ block content
                     .form-row
                         .col-md-4.mb-3
                             label(for="TenNV") Tên nhân viên
-                            input.form-control#TenNV(placeholder="Tên nhân viên", value=(editing ? nhanVien.TenNV : ""), name="TenNV")
+                            input.form-control#TenNV(placeholder="Tên nhân viên", value=(editing ? nhanVien.TenNV : ""), name="TenNV" required)
                         .col-md-4.mb-3
                             label(for="DiaChi") Địa chỉ
-                            input.form-control#DiaChi(placeholder="Địa chỉ", value=(editing ? nhanVien.DiaChi : ""), name="DiaChi")
+                            input.form-control#DiaChi(placeholder="Địa chỉ", value=(editing ? nhanVien.DiaChi : ""), name="DiaChi" required)
                         .col-md-4.mb-3
                             label(for="NgaySinh") Ngày sinh
-                            input.form-control#NgaySinh(name="NgaySinh", value=(editing ? formatDate(nhanVien.NgaySinh) : ""))
+                            input.form-control#NgaySinh(name="NgaySinh", value=(editing ? formatDate(nhanVien.NgaySinh) : "") required)
                     .form-row
                         .col-md-4.mb-3
                             label(for="GioiTinh") Giới tính
@@ -49,14 +49,14 @@ block content
                             
                         .col-md-4.mb-3
                             label(for="DanToc") Dân tộc
-                            input.form-control#DanToc(placeholder="Dân tộc", value=(editing ? nhanVien.DanToc : ""), name="DanToc")
+                            input.form-control#DanToc(placeholder="Dân tộc", value=(editing ? nhanVien.DanToc : ""), name="DanToc" required)
                         .col-md-4.mb-3
                             label(for="TonGiao") Tôn giáo
-                            input.form-control#TonGiao(placeholder="Tôn giáo", value=(editing ? nhanVien.TonGiao : ""), name="TonGiao")
+                            input.form-control#TonGiao(placeholder="Tôn giáo", value=(editing ? nhanVien.TonGiao : ""), name="TonGiao" required)
                     .form-row
                         .col-md-4.mb-3
                             label(for="CMND") CMND
-                            input.form-control#CMND(placeholder="CMND", value=(editing ? nhanVien.CMND : ""), name="CMND")
+                            input.form-control#CMND(placeholder="CMND", value=(editing ? nhanVien.CMND : ""), name="CMND" required)
                     hr
                     .form-row
                         .col-md-4.mb-3
@@ -93,13 +93,13 @@ block content
                     .form-row#HDLDform
                         .col-md-4.mb-3
                             label(for="NgayBatDau") Ngày bắt đầu
-                            input.form-control#NgayBatDau(name="NgayBatDau", value= (editing ? formatDate(hdld.NgayBatDau) : ""))
+                            input.form-control#NgayBatDau(name="NgayBatDau", value= (editing ? formatDate(hdld.NgayBatDau) : "") required)
                         .col-md-4.mb-3
                             label(for="NgayKetThuc") Ngày kết thúc
-                            input.form-control#NgayKetThuc(name="NgayKetThuc", value=(editing ? formatDate(hdld.NgayKetThuc) : ""))
+                            input.form-control#NgayKetThuc(name="NgayKetThuc", value=(editing ? formatDate(hdld.NgayKetThuc) : "") required)
                         .col-md-4.mb-3
                             label(for="HeSoLuong") Hệ số lương
-                            input.form-control#HeSoLuong(placeholder="Hệ số lương", value=(editing ? hdld.HeSoLuong : "") name="HeSoLuong")
+                            input.form-control#HeSoLuong(placeholder="Hệ số lương", value=(editing ? hdld.HeSoLuong : "") name="HeSoLuong" required)
                     // if is edit mode send id to find
                     - if (editing) {
                         input(type="hidden", name="MaNV", value=nhanVien.MaNV)
