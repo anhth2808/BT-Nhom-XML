@@ -1,9 +1,3 @@
-const fs = require("fs");
-const xml2js = require("xml2js");
-const Builder = xml2js.Builder();
-const parseString = xml2js.parseString;
-const path = require("path");
-
 const NhanVien = require("../models/NhanVien");
 const PhongBan = require("../models/PhongBan");
 const HDLD = require("../models/HDLD");

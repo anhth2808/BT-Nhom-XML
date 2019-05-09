@@ -77,10 +77,6 @@
     <MaPB>PB0003</MaPB>
     <TenPB>Ban quản lý</TenPB>
   </PhongBan>
-  <PhongBan>
-    <MaPB>PB0004</MaPB>
-    <TenPB>Phòng không</TenPB>
-  </PhongBan>
   <ChucVu>
     <MaCV>CV0002</MaCV>
     <TenCV>Quản lý</TenCV>
@@ -89,7 +85,7 @@
   <ChucVu>
     <MaCV>CV0003</MaCV>
     <TenCV>Chủ tịch</TenCV>
-    <PhuCap>2000000</PhuCap>
+    <PhuCap>1000000000</PhuCap>
   </ChucVu>
   <ChucVu>
     <MaCV>CV0004</MaCV>
@@ -100,6 +96,11 @@
     <MaCV>CV0005</MaCV>
     <TenCV>Nhân viên 2</TenCV>
     <PhuCap>200000</PhuCap>
+  </ChucVu>
+  <ChucVu>
+    <MaCV>CV0006</MaCV>
+    <TenCV>Nhân viên 3</TenCV>
+    <PhuCap>1111111</PhuCap>
   </ChucVu>
   <HDLD>
     <MaHDLD>HDLD0001</MaHDLD>
