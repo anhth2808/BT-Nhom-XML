@@ -8,7 +8,6 @@ const DOMParser = require("xmldom").DOMParser;
 const XMLSerializer = require("xmldom").XMLSerializer;
 const serializer = new XMLSerializer();
 
-const NhanVien = require("./NhanVien");
 
 const p = require("../util/path");
 const createId = require("../util/myModule").createId;
@@ -138,6 +137,11 @@ class ChucVu {
     static deleteById(MaCV) {
         return new Promise((resolve, reject) => {
             // check any nhanviens is using MaCV selected
+            
+
+            // khai báo ở trên thì bị lỗi, khó hiểu v, trong khi thằng PhongBan thì require ổn.. 
+            const NhanVien = require("./NhanVien");
+
             NhanVien.checkIsUsing("MaCV", MaCV, (nhanVien) => {
                 if (nhanVien) {
                     resolve({

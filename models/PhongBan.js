@@ -8,7 +8,7 @@ const DOMParser = require("xmldom").DOMParser;
 const XMLSerializer = require("xmldom").XMLSerializer;
 const serializer = new XMLSerializer();
 
-const NhanVien = require("./NhanVien");
+
 
 const p = require("../util/path");
 const createId = require("../util/myModule").createId;
@@ -127,7 +127,7 @@ class PhongBan {
 
     static deleteById(MaPB) {
         return new Promise((resolve, reject) => {
-
+            const NhanVien = require("./NhanVien");
             // check any nhanviens is using MaPB selected
             NhanVien.checkIsUsing("MaPB", MaPB, (nhanVien) => {
                 if (nhanVien) {
