@@ -3,6 +3,15 @@ const PhongBan = require("../models/PhongBan");
 const HDLD = require("../models/HDLD");
 const ChucVu = require("../models/ChucVu");
 
+const removeAccent = require("../util/myModule").removeAccent;
+
+
+const search = (data, query, queryOt) => {
+    const Regex = new RegExp(removeAccent(queryOt), "i");
+    const result = data.filter(e => Regex.test(removeAccent(e[query]) ) );
+    return result;
+}
+
 exports.getIndex = (req, res, next) => {
     NhanVien.fetchAll(nhanViens => {        
         PhongBan.fetchAll(phongBans => {
@@ -28,9 +37,36 @@ exports.postIndex = (req, res, next) => {
     const queryOt1 = req.body.queryOt1, 
     queryOt2 = req.body.queryOt2, 
     queryOt3 = req.body.queryOt3;
-    
-    console.log("query1: ", query1, "queryOt1: ", queryOt1);
-    console.log("query2: ", query2, "queryOt2: ", queryOt2);
-    console.log("query3: ", query3, "queryOt3: ", queryOt3);
-    res.redirect("/");
+
+    NhanVien.fetchAll(nhanViens => {
+        let result  = [];
+
+        if (queryOt1) {
+            // console.log("query1 worked");
+            result = search(nhanViens, query1, queryOt1);
+        }
+        
+
+        if (queryOt2) {
+            // console.log("query2 worked");
+            if (result.length > 0) {
+                result = search(result, query2, queryOt2);
+            } else {
+                result = search(nhanViens, query2, queryOt2);
+            }
+        }
+
+        if (queryOt3) {
+            // console.log("query3 worked");
+            if (result.length > 0) {
+                result = search(result, query3, queryOt3);
+            } else {
+                result = search(nhanViens, query3, queryOt3);
+            }
+        }
+
+        if (result.length > 0)
+            req.flash('searchResult', result);
+        res.redirect("/");
+    });
 }

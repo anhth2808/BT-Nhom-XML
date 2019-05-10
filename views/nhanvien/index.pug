@@ -7,39 +7,39 @@ block content
             .row
                 .form-group.col-sm-6.row
                     select.col-sm-4.form-control#query1(name='query1')
-                        option(value="1", selected) Tên nhân viên
-                        option(value="2", ) Địa chỉ
-                        option(value="3", ) Ngày sinh                
-                        option(value="4", ) Giới tính
-                        option(value="5", ) Dân tộc
-                        option(value="6", ) Tôn giáo
-                        option(value="7", ) CMND
-                        option(value="8", ) Mã nhân viên
+                        option(value="TenNV", selected) Tên nhân viên
+                        option(value="DiaChi", ) Địa chỉ
+                        option(value="NgaySinh", ) Ngày sinh                
+                        option(value="GioiTinh", ) Giới tính
+                        option(value="DanToc", ) Dân tộc
+                        option(value="TonGiao", ) Tôn giáo
+                        option(value="CMND", ) CMND
+                        option(value="MaNV", ) Mã nhân viên
                     input.col-sm-8.form-control#queryOt1(placeholder=" ", value=(editing ? nhanVien.TenNV : ""), name="queryOt1")
             .row
                 .form-group.col-sm-6.row
                     select.col-sm-4.form-control#query2(name='query2')
-                        option(value="1", selected) Tên nhân viên
-                        option(value="2", ) Địa chỉ
-                        option(value="3", ) Ngày sinh                
-                        option(value="4", ) Giới tính
-                        option(value="5", ) Dân tộc
-                        option(value="6", ) Tôn giáo
-                        option(value="7", ) CMND
-                        option(value="8", ) Mã nhân viên
+                        option(value="TenNV", selected) Tên nhân viên
+                        option(value="DiaChi", ) Địa chỉ
+                        option(value="NgaySinh", ) Ngày sinh                
+                        option(value="GioiTinh", ) Giới tính
+                        option(value="DanToc", ) Dân tộc
+                        option(value="TonGiao", ) Tôn giáo
+                        option(value="CMND", ) CMND
+                        option(value="MaNV", ) Mã nhân viên
                     input.col-sm-8.form-control#queryOt2(placeholder=" ", value=(editing ? nhanVien.TenNV : ""), name="queryOt2")
             .row
                 .form-group.col-sm-6.row
                     select.col-sm-4.form-control#query3(name='query3')
-                        option(value="phongBan", selected) Phòng ban
-                        option(value="chucVu", ) Chức vụ
+                        option(value="MaPB", selected) Phòng ban
+                        option(value="MaCV", ) Chức vụ
                     select.col-sm-8.form-control#queryOt3(name='queryOt3')
                         option.ot3-default(value="", selected)
                         each phongBan in phongBans
                             option.ot3.phongBan(value=phongBan.MaPB) #{phongBan.TenPB}
                         each chucVu in chucVus
                             option.ot3.chucVu(value=chucVu.MaCV) #{chucVu.TenCV}
-            input(type="submit", value="Tìm kiếm") 
+            input(type="submit", value="Tìm kiếm")
             
             
                 
@@ -53,7 +53,7 @@ block content
 
 
 
-    h1 Danh sách nhân viên:
+    h3 Danh sách:
     hr
     
     table
@@ -65,8 +65,8 @@ block content
             th Giới tính
             th Dân tộc
             th Tôn giáo
-            th CMND
-        each nhanVien in nhanViens
+            th 
+        each nhanVien in searchResult
             tr
                 td #{nhanVien.MaNV}
                 td #{nhanVien.TenNV}
@@ -76,6 +76,7 @@ block content
                 td #{nhanVien.GioiTinh}
                 td #{nhanVien.DanToc}
                 td #{nhanVien.TonGiao}
-                td #{nhanVien.CMND}
+                td 
+                    a.btn(href="/nhanviens/" + nhanVien.MaNV) Chi tiết
 block scripts
     script(src="/js/searchIndex.js")

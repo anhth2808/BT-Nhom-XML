@@ -20,7 +20,8 @@ block content
                 td #{nhanVien.MaNV}
                 td #{nhanVien.TenNV}
                 td #{nhanVien.DiaChi}
-                td #{nhanVien.NgaySinh}
+                td
+                    =formatDate(nhanVien.NgaySinh)
                 td #{nhanVien.GioiTinh}
                 td #{nhanVien.DanToc}
                 td #{nhanVien.TonGiao}

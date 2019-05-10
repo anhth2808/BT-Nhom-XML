@@ -26,8 +26,8 @@ app.use(flash());
 
 
 app.use((req, res, next) => {
-    // res.locals.alert = JSON.stringify(req.flash("alert"));
     res.locals.alert = req.flash("alert")[0];
+    res.locals.searchResult = req.flash("searchResult");
     next();
 })
 
