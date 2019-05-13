@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<QuanLyNhanVien xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:/D:/Projects/BaiTapXML/BT-Nhom-XML/data/QuanLyNhanVienSchema.xsd">
+<QuanLyNhanVien xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="./QuanLyNhanVienSchema.xsd">
   <NhanVien>
     <MaNV>NV0001</MaNV>
     <TenNV>Trần Hoàng Anh</TenNV>
@@ -9,7 +9,7 @@
     <DanToc>Kinh</DanToc>
     <TonGiao>Không</TonGiao>
     <CMND>123456789</CMND>
-    <MaPB>PB0001</MaPB>
+    <MaPB>PB0003</MaPB>
     <MaCV>CV0003</MaCV>
     <MaHDLD>HDLD0001</MaHDLD>
   </NhanVien>
@@ -61,7 +61,7 @@
     <DanToc>Kinh</DanToc>
     <TonGiao>Không</TonGiao>
     <CMND>13275467</CMND>
-    <MaPB>PB0002</MaPB>
+    <MaPB>PB0003</MaPB>
     <MaCV>CV0002</MaCV>
     <MaHDLD>HDLD0005</MaHDLD>
   </NhanVien>
@@ -100,6 +100,11 @@
     <MaCV>CV0005</MaCV>
     <TenCV>Nhân viên 2</TenCV>
     <PhuCap>200000</PhuCap>
+  </ChucVu>
+  <ChucVu>
+    <MaCV>CV0006</MaCV>
+    <TenCV>Nhân viên 3</TenCV>
+    <PhuCap>100000</PhuCap>
   </ChucVu>
   <HDLD>
     <MaHDLD>HDLD0001</MaHDLD>
