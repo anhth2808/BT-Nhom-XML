@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<?xml-stylesheet type="text/xsl" href="QuanLyNhanVien-xslt.xsl"?>
 <QuanLyNhanVien xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="./QuanLyNhanVienSchema.xsd">
   <NhanVien>
     <MaNV>NV0001</MaNV>
@@ -9,7 +8,7 @@
     <GioiTinh>Nam</GioiTinh>
     <DanToc>Kinh</DanToc>
     <TonGiao>Không</TonGiao>
-    <CMND>123456789</CMND>
+    <CMND>111111</CMND>
     <MaPB>PB0003</MaPB>
     <MaCV>CV0003</MaCV>
     <MaHDLD>HDLD0001</MaHDLD>
@@ -53,19 +52,6 @@
     <MaCV>CV0002</MaCV>
     <MaHDLD>HDLD0004</MaHDLD>
   </NhanVien>
-  <NhanVien>
-    <MaNV>NV0005</MaNV>
-    <TenNV>Trần Văn A</TenNV>
-    <DiaChi>12/3 Đoàn Trần Nghiệp, Nha Trang</DiaChi>
-    <NgaySinh>1998-05-07</NgaySinh>
-    <GioiTinh>Nam</GioiTinh>
-    <DanToc>Kinh</DanToc>
-    <TonGiao>Không</TonGiao>
-    <CMND>13275467</CMND>
-    <MaPB>PB0003</MaPB>
-    <MaCV>CV0002</MaCV>
-    <MaHDLD>HDLD0005</MaHDLD>
-  </NhanVien>
   <PhongBan>
     <MaPB>PB0001</MaPB>
     <TenPB>Phòng kế toán 1</TenPB>
@@ -77,10 +63,6 @@
   <PhongBan>
     <MaPB>PB0003</MaPB>
     <TenPB>Ban quản lý</TenPB>
-  </PhongBan>
-  <PhongBan>
-    <MaPB>PB0004</MaPB>
-    <TenPB>Phòng không</TenPB>
   </PhongBan>
   <ChucVu>
     <MaCV>CV0002</MaCV>
@@ -107,6 +89,11 @@
     <TenCV>Nhân viên 3</TenCV>
     <PhuCap>100000</PhuCap>
   </ChucVu>
+  <ChucVu>
+    <MaCV>CV0007</MaCV>
+    <TenCV>Nhân viên 4</TenCV>
+    <PhuCap>1000</PhuCap>
+  </ChucVu>
   <HDLD>
     <MaHDLD>HDLD0001</MaHDLD>
     <NgayBatDau>2010-05-04</NgayBatDau>
@@ -130,11 +117,5 @@
     <NgayBatDau>2019-05-05</NgayBatDau>
     <NgayKetThuc>2019-05-18</NgayKetThuc>
     <HeSoLuong>11</HeSoLuong>
-  </HDLD>
-  <HDLD>
-    <MaHDLD>HDLD0005</MaHDLD>
-    <NgayBatDau>2018-01-06</NgayBatDau>
-    <NgayKetThuc>2019-04-16</NgayKetThuc>
-    <HeSoLuong>21</HeSoLuong>
   </HDLD>
 </QuanLyNhanVien>
