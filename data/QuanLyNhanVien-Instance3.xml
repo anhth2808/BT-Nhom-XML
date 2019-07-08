@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<QuanLyNhanVien xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="./QuanLyNhanVienSchema.xsd">
+  <NhanVien>
+    <MaNV>NV0001</MaNV>
+    <TenNV>Trần Hoàng Anh</TenNV>
+    <DiaChi>61/8, ĐTN, VP, Nha Trang, Khánh Hòa, Việt Nam</DiaChi>
+    <NgaySinh>1998-08-28</NgaySinh>
+    <GioiTinh>Nam</GioiTinh>
+    <DanToc>Kinh</DanToc>
+    <TonGiao>Không</TonGiao>
+    <CMND>111111</CMND>
+    <MaPB>PB0003</MaPB>
+    <MaCV>CV0003</MaCV>
+    <MaHDLD>HDLD0001</MaHDLD>
+  </NhanVien>
+  <NhanVien>
+    <MaNV>NV0002</MaNV>
+    <TenNV>Trần Hoàng Em</TenNV>
+    <DiaChi>19 Ấp Bắc, Điện Biên</DiaChi>
+    <NgaySinh>1998-08-27</NgaySinh>
+    <GioiTinh>Nam</GioiTinh>
+    <DanToc>Kinh</DanToc>
+    <TonGiao>Không</TonGiao>
+    <CMND>987654321</CMND>
+    <MaPB>PB0002</MaPB>
+    <MaCV>CV0002</MaCV>
+    <MaHDLD>HDLD0002</MaHDLD>
+  </NhanVien>
+  <NhanVien>
+    <MaNV>NV0003</MaNV>
+    <TenNV>Nguyễn Thị Thúy</TenNV>
+    <DiaChi>Tổ 7, Thôn Càng Cua, Vĩnh Hải, Khánh Hòa</DiaChi>
+    <NgaySinh>2019-05-14</NgaySinh>
+    <GioiTinh>Nữ</GioiTinh>
+    <DanToc>Kinh</DanToc>
+    <TonGiao>Phật</TonGiao>
+    <CMND>58131259</CMND>
+    <MaPB>PB0001</MaPB>
+    <MaCV>CV0002</MaCV>
+    <MaHDLD>HDLD0003</MaHDLD>
+  </NhanVien>
+  <NhanVien>
+    <MaNV>NV0004</MaNV>
+    <TenNV>Nguyễn Thị Thúy Diễm</TenNV>
+    <DiaChi>61/8 Đoàn Trần Nghiệp</DiaChi>
+    <NgaySinh>1998-04-25</NgaySinh>
+    <GioiTinh>Nữ</GioiTinh>
+    <DanToc>Kinh</DanToc>
+    <TonGiao>Không</TonGiao>
+    <CMND>254584</CMND>
+    <MaPB>PB0001</MaPB>
+    <MaCV>CV0002</MaCV>
+    <MaHDLD>HDLD0004</MaHDLD>
+  </NhanVien>
+  <PhongBan>
+    <MaPB>PB0001</MaPB>
+    <TenPB>Phòng kế toán 1</TenPB>
+  </PhongBan>
+  <PhongBan>
+    <MaPB>PB0002</MaPB>
+    <TenPB>Phòng kế toán 2</TenPB>
+  </PhongBan>
+  <PhongBan>
+    <MaPB>PB0003</MaPB>
+    <TenPB>Ban quản lý</TenPB>
+  </PhongBan>
+  <ChucVu>
+    <MaCV>CV0002</MaCV>
+    <TenCV>Quản lý</TenCV>
+    <PhuCap>600000</PhuCap>
+  </ChucVu>
+  <ChucVu>
+    <MaCV>CV0003</MaCV>
+    <TenCV>Chủ tịch</TenCV>
+    <PhuCap>1000000000</PhuCap>
+  </ChucVu>
+  <ChucVu>
+    <MaCV>CV0004</MaCV>
+    <TenCV>Nhân viên 1</TenCV>
+    <PhuCap>0</PhuCap>
+  </ChucVu>
+  <ChucVu>
+    <MaCV>CV0005</MaCV>
+    <TenCV>Nhân viên 2</TenCV>
+    <PhuCap>200000</PhuCap>
+  </ChucVu>
+  <ChucVu>
+    <MaCV>CV0006</MaCV>
+    <TenCV>Nhân viên 3</TenCV>
+    <PhuCap>100000</PhuCap>
+  </ChucVu>
+  <ChucVu>
+    <MaCV>CV0007</MaCV>
+    <TenCV>Nhân viên 4</TenCV>
+    <PhuCap>1000</PhuCap>
+  </ChucVu>
+  <HDLD>
+    <MaHDLD>HDLD0001</MaHDLD>
+    <NgayBatDau>2010-05-04</NgayBatDau>
+    <NgayKetThuc>2011-05-04</NgayKetThuc>
+    <HeSoLuong>2.5</HeSoLuong>
+  </HDLD>
+  <HDLD>
+    <MaHDLD>HDLD0002</MaHDLD>
+    <NgayBatDau>2006-05-04</NgayBatDau>
+    <NgayKetThuc>2012-05-04</NgayKetThuc>
+    <HeSoLuong>2.34</HeSoLuong>
+  </HDLD>
+  <HDLD>
+    <MaHDLD>HDLD0003</MaHDLD>
+    <NgayBatDau>2019-05-10</NgayBatDau>
+    <NgayKetThuc>2019-04-27</NgayKetThuc>
+    <HeSoLuong>3.4</HeSoLuong>
+  </HDLD>
+  <HDLD>
+    <MaHDLD>HDLD0004</MaHDLD>
+    <NgayBatDau>2019-05-05</NgayBatDau>
+    <NgayKetThuc>2019-05-18</NgayKetThuc>
+    <HeSoLuong>11</HeSoLuong>
+  </HDLD>
+</QuanLyNhanVien>

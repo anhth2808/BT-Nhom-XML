@@ -1,0 +1,65 @@
+extends  ../layouts/main-layout.pug
+
+block content
+    h1 Thông tin về nhân viên #{nhanVien.TenNV}
+
+    table
+        tr
+            th Mã Nhân viên
+            th Tên nhân viên
+            th Địa chỉ
+            th Ngày sinh
+            th Giới tính
+            th Dân tộc
+            th Tôn giáo
+            th CMND
+        tr
+            td #{nhanVien.MaNV}
+            td #{nhanVien.TenNV}
+            td #{nhanVien.DiaChi}
+            td 
+                =formatDate(nhanVien.NgaySinh)
+            td #{nhanVien.GioiTinh}
+            td #{nhanVien.DanToc}
+            td #{nhanVien.TonGiao}
+            td #{nhanVien.CMND}
+    br
+    table
+        tr 
+            th Mã chức vụ
+            th Tên chức vụ
+            th Phụ cấp
+            th Lương
+        tr
+            td #{chucVu.MaCV}
+            td #{chucVu.TenCV}
+            td #{chucVu.PhuCap}
+            td #{luong}
+    br
+    table
+        tr 
+            th Mã phòng ban
+            th Tên phòng ban
+        tr
+            td #{phongBan.MaPB}
+            td #{phongBan.TenPB}
+    br
+    table
+        tr 
+            th Mã HDLD
+            th Ngày bắt đầu
+            th Ngày kết thúc
+            th Hệ số lương
+        tr
+            td #{hdld.MaHDLD}
+            td 
+                =formatDate(hdld.NgayBatDau)
+            td 
+                =formatDate(hdld.NgayKetThuc)
+            td #{hdld.HeSoLuong}
+    .d-flex.justify-content-end
+        a.btn.btn-warning(href="/edit-nhanvien/" + nhanVien.MaNV + "?edit=true") Chỉnh sửa thông tin
+        
+        form(action="/delete-nhanvien", method="POST")
+            input(type="hidden", value=nhanVien.MaNV, name="MaNV")
+            input.btn.btn-danger(type="submit", value="Xóa nhân viên")

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        meta(http-equiv="X-UA-Compatible", content="ie=edge")
+        title #{pageTitle}
+        link(rel="stylesheet", href="/bootstrap/css/bootstrap.min.css")
+        link(rel="stylesheet", href="/css/main.css")
+        //- script(src="https://code.jquery.com/jquery-3.3.1.min.js")
+        script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js")
+
+        block styles
+    
+    body
+        // this code below is Unbuffered Code
+        -
+            function formatDate(dateString) {
+                dataString = dateString.split("-"); 
+                
+                return dataString[2] + "-" + dataString[1] + "-" + dataString[0];
+            }
+        nav.navbar.navbar-expand-sm.bg-light.navbar-light
+            ul.navbar-nav
+                li.nav-item
+                    a.nav-link.active(href="/") Trang chủ
+                li.nav-item
+                    .dropdown.show
+                        a.btn.dropdown-toggle(href="#", role="button", data-toggle="dropdown", aria-haspopup="true" ,aria-expanded="false")#nhanvienMenu Nhân viên
+                        .dropdown-menu(aria-labelledby="nhanvienMenu")
+                            a.dropdown-item(href="/nhanviens") Danh sách nhân viên
+                            a.dropdown-item(href="/add-nhanvien") Thêm nhân viên
+                li.nav-item
+                    .dropdown.show
+                        a.btn.dropdown-toggle(href="#", role="button", data-toggle="dropdown", aria-haspopup="true" ,aria-expanded="false")#chucvuMenu Chức vụ
+                        .dropdown-menu(aria-labelledby="chucvuMenu")
+                            a.dropdown-item(href="/chucvus") Danh sách chức vụ
+                            a.dropdown-item(href="/add-chucvu") Thêm chức vụ
+                li.nav-item
+                    .dropdown.show
+                        a.btn.dropdown-toggle(href="#", role="button", data-toggle="dropdown", aria-haspopup="true" ,aria-expanded="false")#chucvuMenu Phòng ban
+                        .dropdown-menu(aria-labelledby="chucvuMenu")
+                            a.dropdown-item(href="/phongbans") Danh sách phòng ban
+                            a.dropdown-item(href="/add-phongban") Thêm phòng ban
+                li.nav-item
+                    a.nav-link.disabled(href="#") Disabled
+
+                    
+        block content
+
+        footer.page-footer.font-small.teal.pt-4
+            .container-fluid.text-center.text-md-left
+                .row
+                    .footer-copyright.text-center.py-3
+                        | © 201X Copyright:
+                        a(href='https://github.com/lockedheart98')  Traeh
+
+
+        script(src="/bootstrap/js/bootstrap.min.js")
+        
+        block scripts

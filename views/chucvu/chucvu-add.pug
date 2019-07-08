@@ -1,0 +1,33 @@
+extends  ../layouts/main-layout.pug
+
+include ../_includes/sharedHTMLfunctions
+
+block styles
+    script(src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js")
+    link(rel="stylesheet", href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css")
+
+block content
+    
+    .d-flex.justify-content-center
+        .row
+            .col-md-12
+                form(action=(editing ? "/edit-chucvu" : "/add-chucvu"), method="POST")
+                    h3 Thông tin chức vụ:
+                    .form-row
+                        .col-md-6.mb-6
+                            label(for="TenCV") Tên chức vụ
+                            input.form-control#TenCV(placeholder="Tên chức vụ", value=(editing ? chucVu.TenCV : ""), name="TenCV" required)
+                        .col-md-6.mb-6
+                            label(for="PhuCap") Phụ cấp
+                            input.form-control#PhuCap(placeholder="Phụ cấp", value=(editing ? chucVu.PhuCap : ""), name="PhuCap" required)
+                    hr                 
+                    // if is edit mode send id to find
+                    - if (editing) {
+                        input(type="hidden", name="MaCV", value=chucVu.MaCV)
+                    - }
+                    .form-row.text-right
+                        .col-12
+                            input.btn.btn-primary(type="submit", value=(editing ? "Chỉnh sửa" : "Thêm"))
+
+block scripts
+

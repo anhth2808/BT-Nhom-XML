@@ -1,0 +1,25 @@
+extends  ../layouts/main-layout.pug
+
+block content
+    h1 Danh sách chức vụ:
+    hr
+    - if(alert)
+        .alert(role="alert", class=(alert.isSuccess ? "alert-success" : "alert-danger")) #{alert.message}
+    table
+        tr
+            th Mã chức vụ
+            th Tên chức vụ
+            th Phụ cấp
+            th
+            th
+        each chucVu in chucVus
+            tr
+                td #{chucVu.MaCV}
+                td #{chucVu.TenCV}
+                td #{chucVu.PhuCap}
+                td
+                    a.btn.btn-warning(href="/edit-chucvu/" + chucVu.MaCV + "?edit=true") Chỉnh sửa
+                td
+                    form(action="/delete-chucvu", method="POST")
+                        input(type="hidden", value=chucVu.MaCV, name="MaCV")
+                        input.btn.btn-danger(type="submit", value="Xóa")

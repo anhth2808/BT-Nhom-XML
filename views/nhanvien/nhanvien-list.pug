@@ -1,0 +1,30 @@
+extends  ../layouts/main-layout.pug
+
+block content
+    h1 Danh sách nhân viên:
+    hr
+    
+    table
+        tr
+            th Mã Nhân viên
+            th Tên nhân viên
+            th Địa chỉ
+            th Ngày sinh
+            th Giới tính
+            th Dân tộc
+            th Tôn giáo
+            th CMND
+            th
+        each nhanVien in nhanViens
+            tr
+                td #{nhanVien.MaNV}
+                td #{nhanVien.TenNV}
+                td #{nhanVien.DiaChi}
+                td
+                    =formatDate(nhanVien.NgaySinh)
+                td #{nhanVien.GioiTinh}
+                td #{nhanVien.DanToc}
+                td #{nhanVien.TonGiao}
+                td #{nhanVien.CMND}
+                td
+                    a.btn(href="/nhanviens/" + nhanVien.MaNV) Chi tiết
