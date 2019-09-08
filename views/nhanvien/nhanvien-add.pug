@@ -5,10 +5,13 @@ include ../_includes/sharedHTMLfunctions
 block styles
     script(src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js")
     link(rel="stylesheet", href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css")
+    link(rel="stylesheet", href="/css/form.css")
 
 block content
-    
-    .d-flex.justify-content-center
+    - if (errorMessage) {
+        .alert(role="alert", class="alert-danger") #{errorMessage}
+    - }    
+    .d-flex.justify-content-center        
         .row
             .col-md-12
                 form(action=(editing ? "/edit-nhanvien" : "/add-nhanvien"), method="POST")
@@ -16,13 +19,13 @@ block content
                     .form-row
                         .col-md-4.mb-3
                             label(for="TenNV") Tên nhân viên
-                            input.form-control#TenNV(placeholder="Tên nhân viên", value=(editing ? nhanVien.TenNV : ""), name="TenNV" required)
+                            input.form-control#TenNV(placeholder="Tên nhân viên", value=( (editing || hasError) ? nhanVien.TenNV : ""), class=(validationErrors.find(e => e.param === "TenNV")) ? "invalid" : "", name="TenNV" required)
                         .col-md-4.mb-3
                             label(for="DiaChi") Địa chỉ
-                            input.form-control#DiaChi(placeholder="Địa chỉ", value=(editing ? nhanVien.DiaChi : ""), name="DiaChi" required)
+                            input.form-control#DiaChi(placeholder="Địa chỉ", value=((editing || hasError) ? nhanVien.DiaChi : ""), class=(validationErrors.find(e => e.param === "DiaChi")) ? "invalid" : "", name="DiaChi" required)
                         .col-md-4.mb-3
                             label(for="NgaySinh") Ngày sinh
-                            input.form-control#NgaySinh(name="NgaySinh", value=(editing ? formatDate(nhanVien.NgaySinh) : "") required)
+                            input.form-control#NgaySinh(autocomplete="off", value=((editing || hasError) ? formatDate(nhanVien.NgaySinh) : ""), class=(validationErrors.find(e => e.param === "NgaySinh")) ? "invalid" : "", name="NgaySinh" required)
                     .form-row
                         .col-md-4.mb-3
                             label(for="GioiTinh") Giới tính
@@ -49,21 +52,21 @@ block content
                             
                         .col-md-4.mb-3
                             label(for="DanToc") Dân tộc
-                            input.form-control#DanToc(placeholder="Dân tộc", value=(editing ? nhanVien.DanToc : ""), name="DanToc" required)
+                            input.form-control#DanToc(placeholder="Dân tộc", value=((editing || hasError) ? nhanVien.DanToc : ""), class=(validationErrors.find(e => e.param === "DanToc")) ? "invalid" : "", name="DanToc" required)
                         .col-md-4.mb-3
                             label(for="TonGiao") Tôn giáo
-                            input.form-control#TonGiao(placeholder="Tôn giáo", value=(editing ? nhanVien.TonGiao : ""), name="TonGiao" required)
+                            input.form-control#TonGiao(placeholder="Tôn giáo", value=((editing || hasError) ? nhanVien.TonGiao : ""), class=(validationErrors.find(e => e.param === "TonGiao")) ? "invalid" : "", name="TonGiao" required)
                     .form-row
                         .col-md-4.mb-3
                             label(for="CMND") CMND
-                            input.form-control#CMND(placeholder="CMND", value=(editing ? nhanVien.CMND : ""), name="CMND" required)
+                            input.form-control#CMND(placeholder="CMND", value=((editing || hasError) ? nhanVien.CMND : ""), class=(validationErrors.find(e => e.param === "CMND")) ? "invalid" : "", name="CMND" required)
                     hr
                     .form-row
                         .col-md-4.mb-3
                             label(for="MaPB") Phòng ban:&nbsp;
                             select.form-control#TenPB(name='MaPB')
                                 each phongBan in phongBans
-                                    - if (editing) {
+                                    - if (editing || hasError) {
                                         - if (phongBan.MaPB === phongBanSelf.MaPB) {
                                             option(value=phongBan.MaPB, selected) #{phongBan.TenPB}
                                         - } else {
@@ -79,7 +82,7 @@ block content
                             label(for="MaCV") Chức vụ:&nbsp;
                             select.form-control#TenCV(name='MaCV')
                                 each chucVu in chucVus
-                                    - if (editing) {
+                                    - if (editing || hasError) {
                                         - if (chucVu.MaCV === chucVuSelf.MaCV) {
                                             option(value=chucVu.MaCV, selected) #{chucVu.TenCV}
                                         - } else {
@@ -93,13 +96,13 @@ block content
                     .form-row#HDLDform
                         .col-md-4.mb-3
                             label(for="NgayBatDau") Ngày bắt đầu
-                            input.form-control#NgayBatDau(name="NgayBatDau", value= (editing ? formatDate(hdld.NgayBatDau) : "") required)
+                            input.form-control#NgayBatDau(autocomplete="off", name="NgayBatDau", value= ((editing || hasError) ? formatDate(hdld.NgayBatDau) : ""), class=(validationErrors.find(e => e.param === "NgayBatDau")) ? "invalid" : "" required)
                         .col-md-4.mb-3
                             label(for="NgayKetThuc") Ngày kết thúc
-                            input.form-control#NgayKetThuc(name="NgayKetThuc", value=(editing ? formatDate(hdld.NgayKetThuc) : "") required)
+                            input.form-control#NgayKetThuc(autocomplete="off", name="NgayKetThuc", value=((editing || hasError) ? formatDate(hdld.NgayKetThuc) : ""), class=(validationErrors.find(e => e.param === "NgayKetThuc")) ? "invalid" : "" required)
                         .col-md-4.mb-3
                             label(for="HeSoLuong") Hệ số lương
-                            input.form-control#HeSoLuong(placeholder="Hệ số lương", value=(editing ? hdld.HeSoLuong : "") name="HeSoLuong" required)
+                            input.form-control#HeSoLuong(placeholder="Hệ số lương", value=((editing || hasError) ? hdld.HeSoLuong : ""), class=(validationErrors.find(e => e.param === "HeSoLuong")) ? "invalid" : "", name="HeSoLuong", required)
                     // if is edit mode send id to find
                     - if (editing) {
                         input(type="hidden", name="MaNV", value=nhanVien.MaNV)

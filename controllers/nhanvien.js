@@ -3,6 +3,7 @@ const PhongBan = require("../models/PhongBan");
 const HDLD = require("../models/HDLD");
 const ChucVu = require("../models/ChucVu");
 
+const {validationResult} = require("express-validator");
 
 
 const formatdmy2ymd = (date) => {
@@ -40,17 +41,11 @@ exports.getNhanViens = (req, res, next) => {
 exports.getNhanVien = (req, res, next) => {
     const MaNV = req.params.MaNV;
 
+    // should replace to promise.all late
     NhanVien.findById(MaNV, nhanVien => {
-        // console.log("nhanVien:", nhanVien);
-
         PhongBan.findById(nhanVien.MaPB, phongBan => {
-            // console.log(phongBan);
-
             ChucVu.findById(nhanVien.MaCV, chucVu => {
-                // console.log(chucVu);
-                
                 HDLD.findById(nhanVien.MaHDLD, hdld => {
-                    // console.log(hdld);
                     nhanVien.tinhLuong()
                         .then(luong => {
                             res.render("./nhanvien/nhanvien-detail", {
@@ -62,8 +57,7 @@ exports.getNhanVien = (req, res, next) => {
                                 hdld: hdld,
                                 luong: luong
                             });
-                        });
-                    
+                        });                    
                 });
             
             });
@@ -80,7 +74,10 @@ exports.getAddNhanVien = (req, res, next) => {
             res.render("./nhanvien/nhanvien-add", {
                 phongBans: phongBans,
                 chucVus: chucVus,
-                editing: false
+                editing: false,
+                hasError: false,
+                errorMessage: null,
+                validationErrors: []
             });
         });
     });
@@ -104,11 +101,44 @@ exports.postAddNhanVien = (req, res, next ) => {
         NgayKetThuc = formatdmy2ymd(req.body.NgayKetThuc), 
         HeSoLuong = req.body.HeSoLuong;
 
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+        console.log(errors.array());
+        return PhongBan.fetchAll((phongBans) => {
+                ChucVu.fetchAll((chucVus) => {
+                    res.status(422).render("./nhanvien/nhanvien-add", {
+                        chucVuSelf: {MaCV:MaCV},
+                        phongBanSelf: {MaPB: MaPB},
+                        phongBans: phongBans,
+                        chucVus: chucVus,
+                        editing: false,
+                        nhanVien: {
+                            TenNV: TenNV,
+                            DiaChi: DiaChi,
+                            NgaySinh: NgaySinh,
+                            GioiTinh: GioiTinh,
+                            DanToc: DanToc,
+                            TonGiao: TonGiao,
+                            CMND: CMND
+                        },
+                        hdld: {
+                            NgayBatDau: NgayBatDau,
+                            NgayKetThuc: NgayKetThuc,
+                            HeSoLuong: HeSoLuong
+                        },
+                        hasError: true,
+                        errorMessage: errors.array()[0].msg,
+                        validationErrors: errors.array()
+                    });
+                });
+            });
+    }
+
     const nhanVien = new NhanVien(null, TenNV, DiaChi, NgaySinh, GioiTinh, DanToc, TonGiao, CMND, MaPB, MaCV, null);
     nhanVien.save().then((result) => {
         const hdld = new HDLD(result.MaHDLD, NgayBatDau, NgayKetThuc, HeSoLuong);
         hdld.save();
-        console.log(hdld);
         res.redirect("/nhanviens/" + nhanVien.MaNV);
     });
     
@@ -122,6 +152,7 @@ exports.getEditNhanVien = (req, res, next) => {
 
     const MaNV = req.params.MaNV;
 
+    // should replace to promise.all late
     NhanVien.findById(MaNV, nhanVien => {
         PhongBan.findById(nhanVien.MaPB, phongBan => {
             ChucVu.findById(nhanVien.MaCV, chucVu => {
@@ -135,7 +166,10 @@ exports.getEditNhanVien = (req, res, next) => {
                                 phongBans: phongBans,
                                 chucVus: chucVus,
                                 hdld: hdld,
-                                editing: editMode
+                                editing: editMode,
+                                hasError: false,
+                                errorMessage: null,
+                                validationErrors: []
                             });
                         });
                     })
@@ -163,9 +197,44 @@ exports.postEditNhanVien = (req, res, next) => {
         NgayKetThuc = formatdmy2ymd(req.body.NgayKetThuc), 
         HeSoLuong = req.body.HeSoLuong,
         MaHDLD = req.body.MaHDLD;
-
-        console.log(TenNV, DiaChi, NgaySinh, GioiTinh, DanToc, TonGiao, CMND, MaNV, MaPB, MaCV, NgayBatDau, NgayKetThuc,HeSoLuong, MaHDLD);
     
+    
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+        // promise.all plz
+        return  PhongBan.fetchAll(phongBans => {
+                    ChucVu.fetchAll(chucVus => {
+                        res.render("./nhanvien/nhanvien-add", {                                            
+                            chucVuSelf: {MaCV:MaCV},
+                            phongBanSelf: {MaPB: MaPB},
+                            phongBans: phongBans,
+                            chucVus: chucVus,
+                            nhanVien: {
+                                MaNV: MaNV,
+                                TenNV: TenNV,
+                                DiaChi: DiaChi,
+                                NgaySinh: NgaySinh,
+                                GioiTinh: GioiTinh,
+                                DanToc: DanToc,
+                                TonGiao: TonGiao,
+                                CMND: CMND
+                            },
+                            hdld: {
+                                MaHDLD: MaHDLD,
+                                NgayBatDau: NgayBatDau,
+                                NgayKetThuc: NgayKetThuc,
+                                HeSoLuong: HeSoLuong
+                            },
+                            editing: true,
+                            hasError: true,
+                            errorMessage: errors.array()[0].msg,
+                            validationErrors: errors.array()
+                        });
+                    });
+        })
+    }
+
     const nhanVien = new NhanVien(MaNV, TenNV, DiaChi, NgaySinh, GioiTinh, DanToc, TonGiao, CMND, MaPB, MaCV, MaHDLD);
     
     nhanVien.save().then((result) => {

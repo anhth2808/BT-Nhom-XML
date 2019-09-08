@@ -56,7 +56,6 @@ const getDataFromFile = (cb) => {
                                     
                 ));
             }
-            // console.log(data);
 
             cb(data);
         }
@@ -90,6 +89,7 @@ class HDLD {
                         
                         formatXMLFile(doc, xmlData => {
                             fs.writeFile(p, xmlData, "utf-8", () => {
+                                console.log(`HDLD #${this.MaHDLD} is edited!`);
                                 resolve(this);
                             });
                         });
@@ -124,6 +124,7 @@ class HDLD {
 
                         formatXMLFile(doc, xmlData => {
                             fs.writeFile(p, xmlData, "utf-8", () => {
+                                console.log(`Added New HDLD #${this.MaHDLD}`);
                                 resolve(this);
                             });
                         });

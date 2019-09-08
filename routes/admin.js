@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
 
+const {body} = require("express-validator");
+
 const indexCtrl = require("../controllers/index");
 const nhanvienCtrl = require("../controllers/nhanvien");
 const chucvuCtrl = require("../controllers/chucvu");
@@ -21,11 +23,103 @@ router.get("/nhanviens/:MaNV", nhanvienCtrl.getNhanVien);
 
 // /add-nhanvien
 router.get("/add-nhanvien", nhanvienCtrl.getAddNhanVien);
-router.post("/add-nhanvien", nhanvienCtrl.postAddNhanVien);
+router.post(
+    "/add-nhanvien",    
+    [
+        body("TenNV")
+            .isString()
+            .isLength({min: 2})
+            .trim(),
+        body("DiaChi")
+            .isString()
+            .trim(),
+        body("NgaySinh")
+            .isString()
+            .trim(),
+        body("GioiTinh")
+            .isString()
+            .trim(),
+        body("DanToc")
+            .isString()
+            .trim(),
+        body("TonGiao")
+            .isString()
+            .trim(),
+        body("CMND")
+            .isString()
+            .isLength({min: 5})
+            .trim(),
+        body("MaPB")
+            .isString()
+            .isLength({min: 2})
+            .trim(),
+        body("MaCV")
+            .isString()
+            .isLength({min: 2})
+            .trim(),
+        body("NgayBatDau")
+            .isString()
+            .isLength({min: 2})
+            .trim(),
+        body("NgayKetThuc")
+            .isString()
+            .isLength({min: 2})
+            .trim(),
+        body("HeSoLuong")
+            .isFloat()
+    ], 
+    nhanvienCtrl.postAddNhanVien
+);
 
 // /edit-nhanvien
 router.get("/edit-nhanvien/:MaNV", nhanvienCtrl.getEditNhanVien);
-router.post("/edit-nhanvien", nhanvienCtrl.postEditNhanVien);
+router.post(
+    "/edit-nhanvien",
+    [
+        body("TenNV")
+            .isString()
+            .isLength({min: 2})
+            .trim(),
+        body("DiaChi")
+            .isString()
+            .trim(),
+        body("NgaySinh")
+            .isString()
+            .trim(),
+        body("GioiTinh")
+            .isString()
+            .trim(),
+        body("DanToc")
+            .isString()
+            .trim(),
+        body("TonGiao")
+            .isString()
+            .trim(),
+        body("CMND")
+            .isString()
+            .isLength({min: 5})
+            .trim(),
+        body("MaPB")
+            .isString()
+            .isLength({min: 2})
+            .trim(),
+        body("MaCV")
+            .isString()
+            .isLength({min: 2})
+            .trim(),
+        body("NgayBatDau")
+            .isString()
+            .isLength({min: 2})
+            .trim(),
+        body("NgayKetThuc")
+            .isString()
+            .isLength({min: 2})
+            .trim(),
+        body("HeSoLuong")
+            .isFloat()
+    ], 
+    nhanvienCtrl.postEditNhanVien
+);
 
 // /delete-nhanvien
 router.post("/delete-nhanvien", nhanvienCtrl.postDeleteNhanVien);

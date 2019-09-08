@@ -8,21 +8,21 @@
     <GioiTinh>Nam</GioiTinh>
     <DanToc>Kinh</DanToc>
     <TonGiao>Không</TonGiao>
-    <CMND>111111</CMND>
-    <MaPB>PB0003</MaPB>
-    <MaCV>CV0003</MaCV>
+    <CMND>222222</CMND>
+    <MaPB>PB0001</MaPB>
+    <MaCV>CV0006</MaCV>
     <MaHDLD>HDLD0001</MaHDLD>
   </NhanVien>
   <NhanVien>
     <MaNV>NV0002</MaNV>
-    <TenNV>Trần Hoàng Em</TenNV>
+    <TenNV>Tran Tran</TenNV>
     <DiaChi>19 Ấp Bắc, Điện Biên</DiaChi>
     <NgaySinh>1998-08-27</NgaySinh>
-    <GioiTinh>Nam</GioiTinh>
+    <GioiTinh>Nữ</GioiTinh>
     <DanToc>Kinh</DanToc>
     <TonGiao>Không</TonGiao>
     <CMND>987654321</CMND>
-    <MaPB>PB0002</MaPB>
+    <MaPB>PB0003</MaPB>
     <MaCV>CV0002</MaCV>
     <MaHDLD>HDLD0002</MaHDLD>
   </NhanVien>
@@ -51,6 +51,32 @@
     <MaPB>PB0001</MaPB>
     <MaCV>CV0002</MaCV>
     <MaHDLD>HDLD0004</MaHDLD>
+  </NhanVien>
+  <NhanVien>
+    <MaNV>NV0005</MaNV>
+    <TenNV>Trần Hoàng Cháu</TenNV>
+    <DiaChi>61/8 Đoàn Trần Nghiệp</DiaChi>
+    <NgaySinh>2019-09-02</NgaySinh>
+    <GioiTinh>Nam</GioiTinh>
+    <DanToc>Hoàng</DanToc>
+    <TonGiao>Phật</TonGiao>
+    <CMND>5555555</CMND>
+    <MaPB>PB0001</MaPB>
+    <MaCV>CV0002</MaCV>
+    <MaHDLD>HDLD0005</MaHDLD>
+  </NhanVien>
+  <NhanVien>
+    <MaNV>NV0006</MaNV>
+    <TenNV>1313123</TenNV>
+    <DiaChi>1</DiaChi>
+    <NgaySinh>2019-09-03</NgaySinh>
+    <GioiTinh>Nam</GioiTinh>
+    <DanToc>Hoàng</DanToc>
+    <TonGiao>PHật</TonGiao>
+    <CMND>12345678</CMND>
+    <MaPB>PB0001</MaPB>
+    <MaCV>CV0002</MaCV>
+    <MaHDLD>HDLD0006</MaHDLD>
   </NhanVien>
   <PhongBan>
     <MaPB>PB0001</MaPB>
@@ -117,5 +143,17 @@
     <NgayBatDau>2019-05-05</NgayBatDau>
     <NgayKetThuc>2019-05-18</NgayKetThuc>
     <HeSoLuong>11</HeSoLuong>
+  </HDLD>
+  <HDLD>
+    <MaHDLD>HDLD0005</MaHDLD>
+    <NgayBatDau>2019-09-02</NgayBatDau>
+    <NgayKetThuc>2019-09-04</NgayKetThuc>
+    <HeSoLuong>5</HeSoLuong>
+  </HDLD>
+  <HDLD>
+    <MaHDLD>HDLD0006</MaHDLD>
+    <NgayBatDau>2019-09-02</NgayBatDau>
+    <NgayKetThuc>2019-09-14</NgayKetThuc>
+    <HeSoLuong>80</HeSoLuong>
   </HDLD>
 </QuanLyNhanVien>

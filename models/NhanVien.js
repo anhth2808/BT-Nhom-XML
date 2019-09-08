@@ -110,6 +110,7 @@ class NhanVien {
                     
                     formatXMLFile(doc, xmlData => {
                         fs.writeFile(p, xmlData, "utf-8", () => {
+                            console.log(`NhanVien #${this.MaNV} is edited!`);
                             resolve(this);
                         });
                     });
@@ -176,6 +177,7 @@ class NhanVien {
 
                     formatXMLFile(doc, xmlData => {
                         fs.writeFile(p, xmlData, "utf-8", () => {
+                            console.log(`Added new NhanVien #${this.MaNV}`);
                             resolve(this);
                         });
                     });
