@@ -51,7 +51,11 @@ exports.postAddChucVu = (req, res, next) => {
     chucVu.save().then( result => {
         // console.log(result);
         res.redirect("/chucvus");
-    });
+    }).catch( err => {
+        const error = new Error(err);
+        error.httpStatusCode = 500;
+        return next(error);
+    });;
 }
 
 
@@ -103,7 +107,11 @@ exports.postEditChucVu = (req, res, next) => {
     const chucVu = new ChucVu(MaCV, TenCV, PhuCap);
     chucVu.save().then( result => {
         res.redirect("/chucvus");
-    })
+    }).catch( err => {
+        const error = new Error(err);
+        error.httpStatusCode = 500;
+        return next(error);
+    });
 }
 
 
@@ -126,5 +134,9 @@ exports.postDeleteChucVu = (req, res, next) => {
                 res.redirect("/chucvus");
             }
         })
-        .catch(e => console.log(e));
+        .catch( err => {
+            const error = new Error(err);
+            error.httpStatusCode = 500;
+            return next(error);
+        });
 }

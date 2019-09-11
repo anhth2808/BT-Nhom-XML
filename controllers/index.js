@@ -21,7 +21,8 @@ exports.getIndex = (req, res, next) => {
                     path: '/',
                     nhanViens: nhanViens,
                     phongBans: phongBans,
-                    chucVus: chucVus
+                    chucVus: chucVus,
+                    searchResult: nhanViens
                 });
             })
         })
@@ -42,13 +43,13 @@ exports.postIndex = (req, res, next) => {
         let result  = [];
 
         if (queryOt1) {
-            // console.log("query1 worked");
+            // console.log("query1 worked", queryOt1);
             result = search(nhanViens, query1, queryOt1);
         }
         
 
         if (queryOt2) {
-            // console.log("query2 worked");
+            // console.log("query2 worked", queryOt2);
             if (result.length > 0) {
                 result = search(result, query2, queryOt2);
             } else {
@@ -57,7 +58,7 @@ exports.postIndex = (req, res, next) => {
         }
 
         if (queryOt3) {
-            // console.log("query3 worked");
+            // console.log("query3 worked", queryOt3);
             if (result.length > 0) {
                 result = search(result, query3, queryOt3);
             } else {
@@ -65,8 +66,26 @@ exports.postIndex = (req, res, next) => {
             }
         }
 
-        if (result.length > 0)
-            req.flash('searchResult', result);
-        res.redirect("/");
+        if (!queryOt1 && !queryOt2 && !queryOt3) {
+            result = nhanViens;
+        }
+        console.log(result);
+        return NhanVien.fetchAll(nhanViens => {        
+            PhongBan.fetchAll(phongBans => {
+                ChucVu.fetchAll(chucVus => {
+                    res.render("./nhanvien/index", {
+                        pageTitle: 'Index',
+                        path: '/',
+                        nhanViens: nhanViens,
+                        phongBans: phongBans,
+                        chucVus: chucVus,
+                        searchResult: result
+                    });
+                })
+            })
+        });
+        
+        // if (result.length > 0)
+        //     req.flash('searchResult', result);
     });
 }

@@ -8,9 +8,9 @@
     <GioiTinh>Nam</GioiTinh>
     <DanToc>Kinh</DanToc>
     <TonGiao>Không</TonGiao>
-    <CMND>222222</CMND>
+    <CMND>999999</CMND>
     <MaPB>PB0001</MaPB>
-    <MaCV>CV0006</MaCV>
+    <MaCV>CV0002</MaCV>
     <MaHDLD>HDLD0001</MaHDLD>
   </NhanVien>
   <NhanVien>
@@ -54,29 +54,16 @@
   </NhanVien>
   <NhanVien>
     <MaNV>NV0005</MaNV>
-    <TenNV>Trần Hoàng Cháu</TenNV>
-    <DiaChi>61/8 Đoàn Trần Nghiệp</DiaChi>
+    <TenNV>Hoang Cha Minh</TenNV>
+    <DiaChi>Không biêt</DiaChi>
     <NgaySinh>2019-09-02</NgaySinh>
     <GioiTinh>Nam</GioiTinh>
     <DanToc>Hoàng</DanToc>
-    <TonGiao>Phật</TonGiao>
-    <CMND>5555555</CMND>
+    <TonGiao>Khong</TonGiao>
+    <CMND>123123</CMND>
     <MaPB>PB0001</MaPB>
     <MaCV>CV0002</MaCV>
     <MaHDLD>HDLD0005</MaHDLD>
-  </NhanVien>
-  <NhanVien>
-    <MaNV>NV0006</MaNV>
-    <TenNV>1313123</TenNV>
-    <DiaChi>1</DiaChi>
-    <NgaySinh>2019-09-03</NgaySinh>
-    <GioiTinh>Nam</GioiTinh>
-    <DanToc>Hoàng</DanToc>
-    <TonGiao>PHật</TonGiao>
-    <CMND>12345678</CMND>
-    <MaPB>PB0001</MaPB>
-    <MaCV>CV0002</MaCV>
-    <MaHDLD>HDLD0006</MaHDLD>
   </NhanVien>
   <PhongBan>
     <MaPB>PB0001</MaPB>
@@ -110,11 +97,6 @@
     <TenCV>Nhân viên 2</TenCV>
     <PhuCap>200000</PhuCap>
   </ChucVu>
-  <ChucVu>
-    <MaCV>CV0006</MaCV>
-    <TenCV>Nhân viên 3</TenCV>
-    <PhuCap>100000</PhuCap>
-  </ChucVu>
   <HDLD>
     <MaHDLD>HDLD0001</MaHDLD>
     <NgayBatDau>2010-05-04</NgayBatDau>
@@ -141,14 +123,8 @@
   </HDLD>
   <HDLD>
     <MaHDLD>HDLD0005</MaHDLD>
-    <NgayBatDau>2019-09-02</NgayBatDau>
+    <NgayBatDau>2019-09-01</NgayBatDau>
     <NgayKetThuc>2019-09-04</NgayKetThuc>
-    <HeSoLuong>5</HeSoLuong>
-  </HDLD>
-  <HDLD>
-    <MaHDLD>HDLD0006</MaHDLD>
-    <NgayBatDau>2019-09-02</NgayBatDau>
-    <NgayKetThuc>2019-09-14</NgayKetThuc>
-    <HeSoLuong>80</HeSoLuong>
+    <HeSoLuong>12.5</HeSoLuong>
   </HDLD>
 </QuanLyNhanVien>

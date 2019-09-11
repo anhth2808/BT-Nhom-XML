@@ -43,9 +43,15 @@ exports.postAddPhongBan = (req, res, next) => {
     }
 
     const phongBan = new PhongBan(null, TenPB);
-    phongBan.save().then(result => {
-        res.redirect("./phongbans");
-    })
+    phongBan.save()
+        .then(result => {
+            res.redirect("./phongbans");
+        })
+        .catch( err => {
+            const error = new Error(err);
+            error.httpStatusCode = 500;
+            return next(error);
+        })
 }
 
 
@@ -90,9 +96,14 @@ exports.postEditPhongBan = (req, res, next) => {
     }
 
     const phongBan = new PhongBan(MaPB, TenPB);
-    phongBan.save().then(result => {
-        res.redirect("./phongbans");
-    });
+    phongBan.save()
+        .then(result => {
+            res.redirect("./phongbans");
+        }).catch( err => {
+            const error = new Error(err);
+            error.httpStatusCode = 500;
+            return next(error);
+        })
 }
 
 exports.postDeletePhongBan = (req, res, next) => {
@@ -117,6 +128,9 @@ exports.postDeletePhongBan = (req, res, next) => {
                 res.redirect("/phongbans");
             }
         })
-        .catch(e => console.log);
-
+        .catch( err => {
+            const error = new Error(err);
+            error.httpStatusCode = 500;
+            return next(error);
+        })
 }

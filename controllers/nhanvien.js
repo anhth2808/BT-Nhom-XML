@@ -54,6 +54,11 @@ exports.getNhanVien = (req, res, next) => {
                                 hdld: hdld,
                                 luong: luong
                             });
+                        })
+                        .catch( err => {
+                            const error = new Error(err);
+                            error.httpStatusCode = 500;
+                            return next(error);
                         });                    
                 });
             
@@ -133,11 +138,16 @@ exports.postAddNhanVien = (req, res, next ) => {
     }
 
     const nhanVien = new NhanVien(null, TenNV, DiaChi, NgaySinh, GioiTinh, DanToc, TonGiao, CMND, MaPB, MaCV, null);
-    nhanVien.save().then((result) => {
-        const hdld = new HDLD(result.MaHDLD, NgayBatDau, NgayKetThuc, HeSoLuong);
-        hdld.save();
-        res.redirect("/nhanviens/" + nhanVien.MaNV);
-    });
+    nhanVien.save()
+        .then((result) => {
+            const hdld = new HDLD(result.MaHDLD, NgayBatDau, NgayKetThuc, HeSoLuong);
+            hdld.save()            
+            res.redirect("/nhanviens/" + nhanVien.MaNV);
+        }).catch( err => {
+            const error = new Error(err);
+            error.httpStatusCode = 500;
+            return next(error);
+        });;
     
 };
 
@@ -238,6 +248,10 @@ exports.postEditNhanVien = (req, res, next) => {
         const hdld = new HDLD(result.MaHDLD, NgayBatDau, NgayKetThuc, HeSoLuong);
         hdld.save();
         res.redirect("/nhanviens/" + nhanVien.MaNV);
+    }).catch( err => {
+        const error = new Error(err);
+        error.httpStatusCode = 500;
+        return next(error);
     });
 };
 
