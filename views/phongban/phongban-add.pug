@@ -5,16 +5,23 @@ include ../_includes/sharedHTMLfunctions
 block styles
     script(src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js")
     link(rel="stylesheet", href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css")
+    link(rel="stylesheet", href="/css/form.css")
+
 
 block content
-    
+    - if (errorMessage) {
+        .alert(role="alert", class="alert-danger") #{errorMessage}
+    - }
     .d-flex.justify-content-center
         .row
             .col-md-12
                 form(action=(editing ? "/edit-phongban" : "/add-phongban"), method="POST")
                     h3 Thông tin phòng ban:
-                        label(for="TenPB") Tên phòng ban
-                        input.form-control#TenPB(placeholder="Tên phòng ban", value=(editing ? phongBan.TenPB : ""), name="TenPB" required)
+                    .form-row
+                        .col-md-12.mb-12
+                            label(for="TenPB") Tên phòng ban
+                            input.form-control#TenPB(placeholder="Tên phòng ban", value=((editing || hasError) ? phongBan.TenPB : ""), class=(validationErrors.find(e => e.param === "TenPB")) ? "invalid" : "" ,name="TenPB" required)
+                    hr
                     // if is edit mode send id to find
                     - if (editing) {
                         input(type="hidden", name="MaPB", value=phongBan.MaPB)

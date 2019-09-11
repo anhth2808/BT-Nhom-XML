@@ -1,5 +1,6 @@
 const PhongBan = require("../models/PhongBan");
 
+const {validationResult} = require("express-validator");
 // PhongBan
 
 exports.getPhongBans = (req, res, next) => {
@@ -16,12 +17,30 @@ exports.getPhongBans = (req, res, next) => {
 exports.getAddPhongBan = (req, res, next) => {
     res.render("./phongban/phongban-add", {
         pageTitle: "Thêm nhân viên",
-        editing: false
+        editing: false,
+        hasError: false,
+        errorMessage: null,
+        validationErrors: []
     });
 }
 
 exports.postAddPhongBan = (req, res, next) => {
     const TenPB = req.body.TenPB;
+
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+        return res.status(422).render("./phongban/phongban-add", {
+            pageTitle: "Thêm nhân viên",
+            editing: false,
+            hasError: true,
+            errorMessage: errors.array()[0].msg,
+            validationErrors: errors.array(),
+            phongBan: {
+                TenPB: TenPB
+            }
+        })
+    }
 
     const phongBan = new PhongBan(null, TenPB);
     phongBan.save().then(result => {
@@ -42,7 +61,10 @@ exports.getEditPhongBan = (req, res, next) => {
         res.render("./phongban/phongban-add", {
             pageTitle: "Chỉnh sửa phòng ban",
             phongBan: phongBan,
-            editing: editMode
+            editing: editMode,
+            hasError: false,
+            errorMessage: null,
+            validationErrors: [],
         });
     });
 }
@@ -50,6 +72,22 @@ exports.getEditPhongBan = (req, res, next) => {
 exports.postEditPhongBan = (req, res, next) => {
     const MaPB = req.body.MaPB,
         TenPB = req.body.TenPB;
+    
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+        return res.status(422).render("./phongban/phongban-add", {
+            pageTitle: "Chỉnh sửa phòng ban",
+            editing: true,
+            hasError: true,
+            errorMessage: errors.array()[0].msg,
+            validationErrors: errors.array(),
+            phongBan: {
+                MaPB: MaPB,
+                TenPB: TenPB
+            }
+        });
+    }
 
     const phongBan = new PhongBan(MaPB, TenPB);
     phongBan.save().then(result => {

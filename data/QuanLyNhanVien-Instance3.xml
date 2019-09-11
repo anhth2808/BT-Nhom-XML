@@ -103,7 +103,7 @@
   <ChucVu>
     <MaCV>CV0004</MaCV>
     <TenCV>Nhân viên 1</TenCV>
-    <PhuCap>0</PhuCap>
+    <PhuCap>150000</PhuCap>
   </ChucVu>
   <ChucVu>
     <MaCV>CV0005</MaCV>
@@ -114,11 +114,6 @@
     <MaCV>CV0006</MaCV>
     <TenCV>Nhân viên 3</TenCV>
     <PhuCap>100000</PhuCap>
-  </ChucVu>
-  <ChucVu>
-    <MaCV>CV0007</MaCV>
-    <TenCV>Nhân viên 4</TenCV>
-    <PhuCap>1000</PhuCap>
   </ChucVu>
   <HDLD>
     <MaHDLD>HDLD0001</MaHDLD>

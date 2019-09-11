@@ -23,6 +23,7 @@ router.get("/nhanviens/:MaNV", nhanvienCtrl.getNhanVien);
 
 // /add-nhanvien
 router.get("/add-nhanvien", nhanvienCtrl.getAddNhanVien);
+
 router.post(
     "/add-nhanvien",    
     [
@@ -73,6 +74,7 @@ router.post(
 
 // /edit-nhanvien
 router.get("/edit-nhanvien/:MaNV", nhanvienCtrl.getEditNhanVien);
+
 router.post(
     "/edit-nhanvien",
     [
@@ -131,11 +133,35 @@ router.get("/chucvus", chucvuCtrl.getChucVus);
 
 // /add-chucvu
 router.get("/add-chucvu", chucvuCtrl.getAddChucVu);
-router.post("/add-chucvu", chucvuCtrl.postAddChucVu);
+
+router.post(
+    "/add-chucvu",
+    [
+        body("TenCV", "Tên chức vụ ít nhất 5 kí tự!!")
+            .isString()
+            .isLength({min: 5})
+            .trim(),
+        body("PhuCap", "Phụ cấp phải là số!!")
+            .isFloat()
+    ], 
+    chucvuCtrl.postAddChucVu
+);
 
 // /edit-chucvu
 router.get("/edit-chucvu/:MaCV", chucvuCtrl.getEditChucVu);
-router.post("/edit-chucvu", chucvuCtrl.postEditChucVu);
+
+router.post(
+    "/edit-chucvu",
+    [
+        body("TenCV", "Tên chức vụ ít nhất 5 kí tự!!")
+            .isString()
+            .isLength({min: 5})
+            .trim(),
+        body("PhuCap", "Phụ cấp phải là số!!")
+            .isFloat()
+    ],
+    chucvuCtrl.postEditChucVu
+);
 
 // /delete-chucvu
 router.post("/delete-chucvu", chucvuCtrl.postDeleteChucVu);
@@ -145,11 +171,29 @@ router.post("/delete-chucvu", chucvuCtrl.postDeleteChucVu);
 router.get("/phongbans", phongbanCtrl.getPhongBans)
 // /add-phongban
 router.get("/add-phongban", phongbanCtrl.getAddPhongBan);
-router.post("/add-phongban", phongbanCtrl.postAddPhongBan);
+
+router.post(
+    "/add-phongban",
+    [
+        body("TenPB", "Tên phòng ban có it nhất 2 ký tự")
+            .isString()
+            .isLength({min: 2})
+    ],
+    phongbanCtrl.postAddPhongBan
+);
 
 // /edit-phongban
 router.get("/edit-phongban/:MaPB", phongbanCtrl.getEditPhongBan);
-router.post("/edit-phongban", phongbanCtrl.postEditPhongBan);
+
+router.post(
+    "/edit-phongban",
+    [
+        body("TenPB", "Tên phòng ban có it nhất 2 ký tự")
+            .isString()
+            .isLength({min: 2})
+    ],
+    phongbanCtrl.postEditPhongBan
+);
 
 // /delete-phongban
 router.post("/delete-phongban", phongbanCtrl.postDeletePhongBan);

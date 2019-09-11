@@ -13,8 +13,6 @@ const formatdmy2ymd = (date) => {
 
 
 
-
-
 // NhanVien
 exports.getIndex = (req, res, next) => {
     NhanVien.fetchAll(nhanViens => {        
@@ -36,7 +34,6 @@ exports.getNhanViens = (req, res, next) => {
     });
     
 };
-
 
 exports.getNhanVien = (req, res, next) => {
     const MaNV = req.params.MaNV;
