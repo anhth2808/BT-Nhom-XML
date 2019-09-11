@@ -78,7 +78,7 @@ router.get("/edit-nhanvien/:MaNV", nhanvienCtrl.getEditNhanVien);
 router.post(
     "/edit-nhanvien",
     [
-        body("TenNV")
+        body("TenNV", "Tên nhân viên ít nhất 2 kí tự !!")
             .isString()
             .isLength({min: 2})
             .trim(),
@@ -97,17 +97,9 @@ router.post(
         body("TonGiao")
             .isString()
             .trim(),
-        body("CMND")
+        body("CMND", "CMND ít nhất 5 kí tự !!")
             .isString()
             .isLength({min: 5})
-            .trim(),
-        body("MaPB")
-            .isString()
-            .isLength({min: 2})
-            .trim(),
-        body("MaCV")
-            .isString()
-            .isLength({min: 2})
             .trim(),
         body("NgayBatDau")
             .isString()
@@ -117,7 +109,7 @@ router.post(
             .isString()
             .isLength({min: 2})
             .trim(),
-        body("HeSoLuong")
+        body("HeSoLuong", "Hệ số lương phải là số !!")
             .isFloat()
     ], 
     nhanvienCtrl.postEditNhanVien
