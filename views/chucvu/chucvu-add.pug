@@ -5,9 +5,12 @@ include ../_includes/sharedHTMLfunctions
 block styles
     script(src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js")
     link(rel="stylesheet", href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css")
+    link(rel="stylesheet", href="/css/form.css")
 
 block content
-    
+    - if (errorMessage) {
+        .alert(role="alert", class="alert-danger") #{errorMessage}
+    - }
     .d-flex.justify-content-center
         .row
             .col-md-12
@@ -16,10 +19,10 @@ block content
                     .form-row
                         .col-md-6.mb-6
                             label(for="TenCV") Tên chức vụ
-                            input.form-control#TenCV(placeholder="Tên chức vụ", value=(editing ? chucVu.TenCV : ""), name="TenCV" required)
+                            input.form-control#TenCV(placeholder="Tên chức vụ", value=((editing || hasError) ? chucVu.TenCV : ""), class=(validationErrors.find(e => e.param === "TenCV")) ? "invalid" : "", name="TenCV" required)
                         .col-md-6.mb-6
                             label(for="PhuCap") Phụ cấp
-                            input.form-control#PhuCap(placeholder="Phụ cấp", value=(editing ? chucVu.PhuCap : ""), name="PhuCap" required)
+                            input.form-control#PhuCap(placeholder="Phụ cấp", value=((editing || hasError) ? chucVu.PhuCap : ""), class=(validationErrors.find(e => e.param === "PhuCap")) ? "invalid" : "", name="PhuCap" required)
                     hr                 
                     // if is edit mode send id to find
                     - if (editing) {

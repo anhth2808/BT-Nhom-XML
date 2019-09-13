@@ -1,0 +1,7 @@
+input.invalid {
+    border-color: red;
+}
+  
+textarea.invalid {
+    border-color: red;
+}

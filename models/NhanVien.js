@@ -15,6 +15,7 @@ const p = require("../util/path");
 const LUONG_CO_SO = require("../util/config").LUONG_CO_SO;
 const createId = require("../util/myModule").createId;
 
+/* */
 const formatXMLFile = (doc, cb)  => {
     // xml
     const fileContent = serializer.serializeToString(doc);
@@ -40,13 +41,21 @@ const getDocument = (cb) => {
     });
 }
 
+
+/* get all nhanviens from xml file*/
 const getDataFromFile = (cb) => {
     fs.readFile(p, "utf-8", (err, fileContent) => {
         if (err) {
             cb([]);
         } else {      
-
-            const doc = new DOMParser().parseFromString(fileContent);
+            let doc;
+            try {
+                doc = new DOMParser().parseFromString(fileContent);
+            }
+            catch(err) {
+                throw new Error(err);                            
+            }
+            
             const data = [];
 
             // doc.getElementsByTagName("NhanVien")[0].getElementsByTagName("MaNV")[0].childNodes[0].nodeValue;
@@ -110,6 +119,7 @@ class NhanVien {
                     
                     formatXMLFile(doc, xmlData => {
                         fs.writeFile(p, xmlData, "utf-8", () => {
+                            console.log(`NhanVien #${this.MaNV} is edited!`);
                             resolve(this);
                         });
                     });
@@ -176,6 +186,7 @@ class NhanVien {
 
                     formatXMLFile(doc, xmlData => {
                         fs.writeFile(p, xmlData, "utf-8", () => {
+                            console.log(`Added new NhanVien #${this.MaNV}`);
                             resolve(this);
                         });
                     });
