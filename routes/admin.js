@@ -12,7 +12,7 @@ const hdldCtrl = require("../controllers/hdld");
 
 // /
 router.get("/", indexCtrl.getIndex);
-router.post("/", indexCtrl.postIndex);
+// router.post("/", indexCtrl.postIndex);
 
 // ===================NhanVien=======================
 // /nhanviens
