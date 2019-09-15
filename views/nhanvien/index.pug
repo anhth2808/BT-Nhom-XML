@@ -1,9 +1,11 @@
 extends  ../layouts/main-layout.pug
 
+include ../_includes/sharedHTMLfunctions.pug
+
 block content
     .container
         h1 Tìm kiếm:
-        form.justify-content-md-center(action="/", method="post")                    
+        form.justify-content-md-center(action="/", method="get")                    
             .row
                 .form-group.col-sm-6.row
                     select.col-sm-4.form-control#query1(name='query1')
@@ -15,7 +17,7 @@ block content
                         option(value="TonGiao", ) Tôn giáo
                         option(value="CMND", ) CMND
                         option(value="MaNV", ) Mã nhân viên
-                    input.col-sm-8.form-control#queryOt1(placeholder=" ", value=(editing ? nhanVien.TenNV : ""), name="queryOt1")
+                    input.col-sm-8.form-control#queryOt1(placeholder=" ", value=(queryOt1 ? queryOt1 : ""), name="queryOt1")
             .row
                 .form-group.col-sm-6.row
                     select.col-sm-4.form-control#query2(name='query2')
@@ -27,7 +29,7 @@ block content
                         option(value="TonGiao", ) Tôn giáo
                         option(value="CMND", ) CMND
                         option(value="MaNV", ) Mã nhân viên
-                    input.col-sm-8.form-control#queryOt2(placeholder=" ", value=(editing ? nhanVien.TenNV : ""), name="queryOt2")
+                    input.col-sm-8.form-control#queryOt2(placeholder=" ", value=(queryOt2 ? queryOt2 : ""), name="queryOt2")
             .row
                 .form-group.col-sm-6.row
                     select.col-sm-4.form-control#query3(name='query3')
@@ -78,5 +80,6 @@ block content
                 td #{nhanVien.TonGiao}
                 td 
                     a.btn(href="/nhanviens/" + nhanVien.MaNV) Chi tiết
+    +pagination()
 block scripts
     script(src="/js/searchIndex.js")
