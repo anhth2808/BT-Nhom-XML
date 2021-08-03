@@ -27,6 +27,6 @@
     "express-validator": "^6.2.0",
     "pug": "^2.0.3",
     "xml2js": "^0.4.19",
-    "xmldom": "^0.1.27"
+    "xmldom": "^0.6.0"
   }
 }
